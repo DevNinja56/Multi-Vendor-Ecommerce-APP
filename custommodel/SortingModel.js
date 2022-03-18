@@ -1,0 +1,137 @@
+import React, { useState } from "react";
+import {
+  Dimensions,
+  View,
+  StyleSheet,
+  Text,
+  Button,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { Entypo } from "@expo/vector-icons";
+
+const { height } = Dimensions.get("screen");
+const modalHeight = height * 0.5;
+
+const marginSpace = Dimensions.get("window").height * 0.1;
+
+const SortingModel = (props) => {
+  const [checked, setChecked] = useState(0);
+  var gender = [
+    "What's New",
+    "Price - high to low",
+    "Popularity",
+    "Discount",
+    "Price - low to high",
+    "Customer Rating",
+  ];
+  return (
+    <View style={styles.content}>
+      <View style={styles.header}>
+        <Text style={styles.text}>SORT BY</Text>
+        <TouchableOpacity onPress={props.closeBottomSheet}>
+          <Entypo name="circle-with-cross" size={24} color="black" />
+        </TouchableOpacity>
+      </View>
+      <View>
+        <View
+          style={{
+            width: "100%",
+            height: 1,
+            backgroundColor: "black",
+            marginTop: 10,
+          }}
+        />
+        <View style={styles.btn}>
+          {gender.map((gender, key) => {
+            return (
+              <View key={gender}>
+                {checked == key ? (
+                  <TouchableOpacity style={styles.btn}>
+                    <View style={{ flexDirection: "row" }}>
+                      {/* <Image
+                                                        style={styles.img}
+                                                        source={require('../assets/radioChecked.png')}
+                                                    /> */}
+                      <Text style={styles.textChecked}>{gender}</Text>
+                    </View>
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setChecked(key);
+                    }}
+                    style={styles.btn}
+                  >
+                    <View style={{ flexDirection: "row" }}>
+                      {/* <Image
+                                                        style={styles.img}
+                                                        source={require('../assets/radioUnchecked.png')}
+                                                    /> */}
+                      <Text style={styles.textUnChecked}>{gender}</Text>
+                    </View>
+                  </TouchableOpacity>
+                )}
+              </View>
+            );
+          })}
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  content: {
+    // flex: 1,
+    // justifyContent: "space-between",
+    // height: modalHeight,
+    paddingHorizontal: 20,
+    // paddingBottom: marginSpace,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    backgroundColor: "#ffff",
+  },
+  header: {
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  text: {
+    fontSize: 14,
+    fontFamily: "whitney-book",
+    // letterSpacing: 48 * 0.02,
+    // alignSelf: "flex-start",
+    color: "#9F9F9F",
+  },
+  textChecked: {
+    fontSize: 16,
+    fontFamily: "whitney-semi-bold",
+    // letterSpacing: 48 * 0.02,
+    // alignSelf: "flex-start",
+    color: "#0F0F0F",
+  },
+  textUnChecked: {
+    fontSize: 16,
+    fontFamily: "whitney-book",
+    // letterSpacing: 48 * 0.02,
+    // alignSelf: "flex-start",
+    color: "grey",
+  },
+  radio: {
+    flexDirection: "row",
+  },
+  img: {
+    height: 40,
+    width: 40,
+    marginHorizontal: 0,
+  },
+  btn: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+    marginVertical: 10,
+  },
+});
+
+export default SortingModel;

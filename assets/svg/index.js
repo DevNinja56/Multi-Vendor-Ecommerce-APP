@@ -1,0 +1,16 @@
+export { default as HomeIcon } from "./homeIcon.svg";
+export { default as HomeActiveIcon } from "./homeActiveIcon.svg";
+export { default as CategoriesIcon } from "./categoriesIcon.svg";
+export { default as CategoriesActiveIcon } from "./categoriesActiveIcon.svg";
+export { default as ProfileIcon } from "./profileIcon.svg";
+export { default as ProfileActiveIcon } from "./profileActiveIcon.svg";
+export { default as HeartIcon } from "./heartIcon.svg";
+export { default as SearchIcon } from "./searchIcon.svg";
+export { default as NotificationIcon } from "./notificationIcon.svg";
+export { default as BagIcon } from "./bagIcon.svg";
+export { default as OrderIcon } from "./orderIcon.svg";
+export { default as HelpCenterIcon } from "./helpCenterIcon.svg";
+export { default as CouponTagIcon } from "./couponTagIcon.svg";
+export { default as ShareIcon } from "./shareIcon.svg";
+export { default as CancelBtn } from "./cancelBtn.svg";
+export { default as BagWhite } from "./bagWhite.svg";
