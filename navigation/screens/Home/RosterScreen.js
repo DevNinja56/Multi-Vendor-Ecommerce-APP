@@ -31,11 +31,15 @@ import Httpclients from "../../../Redux/utils";
 
 import { BottomSheet } from "react-native-elements";
 import Colors from "../../../constants/constants";
+import Loader from '../Components/Loader'
+
+
 const grey = "#91A1BD";
 const RosterScreen = (props) => {
   const [data, setData] = useState();
   const [isVisible, setIsVisible] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
+  const [isLoading, setLoading] = useState(false)
 
   let content = <GenderModel />;
 
@@ -98,7 +102,9 @@ const RosterScreen = (props) => {
   };
 
   const getAllProducts = async () => {
+    setLoading(true)
     const res = await Httpclients.get("product/getAll");
+    setLoading(false)
     if (res.data.data.length) {
       setData(res.data.data);
     } else {
@@ -224,6 +230,11 @@ const RosterScreen = (props) => {
           </BottomSheet>
         </View>
       </View>
+      {isLoading &&
+        <Loader
+          color={"FF3E6C"}
+        />
+      }
     </SafeAreaView>
   );
 };
