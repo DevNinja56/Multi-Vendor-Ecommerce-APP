@@ -25,6 +25,7 @@ import OrderDetails from "./Orders/OrderDetails";
 
 import TermsOfUse from "./Legal/TermsOfUse";
 import PrivacyPolicy from "./Legal/PrivacyPolicy";
+import Checkout from "./Checkout/Checkout";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -66,6 +67,7 @@ export default function MainContainer() {
           <Stack.Screen name="Order Details" component={OrderDetails} />
           <Stack.Screen name="Terms Of Use" component={TermsOfUse} />
           <Stack.Screen name="Privacy Policy" component={PrivacyPolicy} />
+          <Stack.Screen name="Checkout" component={Checkout} />
          
         </Stack.Navigator>
       </NavigationContainer>

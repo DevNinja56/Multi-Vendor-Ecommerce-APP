@@ -33,7 +33,7 @@ const get = (path, customOptions = {}) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log(error.response.data);
+        console.log('=====>',error.response.data);
         return error.response
       } 
       

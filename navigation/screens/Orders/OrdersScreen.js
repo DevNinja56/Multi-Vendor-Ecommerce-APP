@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -14,9 +14,10 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Colors from "../../../constants/constants";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import HttpClients from "../../../Redux/utils";
+import Loader from '../Components/Loader'
 
 const OrdersScreen = (props) => {
-  const detailsSCreen =()=>{
+  const detailsSCreen = () => {
     props.navigation.navigate('Order Details');
   };
 
@@ -25,19 +26,19 @@ const OrdersScreen = (props) => {
   const [pendingData, setPendingData] = useState();
   const [cancelledData, setCancelledData] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     // console.log("Call");
     getDelieverdOrderData();
     getPendingOrderData();
     getCancelledOrderData();
 
-  },[]);
+  }, []);
 
 
   const getDelieverdOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=delieverd");
     console.log(res.data.status);
-    if (res.data.status==="success") {
+    if (res.data.status === "success") {
       console.log(res.data.data);
       setOrderData(res.data.data);
       setLoading(false);
@@ -51,7 +52,7 @@ const OrdersScreen = (props) => {
   const getPendingOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=pending");
     console.log(res.data.status);
-    if (res.data.status==="success") {
+    if (res.data.status === "success") {
       console.log(res.data.data);
       setPendingData(res.data.data);
       setLoading(false);
@@ -65,7 +66,7 @@ const OrdersScreen = (props) => {
   const getCancelledOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=canceled");
     console.log(res.data.status);
-    if (res.data.status==="success") {
+    if (res.data.status === "success") {
       console.log(res.data.data);
       setCancelledData(res.data.data);
       setLoading(false);
@@ -77,16 +78,16 @@ const OrdersScreen = (props) => {
 
   let content = <DeliveredScreen />;
 
-  const FirstRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData}/>;
+  const FirstRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData} />;
 
-  const SecondRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData}/>;
+  const SecondRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData} />;
 
-  const ThirdRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData}/>;
+  const ThirdRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData} />;
 
   const renderScene = SceneMap({
     delivered: FirstRoute,
     pending: SecondRoute,
-    cancelled:ThirdRoute,
+    cancelled: ThirdRoute,
   });
 
   const renderTabBar = (props) => (
@@ -94,9 +95,9 @@ const OrdersScreen = (props) => {
       {...props}
       indicatorStyle={{ backgroundColor: Colors.Primary }}
       labelStyle={{
-        fontSize:heightPercentageToDP(2),
-        fontFamily:'whitney-semi-bold'
-        
+        fontSize: heightPercentageToDP(2),
+        fontFamily: 'whitney-semi-bold'
+
       }}
       style={{
         backgroundColor: "white",
@@ -121,8 +122,8 @@ const OrdersScreen = (props) => {
   // }
   return (
     <View style={styles.screen}>
-      <SimpleHeader clickHandler={()=>props.navigation.goBack()} headerTitle={'Orders'}/>
-      {isLoading ? <ActivityIndicator size="large" color={Colors.Primary}/> : (
+      <SimpleHeader clickHandler={() => props.navigation.goBack()} headerTitle={'Orders'} />
+
       <TabView
         navigationState={{ index, routes }}
         renderScene={renderScene}
@@ -131,12 +132,16 @@ const OrdersScreen = (props) => {
         renderTabBar={renderTabBar}
         style={{
           backgroundColor: "white",
-          
+
         }}
-        
+
       />
 
-      )}
+      {isLoading &&
+        <Loader
+          color={"FF3E6C"}
+        />
+      }
       {/* <View
         style={{
           width: "100%",

@@ -548,7 +548,7 @@ const DetailsScreen = (props) => {
                     // alignItems: "center",
                   }}
                 >
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=>props.navigation.navigate("Checkout")}>
                     <View
                       style={{
                         // flex: 1,

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.505" height="24.271" viewBox="0 0 33.505 24.271">
+  <g id="Component_46_1" data-name="Component 46 – 1" transform="translate(0.25 0.25)">
+    <g id="Icon_ionic-ios-man" data-name="Icon ionic-ios-man" transform="translate(0 0)">
+      <path id="Path_36" data-name="Path 36" d="M2.263,4.487h-.01A2.243,2.243,0,1,1,4.507,2.243,2.249,2.249,0,0,1,2.263,4.487Z" transform="translate(3.368 0)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+      <path id="Path_37" data-name="Path 37" d="M3.922,18.868a1.353,1.353,0,0,1-1.337-1.505l.05-13.747h-.5v5.2a1.2,1.2,0,0,1-.317.906,1.052,1.052,0,0,1-1.505,0A1.193,1.193,0,0,1,0,8.815V2.793A2.861,2.861,0,0,1,.683.891,2.529,2.529,0,0,1,2.615,0H8.671A2.517,2.517,0,0,1,10.6.9a2.848,2.848,0,0,1,.683,1.9V8.815a1.174,1.174,0,0,1-.327.906,1.113,1.113,0,0,1-1.535,0A1.174,1.174,0,0,1,9.1,8.815v-5.2H8.652V17.363a1.372,1.372,0,1,1-2.734.03V10.4H5.324v6.978A1.409,1.409,0,0,1,3.922,18.868Z" transform="translate(0 4.903)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+    </g>
+    <g id="Icon_ionic-ios-man-2" data-name="Icon ionic-ios-man" transform="translate(21.719 0)">
+      <path id="Path_36-2" data-name="Path 36" d="M2.263,4.487h-.01A2.243,2.243,0,1,1,4.507,2.243,2.249,2.249,0,0,1,2.263,4.487Z" transform="translate(3.368 0)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+      <path id="Path_37-2" data-name="Path 37" d="M3.922,18.868a1.353,1.353,0,0,1-1.337-1.505l.05-13.747h-.5v5.2a1.2,1.2,0,0,1-.317.906,1.052,1.052,0,0,1-1.505,0A1.193,1.193,0,0,1,0,8.815V2.793A2.861,2.861,0,0,1,.683.891,2.529,2.529,0,0,1,2.615,0H8.671A2.517,2.517,0,0,1,10.6.9a2.848,2.848,0,0,1,.683,1.9V8.815a1.174,1.174,0,0,1-.327.906,1.113,1.113,0,0,1-1.535,0A1.174,1.174,0,0,1,9.1,8.815v-5.2H8.652V17.363a1.372,1.372,0,1,1-2.734.03V10.4H5.324v6.978A1.409,1.409,0,0,1,3.922,18.868Z" transform="translate(0 4.903)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+    </g>
+    <g id="Group_165" data-name="Group 165" transform="translate(13.632 10.8)">
+      <line id="Line_113" data-name="Line 113" x2="5.633" transform="translate(0.108 1.124)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+      <path id="Path_38" data-name="Path 38" d="M1663.1,2651.31l-1,1.136,1,1.036" transform="translate(-1662.097 -2651.31)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+      <path id="Path_39" data-name="Path 39" d="M1662.1,2651.31l1,1.136-1,1.036" transform="translate(-1657.359 -2651.31)" fill="none" stroke="#4d4d4d" stroke-width="0.5"/>
+    </g>
+  </g>
+</svg>

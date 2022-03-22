@@ -104,9 +104,12 @@ const RosterScreen = (props) => {
   const getAllProducts = async () => {
     setLoading(true)
     const res = await Httpclients.get("product/getAll");
-    setLoading(false)
+    setLoading(false);
+    console.log(res.data.status);
+    console.log(res.data.data);
     if (res.data.data.length) {
       setData(res.data.data);
+      console.log(res.data.data);
     } else {
       console.log("no data available");
     }
