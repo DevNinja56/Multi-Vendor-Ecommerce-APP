@@ -14,3 +14,6 @@ export { default as CouponTagIcon } from "./couponTagIcon.svg";
 export { default as ShareIcon } from "./shareIcon.svg";
 export { default as CancelBtn } from "./cancelBtn.svg";
 export { default as BagWhite } from "./bagWhite.svg";
+export { default as OrignalProduct } from "./orignal_product.svg";
+export { default as ContactlessDelivery } from "./contactless_delivery.svg";
+export { default as SecurePayment } from "./secure_payment.svg";

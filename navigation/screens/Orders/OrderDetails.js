@@ -18,10 +18,12 @@ import Colors from "../../../constants/constants";
 import httpClients from "../../../Redux/utils";
 
 import SimpleHeader from "../Header/simple_header";
+import Loader from '../Components/Loader'
 
 const OrderDetails = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
+  const [productsData, setProductsData] = useState([]);
 
   useEffect(() => {
     // console.log("Call");
@@ -30,10 +32,11 @@ const OrderDetails = (props) => {
 
   const getOrderDetailsData = async () => {
     const res = await httpClients.get("order/getById/1");
-    console.log(res.data.status);
+    console.log("Order Details Data : " + res.data.data.products.length);
     if (res.data.status === "success") {
-      console.log(res.data.data);
+      console.log(res.data.data.products);
       setData(res.data.data);
+      setProductsData(res.data.data.products);
       setLoading(false);
     } else {
       console.log("no data available");
@@ -43,6 +46,7 @@ const OrderDetails = (props) => {
 
   const renderItem = (itemData) => {
     return (
+
       <View
         style={{
           ...styles.textTopStyle,
@@ -107,115 +111,119 @@ const OrderDetails = (props) => {
         headerTitle={"Order Details"}
         clickHandler={() => props.navigation.goBack()}
       />
-      {isLoading ? (
-        <ActivityIndicator size="large" color={Colors.Primary} />
-      ) : (
-        <View style={styles.detailsCardStyle}>
-          <View style={styles.textTopStyle}>
-            <Text
-              style={{
-                ...styles.textStyle,
-                fontSize: heightPercentageToDP(2.2),
-              }}
-            >
-              Order from{" "}
-              <Text style={{ ...styles.headingStyle }}>March 05, 2022</Text>
+
+      {isLoading ? <Loader color={Colors.Primary}/> :
+
+      <View style={styles.detailsCardStyle}>
+        <View style={styles.textTopStyle}>
+          <Text
+            style={{
+              ...styles.textStyle,
+              fontSize: heightPercentageToDP(2.2),
+            }}
+          >
+            Order from{" "}
+            <Text style={{ ...styles.headingStyle }}>
+              {data.Order_Date}
             </Text>
-            <Text
-              style={{
-                ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
-              }}
-            >
-              Delivered
-            </Text>
-          </View>
-          <View style={styles.flatListStyle}>
+          </Text>
+          <Text
+            style={{
+              ...styles.textStyle,
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            {data.Status}
+          </Text>
+        </View>
+        <View style={styles.flatListStyle}>
+          
             <FlatList
               scrollEnabled={true}
               showsVerticalScrollIndicator={false}
-              data={data}
+              data={productsData}
               keyExtractor={(item, index) => {
                 item.key;
               }}
               renderItem={renderItem}
-              // contentContainerStyle={styles.flatListStyle}
+            // contentContainerStyle={styles.flatListStyle}
             />
-          </View>
+           
+        </View>
 
-          <View style={{ ...styles.textTopStyle, marginHorizontal: 10 }}>
-            <View>
-              <Text
-                style={{
-                  ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
-                }}
-              >
-                Order number:
-              </Text>
-              <Text
-                style={{
-                  ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
-                }}
-              >
-                25136487521
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
-                }}
-              >
-                Quantity:
-              </Text>
-              <Text
-                style={{
-                  ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
-                }}
-              >
-                1
-              </Text>
-            </View>
-            <View>
-              <Text
-                style={{
-                  ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
-                }}
-              >
-                Total amount:
-              </Text>
-              <Text
-                style={{
-                  ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
-                }}
-              >
-                ${data.Price}
-              </Text>
-            </View>
-          </View>
-
-          <TouchableOpacity style={styles.buttonStyle}>
+        <View style={{ ...styles.textTopStyle, marginHorizontal: 10 }}>
+          <View>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: heightPercentageToDP(2),
+                marginTop: 7,
+              }}
+            >
+              Order number:
+            </Text>
             <Text
               style={{
                 ...styles.headingStyle,
-                color: "white",
                 fontSize: heightPercentageToDP(2),
               }}
             >
-              Repeat Order
+              {data.Order_Id}
             </Text>
-          </TouchableOpacity>
+          </View>
+          <View>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: heightPercentageToDP(2),
+                marginTop: 7,
+              }}
+            >
+              Quantity:
+            </Text>
+            <Text
+              style={{
+                ...styles.headingStyle,
+                fontSize: heightPercentageToDP(2),
+              }}
+            >
+              {productsData.length}
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: heightPercentageToDP(2),
+                marginTop: 7,
+              }}
+            >
+              Total amount:
+            </Text>
+            <Text
+              style={{
+                ...styles.headingStyle,
+                fontSize: heightPercentageToDP(2),
+              }}
+            >
+              ${data.Total_Price}
+            </Text>
+          </View>
         </View>
-      )}
+
+        <TouchableOpacity style={styles.buttonStyle}>
+          <Text
+            style={{
+              ...styles.headingStyle,
+              color: "white",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            Repeat Order
+          </Text>
+        </TouchableOpacity>
+      </View>
+}
     </SafeAreaView>
   );
 };

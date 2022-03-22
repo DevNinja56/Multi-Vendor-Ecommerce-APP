@@ -770,13 +770,7 @@ const DetailsScreen = (props) => {
                     ...styles.sizeStyle,
                   }}
                 >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
+                  <TouchableOpacity onPress={()=>props.navigation.navigate("Checkout")}>
                     <View
                       style={{
                         justifyContent: "center",
@@ -832,7 +826,8 @@ const DetailsScreen = (props) => {
                         Quality Checked
                       </Text>
                     </View>
-                  </View>
+                  </TouchableOpacity>
+                
                 </View>
 
                 {/* Rating View */}
