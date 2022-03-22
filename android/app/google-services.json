@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "527574624426",
+    "project_id": "modjen-application",
+    "storage_bucket": "modjen-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527574624426:android:b39d8b76db623de541c8d3",
+        "android_client_info": {
+          "package_name": "com.multivendorecom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527574624426-7eqr1veqrudvkh0f769sadralrfrur7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyvA2uQ9lpnenA4OEP5TzKJGxg2NDHDiw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527574624426-7eqr1veqrudvkh0f769sadralrfrur7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

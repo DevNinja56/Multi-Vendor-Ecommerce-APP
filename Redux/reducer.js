@@ -2,11 +2,13 @@ import { combineReducers } from "redux";
 import {
   AUTH_LOADING,
   IS_FIRST,
+  TOKKEN
 } from "./action";
 
 const initialUserState = {
   AuthLoading: false,
   isFirst: false,
+  token:""
 };
 
 const userReducer = (state = initialUserState, action) => {
@@ -21,6 +23,12 @@ const userReducer = (state = initialUserState, action) => {
     return {
       ...state,
       isFirst: action.payload.isFirst
+    };
+  }
+  if (action.type === TOKKEN) {
+    return {
+      ...state,
+      token: action.payload.token
     };
   }
   return state;

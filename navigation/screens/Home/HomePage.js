@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -21,6 +21,7 @@ import FashionPredictionDeals from "./FashionPredictionDeals";
 import Header from '../Header'
 
 import { styles } from '../../../Styles/styles'
+import { useSelector, useDispatch } from 'react-redux';
 
 
 import {
@@ -110,6 +111,7 @@ const renderWeadingItem = (itemData) => {
 };
 
 const HomePage = ({ navigation }) => {
+  const token = useSelector((state) => state.user.token);
   const changeShop = () => {
     console.log("RoadSter");
     navigation.navigate("RoadSter");
@@ -141,6 +143,13 @@ const HomePage = ({ navigation }) => {
     require("../../../assets/slider2.png"),
     require("../../../assets/slider3.png"),
   ]);
+
+  useEffect(()=>{
+    console.log('token ==>',token)
+  },[])
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       <Header

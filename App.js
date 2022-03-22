@@ -7,9 +7,8 @@ import { loadAsync } from "expo-font";
 import { Store, persistor } from "./Redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-
-
-import MainContainer from "./navigation/screens/MainContainer";
+import Services from './Services'
+import MainApp from './MainApp'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -59,7 +58,8 @@ export default function App() {
     <View style={{ flex: 1 }}>
       <Provider store={Store}>
         <PersistGate loading={null} persistor={persistor}>
-          <MainContainer />
+          <MainApp />
+          <Services/>
         </PersistGate>
       </Provider>
     </View>
