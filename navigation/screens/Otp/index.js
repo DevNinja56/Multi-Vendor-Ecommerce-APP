@@ -13,13 +13,14 @@ import {
 } from "react-native-responsive-screen";
 import SimpleHeader from "../Header/simple_header";
 import OTPInputView from '@twotalltotems/react-native-otp-input'
+import { Fonts } from '../../../constants/fonts'
 
 const OTP = (props) => {
 
     const [code, setCode] = useState(1234);
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 , backgroundColor:"white"}}>
             <SimpleHeader
                 clickHandler={() => props.navigation.goBack()}
                 headerTitle={""}
@@ -53,13 +54,22 @@ const OTP = (props) => {
                 <Text style={styles.received}>
                     {"Didn't you received any code?"}
                 </Text>
-                <Text style={[styles.received,{
+                <Text style={[styles.received, {
                     marginVertical: heightPercentageToDP(4),
-                    color:"#FE3F6C",
-                    fontFamily:"whitney-medium"
+                    color: "#FE3F6C",
+                    fontFamily: "whitney-medium"
                 }]}>
                     {"Resend a new code"}
                 </Text>
+
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('EnterPassword')}
+                    style={styles.btn}>
+                    <Text style={styles.btnText}>
+                        {"Login with Password"}
+                    </Text>
+                </TouchableOpacity>
+
             </View>
         </SafeAreaView>
     )
@@ -79,13 +89,13 @@ const styles = StyleSheet.create({
         fontSize: widthPercentageToDP(6),
         color: "black"
     },
-    received:{
+    received: {
         marginVertical: heightPercentageToDP(-3),
         //paddingLeft: widthPercentageToDP(4),
         fontFamily: "whitney-light",
         fontSize: widthPercentageToDP(3.5),
         color: "grey",
-        textAlign:"center"
+        textAlign: "center"
     },
     smallText: {
         marginVertical: heightPercentageToDP(-3),
@@ -123,6 +133,20 @@ const styles = StyleSheet.create({
         color: "black",
         fontFamily: "whitney-medium"
     },
+    btn: {
+        width: widthPercentageToDP(80),
+        height: heightPercentageToDP(7),
+        backgroundColor: "#FE3F6C",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: heightPercentageToDP(10),
+        alignSelf: "center"
+    },
+    btnText: {
+        fontFamily: Fonts.whitney_medium,
+        fontSize: widthPercentageToDP(4.5),
+        color: "white"
+    }
 })
 
 export default OTP
