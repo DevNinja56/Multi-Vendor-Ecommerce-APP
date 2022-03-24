@@ -26,6 +26,8 @@ import OTP from './Otp'
 import TermsOfUse from "./Legal/TermsOfUse";
 import PrivacyPolicy from "./Legal/PrivacyPolicy";
 import Checkout from "./Checkout/Checkout";
+import EnterPassword from "./EnterPassword";
+import SetPassword from "./SetPassword";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -69,6 +71,8 @@ export default function MainContainer() {
           <Stack.Screen name="Privacy Policy" component={PrivacyPolicy} />
           <Stack.Screen name="Checkout" component={Checkout} />
           <Stack.Screen name="OTP" component={OTP} />
+          <Stack.Screen name="EnterPassword" component={EnterPassword} />
+          <Stack.Screen name="SetPassword" component={SetPassword} />
          
         </Stack.Navigator>
       </NavigationContainer>
