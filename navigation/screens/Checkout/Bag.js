@@ -226,7 +226,7 @@ const renderItemMore = () => {
 
 const data = ["1", "2"];
 
-const Bag = () => {
+const Bag = (props) => {
   var gender = ["ALL", "SOCKS", "MASCARA"];
   const [checked, setChecked] = useState(0);
   return (
@@ -669,6 +669,10 @@ const Bag = () => {
             <Text style={{...styles.headerText,fontSize:heightPercentageToDP(2)}}>Genuine Products</Text>
         </View>
       </View>
+      
+      <TouchableOpacity style={styles.buttonStyle} onPress={()=>props.screenSet(1)}>
+          <Text style={{...styles.headerText,color:'white',fontSize:heightPercentageToDP(2)}}>PLACE ORDER</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -746,6 +750,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 16,
   },
+  buttonStyle:{
+      marginTop:10,
+      padding:16,
+      backgroundColor:Colors.Primary,
+      alignItems:'center'
+  }
 });
 
 export default Bag;
