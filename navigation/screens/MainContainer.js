@@ -22,7 +22,7 @@ import KidsScreen from "./Home/Kids/KidsScreen";
 import FootwareScreen from "./Home/Footware/FootwareScreen";
 
 import OrderDetails from "./Orders/OrderDetails";
-
+import OTP from './Otp'
 import TermsOfUse from "./Legal/TermsOfUse";
 import PrivacyPolicy from "./Legal/PrivacyPolicy";
 import Checkout from "./Checkout/Checkout";
@@ -68,6 +68,7 @@ export default function MainContainer() {
           <Stack.Screen name="Terms Of Use" component={TermsOfUse} />
           <Stack.Screen name="Privacy Policy" component={PrivacyPolicy} />
           <Stack.Screen name="Checkout" component={Checkout} />
+          <Stack.Screen name="OTP" component={OTP} />
          
         </Stack.Navigator>
       </NavigationContainer>
