@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
@@ -14,13 +14,41 @@ import {
 import SimpleHeader from "../Header/simple_header";
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { Fonts } from '../../../constants/fonts'
+import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../Components/Loader'
+import httpClients from '../../../Redux/utils'
 
 const OTP = (props) => {
-
+    const userToken = useSelector((state) => state.user.userToken);
+    const [isLoading, setLoading] = useState();
     const [code, setCode] = useState(1234);
+    const isLogin = props.route.params.isLogin
+
+    useEffect(() => {
+        console.log(userToken)
+    }, [])
+
+    const verifyOtpApi = async (code) => {
+        setLoading(true)
+        const res = await httpClients.get(`opt_verify?otp=` + code, {
+            headers: {
+                'Authorization': userToken
+            }
+        })
+        setLoading(false)
+        console.log(res.data)
+        if (res.data.status === "success") {
+            if (isLogin) {
+                props.navigation.navigate('HomeScreen')
+            } else {
+                props.navigation.navigate('SetPassword')
+            }
+        }
+    }
+
 
     return (
-        <SafeAreaView style={{ flex: 1 , backgroundColor:"white"}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
             <SimpleHeader
                 clickHandler={() => props.navigation.goBack()}
                 headerTitle={""}
@@ -41,14 +69,7 @@ const OTP = (props) => {
                     autoFocusOnLoad
                     codeInputFieldStyle={styles.underlineStyleBase}
                     codeInputHighlightStyle={styles.underlineStyleHighLighted}
-                    onCodeFilled={(num) => {
-                        if (num == code) {
-                            console.log(`Code is ${code}, you are good to go!`)
-                        } else {
-                            console.log('code not matched')
-                        }
-
-                    }}
+                    onCodeFilled={(num) => { verifyOtpApi(num) }}
                 />
 
                 <Text style={styles.received}>
@@ -62,13 +83,21 @@ const OTP = (props) => {
                     {"Resend a new code"}
                 </Text>
 
-                <TouchableOpacity
-                    onPress={() => props.navigation.navigate('EnterPassword')}
-                    style={styles.btn}>
-                    <Text style={styles.btnText}>
-                        {"Login with Password"}
-                    </Text>
-                </TouchableOpacity>
+                {isLogin &&
+                    <TouchableOpacity
+                        onPress={() => props.navigation.navigate('EnterPassword')}
+                        style={styles.btn}>
+                        <Text style={styles.btnText}>
+                            {"Login with Password"}
+                        </Text>
+                    </TouchableOpacity>
+                }
+
+                {isLoading &&
+                    <Loader
+                        color="black"
+                    />
+                }
 
             </View>
         </SafeAreaView>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'react-native'
 
 const baseURL = 'https://mantra16.herokuapp.com/';
 
@@ -33,17 +34,18 @@ const get = (path, customOptions = {}) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log('=====>',error.response.data);
+        console.log('=====>', error.response.data);
         return error.response
-      } 
-      
+      }
+
     });
 };
 
-const post = (path, body) => {
-  const options = getOptions();
+const post = (path, body, customOptions = {}) => {
+  const { headers, ...others } = customOptions;
+  const options = getOptions(headers);
   return axios
-    .post(baseURL + path, body, { ...options })
+    .post(baseURL + path, body, { ...options, ...others })
     .then(result => {
       return result;
     })
@@ -52,9 +54,10 @@ const post = (path, body) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
+        Alert.alert('', error.response.data.message)
         console.log(error.response.data);
         return error.response
-      } 
+      }
     });
 };
 
@@ -72,14 +75,14 @@ const put = (path, body) => {
         // that falls out of the range of 2xx
         console.log(error.response.data.message);
         return error.response
-      } 
+      }
     });
 };
 
 const httpClients = {
-    get,
-    post,
-    put
+  get,
+  post,
+  put
 }
 
 export default httpClients;
