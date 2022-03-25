@@ -12,6 +12,7 @@ import Payment from "./Payment";
 const Checkout = (props) => {
   const [screens, setScreen] = useState(0);
 
+  const orderConfirmedScreen= ()=>props.navigation.navigate("OrderConfirmed");
   const screenSet = (num) => {
     console.log("Call: " + num);
     setScreen(num);
@@ -77,7 +78,7 @@ const Checkout = (props) => {
         ) : screens == 1 ? (
           <Address screenSet={screenSet}/>
         ) : screens == 2 ? (
-          <Payment screenSet={screenSet}/>
+          <Payment screenSet={orderConfirmedScreen}/>
         ) : null}
       </View>
     </SafeAreaView>

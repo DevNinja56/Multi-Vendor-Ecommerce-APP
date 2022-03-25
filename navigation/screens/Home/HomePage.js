@@ -7,7 +7,10 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 import MainScreen from "./MainScreen";
 import ImageSliderCustom from "../../../components/HomeComponents/ImageSliderCustom";
@@ -18,11 +21,10 @@ import SeasonDeals from "./SeasonDeals";
 import TodayDeals from "./TodayDeals";
 import BeautyDeals from "./BeautyDeals";
 import FashionPredictionDeals from "./FashionPredictionDeals";
-import Header from '../Header'
+import Header from "../Header";
 
-import { styles } from '../../../Styles/styles'
-import { useSelector, useDispatch } from 'react-redux';
-
+import { styles } from "../../../Styles/styles";
+import { useSelector, useDispatch } from "react-redux";
 
 import {
   FASHIONPREDICTIONDUMMY,
@@ -47,19 +49,25 @@ import DealsCards from "../../../components/DealsCards";
 import InfluencerCards from "../../../components/InfluencerCards";
 import FastImage from "react-native-fast-image";
 
+import Httpclients from "../../../Redux/utils";
+import Loader from "../Components/Loader";
+
 const renderGridItem = (itemData) => {
   return (
     <FashionPredictionCards
       image={itemData.item.image}
-      name={itemData.item.title}
-      date={itemData.item.date}
+      // name={itemData.item.title}
+      // date={itemData.item.date}
     />
   );
 };
 
 const renderCategoryGridItem = (itemData) => {
   return (
-    <CategoryCards image={itemData.item.image} name={itemData.item.title} />
+    <CategoryCards
+      image={itemData.item.image}
+      // name={itemData.item.title}
+    />
   );
 };
 const renderDealsGridItem = (itemData) => {
@@ -67,10 +75,13 @@ const renderDealsGridItem = (itemData) => {
     <CategoryCards
       image={itemData.item.image}
       name={itemData.item.title}
-      style={{...styles.mainContainerdeals2Card,width:widthPercentageToDP(10),height:heightPercentageToDP(20)}}
+      style={{
+        ...styles.mainContainerdeals2Card,
+        width: widthPercentageToDP(10),
+        height: heightPercentageToDP(20),
+      }}
       // imageContainerstyle={styles.imageContainerstyle1}
-      imageContainerstyle={{width:"100%",height:"100%"}}
-  
+      imageContainerstyle={{ width: "100%", height: "100%" }}
     />
   );
 };
@@ -79,10 +90,13 @@ const renderDailyEditorGGridItem = (itemData) => {
   return (
     <CategoryCards
       image={itemData.item.image}
-    style={{...styles.mainContainerdeals2Card,width:widthPercentageToDP(10),height:heightPercentageToDP(20)}}
+      style={{
+        ...styles.mainContainerdeals2Card,
+        width: widthPercentageToDP(10),
+        height: heightPercentageToDP(20),
+      }}
       // imageContainerstyle={styles.imageContainerstyle1}
-      imageContainerstyle={{width:"100%",height:"100%"}}
-     
+      imageContainerstyle={{ width: "100%", height: "100%" }}
     />
   );
 };
@@ -111,6 +125,15 @@ const renderWeadingItem = (itemData) => {
 };
 
 const HomePage = ({ navigation }) => {
+  const [data, setData] = useState();
+  const [isLoading, setLoading] = useState(true);
+  const [firstSliderImage, setFirstSliderImage] = useState([]);
+  const [secondSliderImage, setSecondSliderImage] = useState([]);
+
+  const isEmpty = (obj) => {
+    return Object.keys(obj).length === 0;
+  };
+
   const token = useSelector((state) => state.user.token);
   const changeShop = () => {
     console.log("RoadSter");
@@ -144,197 +167,269 @@ const HomePage = ({ navigation }) => {
     require("../../../assets/slider3.png"),
   ]);
 
-  useEffect(()=>{
-    console.log('token ==>',token)
-  },[])
+  const getHome = async () => {
+    const res = await Httpclients.get("home/getAll");
+    setData(res.data.data);
+    setLoading(false);
+  };
 
-
+  useEffect(() => {
+    console.log("token ==>", token);
+    getHome();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <Header
         clickHandler={() => navigation.toggleDrawer()}
-        notificationClickHandler={()=>navigation.navigate('Notifications')}
-        wishlistClickHandler={()=>navigation.navigate('Wishlist')}
-        cartClickHandler={()=>navigation.navigate('Cart')}
-
+        notificationClickHandler={() => navigation.navigate("Notifications")}
+        wishlistClickHandler={() => navigation.navigate("Wishlist")}
+        cartClickHandler={() => navigation.navigate("Cart")}
         ishome={true}
       />
-      <ScrollView style={styles.container}>
+      {isLoading ? (
+        <Loader color={"FF3E6C"} />
+      ) : (
+        <ScrollView style={styles.container}>
+          <View style={styles.firstContainer}>
+            <MainScreen
+              winterWear={winterWear}
+              menWear={menWear}
+              womenWear={womenWear}
+              kidsWear={kidsWear}
+              footwareWear={footwareWear}
+            />
+          </View>
 
-        <View style={styles.firstContainer}>
-          <MainScreen
-            winterWear={winterWear}
-            menWear={menWear}
-            womenWear={womenWear}
-            kidsWear={kidsWear}
-            footwareWear={footwareWear}
+          <View style={styles.imageContainer}>
+            <FastImage
+              source={require("../../../assets/firstImage.png")}
+              style={styles.image}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </View>
+
+          <View style={styles.imageBannerContainer}>
+            <FastImage
+              source={require("../../../assets/imageBanner.png")}
+              style={{
+                ...styles.image,
+              }}
+              resizeMode={FastImage.resizeMode.cover}
+            />
+          </View>
+
+          <SliderBox
+            images={data.first_SliderImages.image}
+            dotColor="#FF3E6C"
+            inactiveDotColor="#90A4AE"
+            resizeMode={"cover"}
+            height={heightPercentageToDP(30)}
           />
-        </View>
 
-        <View style={styles.imageContainer}>
-          <FastImage
-            source={require("../../../assets/firstImage.png")}
-            style={styles.image}
-            resizeMode={FastImage.resizeMode.cover}
-          />
-        </View>
-        <View style={styles.imageBannerContainer}>
-          <FastImage
-            source={require("../../../assets/imageBanner.png")}
-            style={{
-              ...styles.image,
-            }}
-            resizeMode={FastImage.resizeMode.cover}
-          />
-        </View>
-
-
-        <SliderBox
-          images={imagesSlides}
-          dotColor="#FF3E6C"
-          inactiveDotColor="#90A4AE"
-          resizeMode={'cover'}
-          height={heightPercentageToDP(30)}
-        />
-
-        <View style={styles.sliderContainer2}>
-          <ImageTopBottomSlider
+          <View style={styles.sliderContainer2}>
+            <SliderBox
+              images={data.second_SliderImages.image}
+              dotColor="#FF3E6C"
+              inactiveDotColor="#90A4AE"
+              resizeMode={"cover"}
+              height={heightPercentageToDP(15)}
+            />
+            {/* <ImageTopBottomSlider data={secondSliderImage}
             backgroundColorStyle={{ backgroundColor: "white" }}
-          />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>WINTER WEAR SPECIAL DEALS</Text>
-          </View>
-          <WinterDeals fun={changeShop} />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>TOP PICK OF THE SEASON</Text>
-          </View>
-          <SeasonDeals />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>DEALS OF THE DAY</Text>
-          </View>
-          {/* <TodayDeals data={TODAYDUMMY}/> */}
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>BEST OF BEAUTY & PERSONAL</Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={BEAUTYDUMMY} />
-        </View>
-
-        <View style={styles.imageBanner2Container}>
-          <Image
-            source={require("../../../assets/banner1.png")}
-            style={styles.image}
-            resizeMode="cover"
-          />
-        </View>
-
-        <View style={styles.seasonCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>FASHION PREDICTION 2022</Text>
+          /> */}
           </View>
 
-          <FashionPredictionDeals
-            renderGridItem={renderGridItem}
-            data={FASHIONPREDICTIONDUMMY}
-          />
-        </View>
+          {data.first_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.first_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.first_Carousal.data} />
+            </View>
+          ) : null}
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>FEATURED BRANDS</Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={BEAUTYDUMMY} />
-        </View>
+          {data.first_TwoColumnView.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.first_TwoColumnView.Heading}
+                </Text>
+              </View>
+              <SeasonDeals data={data.first_TwoColumnView.data} />
+            </View>
+          ) : null}
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>
-              SHOP LIVE WIYH INFLUENCERS
-            </Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={INFLUENCERSDUMMY} />
-        </View>
+          {data.third_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.third_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.third_Carousal.data} />
+            </View>
+          ) : null}
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>CATEGORIES TO BAG</Text>
-          </View>
+          {data.four_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.four_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.four_Carousal.data} />
+            </View>
+          ) : null}
 
-          <FashionPredictionDeals
-            renderGridItem={renderCategoryGridItem}
-            data={CATEGORYDUMMY}
-          />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={{ ...styles.textheadingStyle }}>
-              BRANDS COLLAB CORNER
-            </Text>
-          </View>
-          {/* <TodayDeals data={TODAYDUMMY}/> */}
-        </View>
-
-        <View style={styles.imageBanner3Container}>
-          <Image
-            source={require("../../../assets/banner2.png")}
-            style={styles.imageBanner2}
-            resizeMode="contain"
-          />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}> BEST BUYS</Text>
-          </View>
-          <SeasonDeals />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>PROMOTED BRANDS</Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={BEAUTYDUMMY} />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>DEALS ON TOP BRANDS</Text>
+          <View style={styles.imageBanner2Container}>
+            <FastImage
+              source={require("../../../assets/banner1.png")}
+              style={styles.image}
+              resizeMode={FastImage.resizeMode.cover}
+            />
           </View>
 
-          <FashionPredictionDeals
-            renderGridItem={renderDealsGridItem}
-            data={TOPBRANDSDUMMY}
-          />
-        </View>
+          {data.first_TwoColumnView.status ? (
+            <View style={styles.seasonCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.fifth_Carousal.Heading}
+                </Text>
+              </View>
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>SPONSORED BRANDS</Text>
+              <FashionPredictionDeals
+                renderGridItem={renderGridItem}
+                data={data.first_TwoColumnView.data}
+              />
+            </View>
+          ) : null}
+
+          {data.sixth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.sixth_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.sixth_Carousal.data} />
+            </View>
+          ) : null}
+
+          {data.seventh_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.seventh_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.seventh_Carousal.data} />
+            </View>
+          ) : null}
+
+          {data.seventh_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.eighth_Carousal.Heading}
+                </Text>
+              </View>
+
+              <FashionPredictionDeals
+                renderGridItem={renderCategoryGridItem}
+                data={data.eighth_Carousal.data}
+              />
+            </View>
+          ) : null}
+
+          {data.nineth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.nineth_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals fun={changeShop} data={data.nineth_Carousal.data} />
+            </View>
+          ) : null}
+
+          <View style={styles.imageBanner3Container}>
+            <FastImage
+              source={require("../../../assets/banner2.png")}
+              style={styles.imageBanner2}
+              resizeMode={FastImage.resizeMode.cover}
+            />
           </View>
-          <BeautyDeals renderFun={renderWinterItem} data={BEAUTYDUMMY} />
-        </View>
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>SPONSORED BRANDS</Text>
-          </View>
-          <SeasonDeals />
-        </View>
+          {data.tenth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.tenth_Carousal.Heading}
+                </Text>
+              </View>
+              <SeasonDeals data={data.tenth_Carousal.data} />
+            </View>
+          ) : null}
 
-        <View
+          {data.eleventh_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.eleventh_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals
+                fun={changeShop}
+                data={data.eleventh_Carousal.data}
+              />
+            </View>
+          ) : null}
+
+          {data.second_TwoColumnView.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.twelveth_Carousal.Heading}
+                </Text>
+              </View>
+
+              <FashionPredictionDeals
+                renderGridItem={renderCategoryGridItem}
+                data={data.second_TwoColumnView.data}
+              />
+            </View>
+          ) : null}
+
+{data.thirteenth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.thirteenth_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals
+                fun={changeShop}
+                data={data.thirteenth_Carousal.data}
+              />
+            </View>
+          ) : null}
+
+
+  {data.fourteenth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.fourteenth_Carousal.Heading}
+                </Text>
+              </View>
+              <SeasonDeals data={data.fourteenth_Carousal.data} />
+            </View>
+          ) : null}
+
+          <View
           style={{
             ...styles.imageBanner3Container,
             height: Dimensions.get("window").width * 0.37,
@@ -349,7 +444,7 @@ const HomePage = ({ navigation }) => {
           />
         </View>
 
-        <View
+          <View
           style={{ ...styles.imageContainer, height: heightPercentageToDP(50) , marginVertical: 10 }}
         >
           <FastImage
@@ -359,78 +454,103 @@ const HomePage = ({ navigation }) => {
           />
         </View>
 
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>STYLECAST - HOTTEST FINDS</Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={STYLECASDUMMY} />
-        </View>
+        {data.fifteenth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.fifteenth_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals
+                fun={changeShop}
+                data={data.fifteenth_Carousal.data}
+              />
+            </View>
+          ) : null}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>MYNTRA GIFT CARDS</Text>
           </View>
           <BeautyDeals renderFun={renderWeadingItem} data={WEADINGDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+
+{data.third_SliderImages.status ? (
+          <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>STORES IN THE SPOTLIGHT</Text>
           </View>
           <View style={{ marginVertical: 5 }}>
-            <ImageSliderCustom
-              backgroundColorStyle={{ backgroundColor: "white" }}
-            />
-          </View>
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>DAILY EDITOR'S PICKS</Text>
-          </View>
-          <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
-        </View>
-
-        <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>DEALS ON TOP BRANDS</Text>
-          </View>
-
-          <FashionPredictionDeals
-            renderGridItem={renderDailyEditorGGridItem}
-            data={DAILYEDITORGRIDDUMMY}
+          <SliderBox
+            images={data.third_SliderImages.image}
+            dotColor="#FF3E6C"
+            inactiveDotColor="#90A4AE"
+            resizeMode={"cover"}
+            height={heightPercentageToDP(30)}
           />
+          </View>
         </View>
+        ) : null}
 
-        <View style={styles.dealCards}>
+{data.sixteenth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.sixteenth_Carousal.Heading}
+                </Text>
+              </View>
+              <WinterDeals
+                fun={changeShop}
+                data={data.sixteenth_Carousal.data}
+              />
+            </View>
+          ) : null}
+
+{data.twelveth_Carousal.status ? (
+            <View style={styles.dealCards}>
+              <View style={styles.textTop}>
+                <Text style={styles.textheadingStyle}>
+                  {data.twelveth_Carousal.Heading}
+                </Text>
+              </View>
+
+              <FashionPredictionDeals
+                renderGridItem={renderCategoryGridItem}
+                data={data.twelveth_Carousal.data}
+              />
+            </View>
+          ) : null}
+
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>SPONSORED BRANDS</Text>
           </View>
           <SeasonDeals />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>TRENDS FOR HIM</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORHIMDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>TRENDS FOR HER</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORHIMDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>COLORS OF THE SEASON</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>TRENDS FOR HIM</Text>
           </View>
@@ -439,9 +559,9 @@ const HomePage = ({ navigation }) => {
           >
             <SeasonDeals />
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>LATEST PICK THIS WEEK</Text>
           </View>
@@ -450,16 +570,16 @@ const HomePage = ({ navigation }) => {
               backgroundColorStyle={{ backgroundColor: "white" }}
             />
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>LATEST KIDSWEAR PICKS</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>BEST BEAUTY FINDS</Text>
           </View>
@@ -468,16 +588,16 @@ const HomePage = ({ navigation }) => {
               backgroundColorStyle={{ backgroundColor: "white" }}
             />
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>PERFECT PICKS FOR HOME</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>BEST BEAUTY FINDS</Text>
           </View>
@@ -486,9 +606,9 @@ const HomePage = ({ navigation }) => {
               backgroundColorStyle={{ backgroundColor: "white" }}
             />
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>
               LATEST LOOKS BY MFS INFLUENCERS
@@ -499,18 +619,18 @@ const HomePage = ({ navigation }) => {
             renderGridItem={renderProfileInfluencerGGridItem}
             data={INFLUENCERPROFILEDUMMY}
           />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>
               INFLUENCER INSPIRED CLASSY WEDDING LOOKS
             </Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
-        </View>
+        </View> */}
 
-        <View style={styles.dealCards}>
+          {/* <View style={styles.dealCards}>
           <View style={styles.textTop}>
             <Text style={styles.textheadingStyle}>FASHION EDITORIAL</Text>
           </View>
@@ -519,9 +639,9 @@ const HomePage = ({ navigation }) => {
               backgroundColorStyle={{ backgroundColor: "white" }}
             />
           </View>
-        </View>
+        </View> */}
 
-        <View style={styles.footer}>
+          {/* <View style={styles.footer}>
           <View
             style={{
               width: "50%",
@@ -545,188 +665,11 @@ const HomePage = ({ navigation }) => {
           >
             Giorgio Armani
           </Text>
-        </View>
-      </ScrollView>
+        </View> */}
+        </ScrollView>
+      )}
     </SafeAreaView>
   );
 };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     // marginTop: StatusBar.currentHeight || 0,
-//     backgroundColor: "#F6F6F6",
-//   },
-//   firstContainer: {
-//     height: Dimensions.get("window").height * 0.12,
-//     backgroundColor: "white",
-//     elevation: 4,
-//   },
-//   imageContainer: {
-//     backgroundColor: "white",
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.76,
-//     elevation: 4,
-//     overflow: "hidden",
-
-//     // marginTop: Dimensions.get("window").height / 90,
-//   },
-//   image: {
-//     width: "100%",
-//     height: "100%",
-//     // elevation: 4,
-//   },
-
-//   imageBannerContainer: {
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.1,
-//     marginVertical: Dimensions.get("window").height / 90,
-//     backgroundColor: "transparent",
-//     // elevation: 4,
-//     overflow: "hidden",
-//   },
-//   sliderContainer: {
-//     backgroundColor: "#ffff",
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.74,
-//     paddingBottom: 8,
-//     // marginVertical: Dimensions.get("window").height / 99,
-//     // backgroundColor: "white",
-//     // borderWidth: 1,
-//     elevation: 4,
-//     overflow: "hidden",
-//   },
-//   sliderContainer2: {
-//     // backgroundColor: "#ffff",
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.37,
-//     paddingBottom: 8,
-//     marginVertical: 20,
-//     elevation: 4,
-//     overflow: "hidden",
-//   },
-//   dealCards: {
-//     backgroundColor: "white",
-//   },
-//   dealBannerCards: {
-//     flex: 1,
-//     // padding: 10,
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.9,
-//     backgroundColor: "#ffff",
-//     elevation: 4,
-//     marginVertical: 10,
-//   },
-//   textTop: {
-//     backgroundColor: Colors.Primary,
-//     elevation: 4,
-//   },
-//   textTop1: {
-//     flex: 0.1,
-//     padding: 15,
-//   },
-//   seasonCards: {
-//     backgroundColor: "white",
-//     // elevation: 4,
-//     marginTop: 10,
-//   },
-//   seasonCardsdeals: {
-//     flex: 1,
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 1.59,
-//     backgroundColor: "#ffff",
-//     elevation: 4,
-//     marginVertical: 10,
-//   },
-//   influencerCardsdeals: {
-//     flex: 1,
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.7,
-//     backgroundColor: "#ffff",
-//     elevation: 4,
-//     marginVertical: 10,
-//   },
-
-//   imageBanner2Container: {
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.67,
-
-//     // overflow: 'hidden',
-//     marginTop: Dimensions.get("window").height / 60,
-//   },
-
-//   flatlistPrediction: {
-//     flex: 1,
-//     width: "100%",
-//     height: "100%",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   flatlistPrediction2: {
-//     flex: 1,
-//     margin: 0,
-//     backgroundColor: "#f6f6f6",
-//     // padding: 10,
-//     width: "100%",
-//     height: "100%",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   customFlatlistStyle: {
-//     // width: "100%",
-//     // height: "100%",
-//   },
-
-//   imageBanner3Container: {
-//     width: Dimensions.get("window").width * 1,
-//     height: Dimensions.get("window").width * 0.37,
-//     elevation: 4,
-//     backgroundColor: "white",
-//     overflow: "hidden",
-//     marginVertical: Dimensions.get("window").height / 60,
-//   },
-
-//   imageBanner2: {
-//     width: "100%",
-//     height: "100%",
-//   },
-
-//   mainContainerdealsCard: {
-//     marginVertical: 0,
-//     marginHorizontal: 15,
-//   },
-//   mainContainerdeals2Card: {
-//     marginVertical: 0,
-//     marginHorizontal: 10,
-//   },
-//   imageContainerstyle1: {
-//     height: widthPercentageToDP(20),
-//     width: widthPercentageToDP(20),
-//   },
-//   imageContainerstyle2: {
-//     height: 155,
-//     width: 100,
-//     // resizeMode: 'cover'
-//   },
-//   weadingCardsStyle: {
-//     width: Dimensions.get("window").width * 0.75,
-//     // height: Dimensions.get('window').width * 0.75,
-//   },
-//   footer: {
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginVertical: 40,
-//   },
-
-//   textheadingStyle: {
-//     fontFamily: "whitney-medium-italic",
-//     // backgroundColor: Colors.Primary,
-//     color: "white",
-//     fontSize: 16,
-//     marginVertical: 10,
-//     textAlign: "center",
-//     paddingLeft: 16,
-//   },
-// });
 
 export default HomePage;

@@ -8,7 +8,7 @@ const ImageTopBottomSlider = (props) => {
   return (
     <View styles={styles.screen}>
       <Carousel
-        data={dummyData2}
+        data={props.data}
         imageStyle={styles.imageStyle}
         backgroundColorStyle={props.backgroundColorStyle}
       />

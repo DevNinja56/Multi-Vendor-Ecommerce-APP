@@ -6,7 +6,7 @@ import DealsCards from "../../../components/DealsCards";
 
 const WinterDeals = (props) => {
   const renderWinterItem = (itemData) => {
-    return <DealsCards imageUrl={itemData.item.image} press={props.fun} />;
+    return <DealsCards imageurl={itemData.item.image} press={props.fun} />;
   };
   return (
     <FlatList
@@ -14,7 +14,7 @@ const WinterDeals = (props) => {
       keyExtractor={(item, index) => {
         item.id;
       }}
-      data={WINTERDUMMY}
+      data={props.data}
       renderItem={renderWinterItem}
       contentContainerStyle={{ flexGrow: 1 }}
     />

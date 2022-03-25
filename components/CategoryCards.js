@@ -11,7 +11,7 @@ const CategoryCards = (props) => {
     <View style={{ ...styles.mainContainer, ...props.style }}>
       <View style={{ ...styles.imageContainer, ...props.imageContainerstyle }}>
         <FastImage
-          source={props.image}
+          source={{uri:props.image}}
           style={{ ...styles.imageStyle, }}
           resizeMode={FastImage.resizeMode.cover}
         />

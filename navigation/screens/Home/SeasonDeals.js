@@ -5,7 +5,7 @@ import { SEASONDEMO } from "../../../data/dummy-data";
 import SeasonCards from "../../../components/SeasonCards";
 
 const renderGridItem = (itemData) => {
-  return <SeasonCards image={itemData.item.image} />;
+  return <SeasonCards imageurl={itemData.item.image} />;
 };
 
 const SeasonDeals = (props) => {
@@ -15,7 +15,7 @@ const SeasonDeals = (props) => {
         keyExtractor={(item, index) => {
           item.id;
         }}
-        data={SEASONDEMO}
+        data={props.data}
         renderItem={renderGridItem}
         numColumns={2}
         contentContainerStyle={{ ...styles.flatlistStyle, ...props.style }}
