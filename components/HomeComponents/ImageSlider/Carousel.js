@@ -56,8 +56,9 @@ const Carousel = (props) => {
           scrollEventThrottle={16}
           decelerationRate={"fast"}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => {
-            return <CarouselItem item={item} imageStyle={props.imageStyle} />;
+          renderItem={(itemData) => {
+            console.log("data===>"+itemData.item)
+            return <CarouselItem item={itemData.item} imageStyle={props.imageStyle} />;
           }}
           onScroll={Animated.event([
             { nativeEvent: { contentOffset: { x: scrollX } } },

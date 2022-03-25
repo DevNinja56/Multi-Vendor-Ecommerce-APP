@@ -10,7 +10,9 @@ import FastImage from "react-native-fast-image";
 import Colors from "../constants/constants";
 
 const DealsCards = (props) => {
+  console.log("URL====>"+props.imageurl)
   return (
+    
     <View style={{ ...styles.dealcardStyle, ...props.style }}>
       <TouchableOpacity onPress={props.press} style={styles.imageDealCards}>
         <FastImage

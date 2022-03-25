@@ -8,7 +8,7 @@ const FashionPredictionCards = (props) => {
     <View style={styles.mainContainer}>
       <View style={styles.imageContainer}>
         <FastImage
-          source={props.image}
+          source={{uri:props.image}}
           style={styles.imageStyle}
           resizeMode={FastImage.resizeMode.cover}
         />

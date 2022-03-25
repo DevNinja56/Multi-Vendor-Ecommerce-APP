@@ -226,38 +226,52 @@ const Payment = (props) => {
           }}
         />
 
-<View style={{flexDirection:'row',alignItems:'center'}}>
-            <CheckBox
-              
-              checkedIcon={
-                <Icon
-                  name="checkbox-active"
-                  type="fontisto"
-                  color={Colors.Primary}
-                  size={25}
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <CheckBox
+            checkedIcon={
+              <Icon
+                name="checkbox-active"
+                type="fontisto"
+                color={Colors.Primary}
+                size={25}
                 //   iconStyle={{ marginRight: 10 }}
-                />
-              }
-              uncheckedIcon={
-                <Icon
-                  name="checkbox-passive"
-                  type="fontisto"
-                  color="grey"
-                  size={25}
+              />
+            }
+            uncheckedIcon={
+              <Icon
+                name="checkbox-passive"
+                type="fontisto"
+                color="grey"
+                size={25}
                 //   iconStyle={{ marginRight: 10 }}
-                />
-              }
-              checked={check1}
-              onPress={() => setCheck1(!check1)}
-            />
-            <Text style={{...styles.headingStyle,fontSize:heightPercentageToDP(2.2)}}>Save card details for future payments</Text>
-          </View>
+              />
+            }
+            checked={check1}
+            onPress={() => setCheck1(!check1)}
+          />
+          <Text
+            style={{
+              ...styles.headingStyle,
+              fontSize: heightPercentageToDP(2.2),
+            }}
+          >
+            Save card details for future payments
+          </Text>
+        </View>
       </ScrollView>
 
       <View style={styles.footerStyle}>
-      <TouchableOpacity style={styles.buttonStyle} onPress={()=>props.screenSet(0)}>
-          <Text style={{...styles.headerText,color:'white',fontSize:heightPercentageToDP(2)}}>CONTINUE TO PAYMENT</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonStyle} onPress={props.screenSet}>
+          <Text
+            style={{
+              ...styles.headerText,
+              color: "white",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            CONTINUE TO PAYMENT
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -281,17 +295,16 @@ const styles = StyleSheet.create({
     height: heightPercentageToDP(5),
     width: heightPercentageToDP(5),
   },
-  footerStyle:{
-    backgroundColor:'white',
-    elevation:2,
-    padding:5,
-},
-  buttonStyle:{
-
-    padding:16,
-    backgroundColor:Colors.Primary,
-    alignItems:'center'
-}
+  footerStyle: {
+    backgroundColor: "white",
+    elevation: 2,
+    padding: 5,
+  },
+  buttonStyle: {
+    padding: 16,
+    backgroundColor: Colors.Primary,
+    alignItems: "center",
+  },
 });
 
 export default Payment;
