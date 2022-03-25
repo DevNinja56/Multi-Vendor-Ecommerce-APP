@@ -13,7 +13,7 @@ import Colors from "../../../constants/constants";
 import { Picker } from "@react-native-picker/picker";
 import { CheckBox, Icon } from "react-native-elements";
 
-const Address = () => {
+const Address = (props) => {
   const [checked, setChecked] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [check1, setCheck1] = useState(false);
@@ -151,7 +151,7 @@ const Address = () => {
    
     </ScrollView>
     <View style={styles.footerStyle}>
-      <TouchableOpacity style={styles.buttonStyle} onPress={()=>props.screenSet(1)}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={()=>props.screenSet(2)}>
           <Text style={{...styles.headerText,color:'white',fontSize:heightPercentageToDP(2)}}>CONTINUE TO PAYMENT</Text>
       </TouchableOpacity>
       </View>
