@@ -12,6 +12,7 @@ import FastImage from "react-native-fast-image";
 
 
 const StoryScrollView = (props) => {
+  console.log(props.imageUrl);
   return (
     <View style={styles.screen}>
       <View style={{ ...styles.screen, ...props.style }}>
@@ -20,7 +21,7 @@ const StoryScrollView = (props) => {
           style={styles.imageContainer}
         >
           <FastImage
-            source={props.imageName}
+            source={{uri:props.imageUrl,priority:FastImage.priority.high}}
             resizeMode={FastImage.resizeMode.cover}
             style={styles.image}
           />
