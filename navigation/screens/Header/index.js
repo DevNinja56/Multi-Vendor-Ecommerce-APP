@@ -53,7 +53,7 @@ const CustomHeader = (props) => {
             }
             rightComponent={
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
-                    <TouchableOpacity style={{ paddingHorizontal: 8 }}>
+                    <TouchableOpacity style={{ paddingHorizontal: 8 }} onPress={props.searchClickHandler}>
                         <SearchIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ paddingHorizontal: 8 }}  onPress={props.notificationClickHandler}>

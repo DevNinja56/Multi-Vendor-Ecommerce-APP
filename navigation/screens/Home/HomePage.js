@@ -185,6 +185,7 @@ const HomePage = ({ navigation }) => {
         notificationClickHandler={() => navigation.navigate("Notifications")}
         wishlistClickHandler={() => navigation.navigate("Wishlist")}
         cartClickHandler={() => navigation.navigate("Cart")}
+        searchClickHandler={() => navigation.navigate("Search")}
         ishome={true}
       />
       {isLoading ? (

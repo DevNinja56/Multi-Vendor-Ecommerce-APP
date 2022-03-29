@@ -2,7 +2,10 @@ import React from "react";
 import { StyleSheet, ScrollView, View, FlatList } from "react-native";
 
 import StoryScrollView from "../../../components/HomeComponents/StoryScrollView";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const renderItem = (itemData) => {
   return (
@@ -17,59 +20,7 @@ const renderItem = (itemData) => {
 };
 
 const MainScreen = (props) => {
-  return (
-
-
-    <FlatList data ={props.data} renderItem={renderItem} horizontal/>
-    // <ScrollView
-    //   horizontal={true}
-    //   showsHorizontalScrollIndicator={false}
-    //   contentContainerStyle={{
-    //     flexGrow: 1,
-    //     elevation: 4,
-    //     backgroundColor: "white",
-    //     // borderWidth: 1,
-    //   }}
-    // >
-    //   <View style={styles.containerItem}>
-    //     <StoryScrollView
-    //       name={"WINTERWEAR"}
-    //       style={styles.item}
-    //       textStyle={styles.title}
-    //       winterWear={props.winterWear}
-    //       imageName={require("../../../assets/witnerCollectionSuits.jpg")}
-    //     />
-    //     <StoryScrollView
-    //       name={"MEN"}
-    //       style={styles.item}
-    //       textStyle={styles.title}
-    //       winterWear={props.menWear}
-    //       imageName={require("../../../assets/mensCollectionSuits.jpg")}
-    //     />
-    //     <StoryScrollView
-    //       name={"WOMEN"}
-    //       style={styles.item}
-    //       textStyle={styles.title}
-    //       winterWear={props.womenWear}
-    //       imageName={require("../../../assets/witnerCollectionSuits.jpg")}
-    //     />
-    //     <StoryScrollView
-    //       name={"KIDS"}
-    //       style={styles.item}
-    //       textStyle={styles.title}
-    //       winterWear={props.kidsWear}
-    //       imageName={require("../../../assets/witnerCollectionSuits.jpg")}
-    //     />
-    //     <StoryScrollView
-    //       name={"FOOTWARE"}
-    //       style={styles.item}
-    //       textStyle={styles.title}
-    //       winterWear={props.footwareWear}
-    //       imageName={require("../../../assets/witnerCollectionSuits.jpg")}
-    //     />
-    //   </View>
-    // </ScrollView>
-  );
+  return <FlatList data={props.data} renderItem={renderItem} horizontal />;
 };
 
 const styles = StyleSheet.create({
