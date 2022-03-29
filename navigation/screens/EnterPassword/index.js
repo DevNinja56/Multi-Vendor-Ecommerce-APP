@@ -74,8 +74,9 @@ const EnterPassword = (props) => {
                         secureTextEntry={true}
                         activeUnderlineColor={"black"}
                     />
-                    <Text
-                        onPress={() => props.navigation.navigate('SetPassword')}
+                    <Text onPress={() => props.navigation.navigate('SetPassword', {
+                        isForgot:true
+                    })}
                         style={styles.forgot}>
                         {"Forgot your password?"}
                     </Text>

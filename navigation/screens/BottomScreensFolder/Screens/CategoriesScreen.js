@@ -15,7 +15,7 @@ import CategoriesExtend from "../../Categories/CategoriesExtend";
 import { CATEGORIESPAGEDUMMY } from "../../../../data/dummy-data";
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
 
-const CategoriesScreen = (props, { navigation }) => {
+const CategoriesScreen = ({ props, navigation }) => {
   const [showScreen, setShowScreen] = useState(false);
 
   const showScreenTrue = () => {

@@ -41,7 +41,9 @@ const OTP = (props) => {
             if (isLogin) {
                 props.navigation.navigate('HomeScreen')
             } else {
-                props.navigation.navigate('SetPassword')
+                props.navigation.navigate('SetPassword', {
+                    isForgot: false
+                })
             }
         }
     }

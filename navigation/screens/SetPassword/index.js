@@ -22,6 +22,7 @@ import httpClients from '../../../Redux/utils'
 
 const SetPassword = (props) => {
     const userToken = useSelector((state) => state.user.userToken);
+    const isForgot = props.route.params.isForgot
     const [isLoading, setLoading] = useState();
     const [password, setPassword] = useState("");
     const [confirmPass, setConfirmPass] = useState("");
@@ -39,13 +40,32 @@ const SetPassword = (props) => {
             Alert.alert('', "Password not matched")
             return
         }
-        setPasswordApi()
+        if (isForgot) {
+            updatePasswordApi()
+        } else {
+            setPasswordApi()
+        }
     }
 
     const setPasswordApi = async () => {
         const body = { password: confirmPass }
         setLoading(true)
         const res = await httpClients.post(`create_password`, body, {
+            headers: {
+                'Authorization': userToken
+            }
+        })
+        setLoading(false)
+        console.log(res.data)
+        if (res.data.status === "success") {
+            props.navigation.navigate('HomeScreen')
+        }
+    }
+
+    const updatePasswordApi = async () => {
+        const body = { password: confirmPass }
+        setLoading(true)
+        const res = await httpClients.post(`update_password`, body, {
             headers: {
                 'Authorization': userToken
             }
