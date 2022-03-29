@@ -15,8 +15,10 @@ import {
 } from "react-native-responsive-screen";
 
 import { Ionicons } from "@expo/vector-icons";
+import { titleCase } from "../constants/title_case";
 
 const ShoppingCards = (props) => {
+
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity onPress={props.detaislScreen}>
@@ -71,7 +73,7 @@ const ShoppingCards = (props) => {
                   fontSize: widthPercentageToDP(4.5),
                 }}
               >
-                {props.name}
+                {titleCase(props.name)}
               </Text>
 
               <Text

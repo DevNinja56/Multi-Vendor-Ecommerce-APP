@@ -29,6 +29,7 @@ import Checkout from "./Checkout/Checkout";
 import EnterPassword from "./EnterPassword";
 import SetPassword from "./SetPassword";
 import OrderConfirmed from "./Checkout/OrderConfirmed";
+import SearchScreen from "./Search/SearchScreen";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -75,6 +76,7 @@ export default function MainContainer() {
           <Stack.Screen name="EnterPassword" component={EnterPassword} />
           <Stack.Screen name="SetPassword" component={SetPassword} />
           <Stack.Screen name="OrderConfirmed" component={OrderConfirmed} />
+          <Stack.Screen name="Search" component={SearchScreen} />
           
          
         </Stack.Navigator>

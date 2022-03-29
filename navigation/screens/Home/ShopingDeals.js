@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, SafeAreaView, FlatList, ScrollView } from "react-native";
+import { StyleSheet, FlatList,  } from "react-native";
 
 const ShoppingDeals = (props) => {
   return (
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   flatlistStyle: {
     // flex: 1,
     flexGrow: 1,
-    justifyContent: "center",
+    // justifyContent: "center",
     // alignItems: "center",
   },
 });

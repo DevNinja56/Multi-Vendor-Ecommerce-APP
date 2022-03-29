@@ -129,7 +129,7 @@ const WinterWearScreen = (props) => {
             </FastImage>
           </View>
 
-          <View style={styles.headingLayoutStyles}>
+         <View style={styles.headingLayoutStyles}>
             <Text style={styles.headingStyle}>- In The Spotlight -</Text>
             <Text style={styles.textStyles}>What's Hot In Winter(wear)</Text>
           </View>
@@ -171,7 +171,7 @@ const WinterWearScreen = (props) => {
             />
           </View>
 
-          <View style={{ ...styles.backLayout, marginTop: 20 }}>
+         {/*   <View style={{ ...styles.backLayout, marginTop: 20 }}>
             <View style={styles.headingLayoutStyles}>
               <Text style={styles.headingStyle}>- Trends For Her -</Text>
               <Text style={styles.textStyles}>
@@ -456,8 +456,8 @@ const WinterWearScreen = (props) => {
               marginTop: 10,
             }}
             resizeMode={FastImage.resizeMode.cover}
-          />
-        </View>
+          />*/}
+        </View> 
       </ScrollView>
     </SafeAreaView>
   );

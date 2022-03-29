@@ -12,15 +12,16 @@ import FastImage from "react-native-fast-image";
 
 
 const StoryScrollView = (props) => {
+  console.log(props.imageUrl);
   return (
     <View style={styles.screen}>
-      <View style={{ ...styles.screen, ...props.style }}>
+      {/* <View style={{ ...styles.screen, ...props.style }}> */}
         <TouchableOpacity
           onPress={props.winterWear}
           style={styles.imageContainer}
         >
           <FastImage
-            source={props.imageName}
+            source={{uri:props.imageUrl,priority:FastImage.priority.high}}
             resizeMode={FastImage.resizeMode.cover}
             style={styles.image}
           />
@@ -29,7 +30,7 @@ const StoryScrollView = (props) => {
           {props.name}
         </Text>
       </View>
-    </View>
+    // </View>
   );
 };
 
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     flex:0.8,
     width: Dimensions.get("window").width * 0.15,
     height: Dimensions.get("window").width * 0.15,
+    marginHorizontal:10,
     borderRadius: 5,
     overflow: "hidden",
     shadowColor: "#000",
