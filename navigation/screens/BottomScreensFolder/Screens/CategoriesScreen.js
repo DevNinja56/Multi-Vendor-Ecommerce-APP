@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -13,10 +13,19 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import CategoriesExtend from "../../Categories/CategoriesExtend";
 import { CATEGORIESPAGEDUMMY } from "../../../../data/dummy-data";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
+import Loader from "../../Components/Loader";
+import Colors from "../../../../constants/constants";
+import httpClients from "../../../../Redux/utils";
+import FastImage from "react-native-fast-image";
 
 const CategoriesScreen = (props, { navigation }) => {
   const [showScreen, setShowScreen] = useState(false);
+  const [data, setData] = useState();
+  const [isLoading, setLoading] = useState(true);
 
   const showScreenTrue = () => {
     if (showScreen) {
@@ -27,7 +36,21 @@ const CategoriesScreen = (props, { navigation }) => {
     console.log(showScreen);
   };
 
-  let content = CategoriesExtend();
+  const getAllCategories =async ()=>{
+    const res = await httpClients.get('category/getAll');
+    console.log(res.data.data);
+    if(res.data.data.length>0)
+    {
+      setData(res.data.data);
+      setLoading(false);
+    }
+  };
+
+  useEffect(()=>{
+    getAllCategories();
+  },[]);
+
+  let content = <CategoriesExtend />;
 
   const renderItem = (itemData) => {
     return (
@@ -38,9 +61,9 @@ const CategoriesScreen = (props, { navigation }) => {
           }
         }
       >
-        <ImageBackground
-          source={itemData.item.bgImage}
-          resizeMode={"cover"}
+        <FastImage
+          source={{uri:itemData.item.category_bgimage}}
+          resizeMode={FastImage.resizeMode.cover}
           style={styles.imageBackgroundStyle}
         >
           <TouchableOpacity style={{ width: "100%" }} onPress={showScreenTrue}>
@@ -68,9 +91,12 @@ const CategoriesScreen = (props, { navigation }) => {
                       textAlign: "left",
                     }}
                   >
-                    {itemData.item.title}
+                    {itemData.item.name}
                   </Text>
-                  <Ionicons name={"ios-chevron-down"} size={widthPercentageToDP(2.5)} />
+                  <Ionicons
+                    name={"ios-chevron-down"}
+                    size={widthPercentageToDP(2.5)}
+                  />
                 </View>
                 <Text
                   style={{
@@ -79,7 +105,7 @@ const CategoriesScreen = (props, { navigation }) => {
                     marginTop: 10,
                   }}
                 >
-                  {itemData.item.des}
+                  {itemData.item.subcategory.name}
                 </Text>
               </View>
               <View
@@ -91,29 +117,33 @@ const CategoriesScreen = (props, { navigation }) => {
                   // borderWidth: 1,
                 }}
               >
-                <Image
-                  source={itemData.item.image}
-                  style={{ height: "100%" }}
-                  resizeMode={"contain"}
+                <FastImage
+                  source={{uri:itemData.item.feature_image}}
+                  style={{ height: "100%",width:"100%" }}
+                  resizeMode={FastImage.resizeMode.cover}
                 />
               </View>
             </View>
           </TouchableOpacity>
-        </ImageBackground>
-        {showScreen ? content : null}
+        </FastImage>
+        {showScreen ? <CategoriesExtend data={itemData.item.subcategory}/> : null}
       </View>
     );
   };
 
   return (
     <View style={styles.screen}>
-      <FlatList
-        data={CATEGORIESPAGEDUMMY}
-        keyExtractor={(item, index) => {
-          item.id;
-        }}
-        renderItem={renderItem}
-      />
+      {isLoading ? (
+        <Loader color={Colors.Primary} />
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={(item, index) => {
+            item.id;
+          }}
+          renderItem={renderItem}
+        />
+      )}
     </View>
   );
 };

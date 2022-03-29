@@ -25,6 +25,7 @@ import Header from "../Header";
 
 import { styles } from "../../../Styles/styles";
 import { useSelector, useDispatch } from "react-redux";
+import * as Animatable from 'react-native-animatable';
 
 import {
   FASHIONPREDICTIONDUMMY,
@@ -178,6 +179,15 @@ const HomePage = ({ navigation }) => {
     getHome();
   }, []);
 
+  const fadeIn = {
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Header
@@ -218,13 +228,19 @@ const HomePage = ({ navigation }) => {
           ) : null}
 
           <View style={styles.imageBannerContainer}>
-            <FastImage
+            <Animatable.Image source={require("../../../assets/imageBanner.png")} resizeMode={'cover'} style={{
+                ...styles.image,
+              }}
+              animation={'lightSpeedIn'}
+              iterationCount={4}
+              />
+            {/* <FastImage
               source={require("../../../assets/imageBanner.png")}
               style={{
                 ...styles.image,
               }}
               resizeMode={FastImage.resizeMode.cover}
-            />
+            /> */}
           </View>
           {data.second_SliderImages.status ? (
             <SliderBox
