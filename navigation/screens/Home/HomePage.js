@@ -222,11 +222,13 @@ const HomePage = ({ navigation }) => {
           ) : null}
 
           <View style={styles.imageBannerContainer}>
-            <Animatable.Image source={require("../../../assets/imageBanner.png")} resizeMode={'cover'} style={{
+            <Animatable.Image 
+            
+            source={require("../../../assets/imageBanner.png")} resizeMode={'contain'} style={{
                 ...styles.image,
               }}
               animation={'lightSpeedIn'}
-              iterationCount={4}
+              iterationCount="infinite"
               />
             {/* <FastImage
               source={require("../../../assets/imageBanner.png")}
@@ -256,7 +258,7 @@ const HomePage = ({ navigation }) => {
                 inactiveDotColor="#90A4AE"
                 resizeMode={"cover"}
                 resizeMethod={"resize"}
-                resizeMode={"cover"}
+                //resizeMode={"cover"}
                 parentWidth={Dimensions.get("window").width * 1}
                 sliderBoxHeight={heightPercentageToDP(15)}
               />

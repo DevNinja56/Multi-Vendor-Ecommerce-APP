@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import {
@@ -14,9 +15,38 @@ import {
 import SimpleHeader from "../Header/simple_header";
 import FastImage from "react-native-fast-image";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
+import httpClients from '../../../Redux/utils'
+import { userToken } from '../../../Redux/action'
+import Loader from '../Components/Loader'
+import { useDispatch, useSelector } from 'react-redux'
 
 const LoginScreen = (props) => {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [isLoading, setLoading] = useState();
+  const [phone, setPhone] = useState(0)
+  const dispatch = useDispatch()
+
+  const validateNumber = () => {
+    const regex = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm
+    if (regex.test(phone)) {
+      loginSignupApi()
+    } else {
+      Alert.alert('Incorrect Number', 'Please provide your phone number in this format 03xx xxx xxxx')
+    }
+  }
+
+  const loginSignupApi = async () => {
+    setLoading(true)
+    const res = await httpClients.get(`otp_login?phone=+92` + phone)
+    setLoading(false)
+    if (res.data.status === "success") {
+      dispatch(userToken(res.data.tokken))
+      props.navigation.navigate('OTP', {
+        isLogin: res.data.userAlreadyExist
+      })
+    }
+  }
+
+
   return (
     <View style={styles.screen}>
       <SimpleHeader
@@ -71,6 +101,7 @@ const LoginScreen = (props) => {
                 fontSize: heightPercentageToDP(2),
                 color: "black",
               }}
+              onChangeText={(text) => setPhone(text)}
             />
           </View>
         </View>
@@ -89,7 +120,9 @@ const LoginScreen = (props) => {
         </View>
         <View style={styles.buttonLayout}>
           <TouchableOpacity
-            onPress={() => props.navigation.navigate('OTP')}
+            onPress={() => {
+              validateNumber()
+            }}
             style={{ width: "100%", padding: 10, alignItems: "center" }}
           >
             <Text
@@ -126,6 +159,11 @@ const LoginScreen = (props) => {
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
+      {isLoading &&
+        <Loader
+          color="black"
+        />
+      }
     </View>
   );
 };

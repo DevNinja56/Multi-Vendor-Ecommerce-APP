@@ -15,11 +15,37 @@ import FastImage from "react-native-fast-image";
 import { Fonts } from '../../../constants/fonts'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import { TextInput } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux'
+import Loader from '../Components/Loader'
+import httpClients from '../../../Redux/utils'
 
 const EnterPassword = (props) => {
-
-    const [code, setCode] = useState(1234);
+    const userToken = useSelector((state) => state.user.userToken);
+    const [isLoading, setLoading] = useState();
     const [text, setText] = useState("");
+
+    const _OnSubmit = () => {
+        if (!text || text.length < 8) {
+            Alert.alert('', "Password should be 8 character long")
+            return
+        }
+        setLoginApi()
+    }
+
+    const setLoginApi = async () => {
+        const body = { password: text }
+        setLoading(true)
+        const res = await httpClients.post(`login`, body, {
+            headers: {
+                'Authorization': userToken
+            }
+        })
+        setLoading(false)
+        console.log(res.data)
+        if (res.data.status === "success") {
+            props.navigation.navigate('HomeScreen')
+        }
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -48,12 +74,15 @@ const EnterPassword = (props) => {
                         secureTextEntry={true}
                         activeUnderlineColor={"black"}
                     />
-                    <Text
-                        onPress={() => props.navigation.navigate('SetPassword')}
+                    <Text onPress={() => props.navigation.navigate('SetPassword', {
+                        isForgot:true
+                    })}
                         style={styles.forgot}>
                         {"Forgot your password?"}
                     </Text>
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity
+                        onPress={() => _OnSubmit()}
+                        style={styles.btn}>
                         <Text style={styles.btnText}>
                             {"Conitnue"}
                         </Text>
@@ -61,6 +90,11 @@ const EnterPassword = (props) => {
 
                 </View>
             </KeyboardAwareScrollView>
+            {isLoading &&
+                <Loader
+                    color="black"
+                />
+            }
         </SafeAreaView>
     )
 }
