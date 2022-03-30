@@ -26,47 +26,49 @@ const CategoriesScreen = ({ props, navigation }) => {
   const [showScreen, setShowScreen] = useState(false);
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
+  const [activeIndex, setIndex] = useState(0)
 
-  const showScreenTrue = () => {
-    if (showScreen) {
-      setShowScreen(false);
+  const showScreenTrue = (index) => {
+    const temArr = [...data]
+    if (data[index].is_active) {
+      for (let i = 0; i < temArr.length; i++) {
+        temArr[i].is_active = false
+      }
     } else {
-      setShowScreen(true);
+      for (let i = 0; i < temArr.length; i++) {
+        temArr[i].is_active = false
+      }
+      temArr[index].is_active = true
     }
-    console.log(showScreen);
+    setData(temArr)
   };
 
-  const getAllCategories =async ()=>{
+  const getAllCategories = async () => {
     const res = await httpClients.get('category/getAll');
     console.log(res.data.data);
-    if(res.data.data.length>0)
-    {
+    if (res.data.data.length > 0) {
       setData(res.data.data);
       setLoading(false);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getAllCategories();
-  },[]);
+  }, []);
 
   let content = <CategoriesExtend />;
 
-  const renderItem = (itemData) => {
+  const renderItem = ({ item, index }) => {
     return (
-      <View
-        style={
-          {
-            // borderWidth: 1,
-          }
-        }
-      >
+      <View>
         <FastImage
-          source={{uri:itemData.item.category_bgimage}}
+          source={{ uri: item.category_bgimage }}
           resizeMode={FastImage.resizeMode.cover}
           style={styles.imageBackgroundStyle}
         >
-          <TouchableOpacity style={{ width: "100%" }} onPress={showScreenTrue}>
+          <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={() => showScreenTrue(index)}>
             <View style={{ flexDirection: "row" }}>
               <View
                 style={{
@@ -91,7 +93,7 @@ const CategoriesScreen = ({ props, navigation }) => {
                       textAlign: "left",
                     }}
                   >
-                    {itemData.item.name}
+                    {item.name}
                   </Text>
                   <Ionicons
                     name={"ios-chevron-down"}
@@ -105,7 +107,7 @@ const CategoriesScreen = ({ props, navigation }) => {
                     marginTop: 10,
                   }}
                 >
-                  {itemData.item.subcategory.name}
+                  {item.subcategory.name}
                 </Text>
               </View>
               <View
@@ -118,15 +120,15 @@ const CategoriesScreen = ({ props, navigation }) => {
                 }}
               >
                 <FastImage
-                  source={{uri:itemData.item.feature_image}}
-                  style={{ height: "100%",width:"100%" }}
+                  source={{ uri: item.feature_image }}
+                  style={{ height: "100%", width: "100%" }}
                   resizeMode={FastImage.resizeMode.cover}
                 />
               </View>
             </View>
           </TouchableOpacity>
         </FastImage>
-        {showScreen ? <CategoriesExtend data={itemData.item.subcategory}/> : null}
+        {item.is_active && <CategoriesExtend data={item.subcategory} />}
       </View>
     );
   };
