@@ -12,27 +12,32 @@ import { ScrollView } from "react-native-gesture-handler";
 import Recent from "./components/Recent";
 import YouMissed from "./components/YouMissed";
 import Colors from "../../../constants/constants";
-import SimpleHeader from '../Header/simple_header';
+import SimpleHeader from "../Header/simple_header";
 import httpClients from "../../../Redux/utils";
+import { useSelector } from "react-redux";
+import Loader from "../Components/Loader";
 
 const NotificationScreen = (props) => {
   const [showScreen, setShowScreen] = useState(0);
-  // const [data , setData] = useState();
-  // const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState();
+  const [isLoading, setLoading] = useState(true);
+  const userToken = useSelector((state) => state.user.userToken);
 
-  // const getAllNotifications =async ()=>{
-  //   const res = await httpClients.get('notification/getAll');
-  //   console.log(res.data.data);
-  //   if(res.data.data.length>0)
-  //   {
-  //     setData(res.data.data);
-  //     setLoading(false);
-  //   }
-  // };
+  const getAllNotifications = async () => {
+    const res = await httpClients.get("notification/getAll", {
+      headers: {
+        Authorization: userToken,
+      },
+    });
+    console.log("Data===>"+res.data.data);
 
-  // useEffect(()=>{
-  //   getAllCategories();
-  // },[]);
+    setData(res.data.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    getAllNotifications();
+  }, []);
 
   let content = <Recent />;
 
@@ -42,9 +47,12 @@ const NotificationScreen = (props) => {
     content = <YouMissed />;
   }
 
-  const FirstRoute = () => <Recent />;
+  const FirstRoute = () => {
+    // isLoading ? <Recent dataList={data.Recent} /> : <Recent />;
+    return isLoading ?<Recent />:<Recent dataList={data.Recent}/>;
+  };
 
-  const SecondRoute = () => <YouMissed />;
+  const SecondRoute = () => {return  isLoading ?<YouMissed />:<YouMissed dataList={data.Earlier}/>;};
 
   const renderScene = SceneMap({
     recent: FirstRoute,
@@ -71,17 +79,22 @@ const NotificationScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <SimpleHeader clickHandler={()=>props.navigation.goBack()} headerTitle={'Notifications'} />
-      <TabView
-        navigationState={{ index, routes }}
-        renderScene={renderScene}
-        onIndexChange={setIndex}
-        initialLayout={{ width: layout.width }}
-        renderTabBar={renderTabBar}
-        style={{
-          backgroundColor: "white",
-        }}
+      <SimpleHeader
+        clickHandler={() => props.navigation.goBack()}
+        headerTitle={"Notifications"}
       />
+      {isLoading ? <Loader color={Colors.Primary}/> : (
+        <TabView
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{ width: layout.width }}
+          renderTabBar={renderTabBar}
+          style={{
+            backgroundColor: "white",
+          }}
+        />
+      ) }
       {/* <View
         style={{
           width: "100%",

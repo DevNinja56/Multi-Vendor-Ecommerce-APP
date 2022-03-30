@@ -12,7 +12,7 @@ const renderItem = (itemData) => {
         <View
           style={{
             borderRadius: 50 / 2,
-            backgroundColor: itemData.item.color,
+            backgroundColor: itemData.item.bg_Color,
             justifyContent: "center",
             alignItems: "center",
             height: 50,
@@ -30,7 +30,7 @@ const renderItem = (itemData) => {
             marginVertical: 2.5,
           }}
         >
-          {itemData.item.title}
+          {itemData.item.heading}
         </Text>
         <Text
           style={{
@@ -40,7 +40,7 @@ const renderItem = (itemData) => {
             marginVertical: 2.5,
           }}
         >
-          {itemData.item.time}
+          {itemData.item.time_To_Send}
         </Text>
         <Text
           style={{
@@ -50,21 +50,21 @@ const renderItem = (itemData) => {
             marginVertical: 2.5,
           }}
         >
-          {itemData.item.message}
+          {itemData.item.link}
         </Text>
       </View>
     </View>
   );
 };
 
-const Recent = () => {
+const Recent = (props) => {
   return (
     <FlatList
       scrollEnabled={true}
       keyExtractor={(item, index) => {
         item.id;
       }}
-      data={NOTIFICATOINDUMMY}
+      data={props.dataList}
       renderItem={renderItem}
       contentContainerStyle={styles.flatListStyle}
     />
