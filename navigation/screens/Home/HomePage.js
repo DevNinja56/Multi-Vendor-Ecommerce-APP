@@ -71,6 +71,7 @@ const renderCategoryGridItem = (itemData) => {
     />
   );
 };
+
 const renderDealsGridItem = (itemData) => {
   return (
     <CategoryCards
@@ -176,7 +177,8 @@ const HomePage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("userToken ==>", userToken);
+
+    console.log("token ==>", userToken);
     getHome();
   }, []);
 
