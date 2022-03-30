@@ -71,6 +71,7 @@ const renderCategoryGridItem = (itemData) => {
     />
   );
 };
+
 const renderDealsGridItem = (itemData) => {
   return (
     <CategoryCards
@@ -136,6 +137,7 @@ const HomePage = ({ navigation }) => {
   };
 
   const token = useSelector((state) => state.user.token);
+  const userToken = useSelector((state) => state.user.userToken);
   const changeShop = () => {
     console.log("RoadSter");
     navigation.navigate("RoadSter");
@@ -175,7 +177,7 @@ const HomePage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("token ==>", token);
+    console.log("token ==>", userToken);
     getHome();
   }, []);
 
