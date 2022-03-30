@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -13,9 +13,26 @@ import Recent from "./components/Recent";
 import YouMissed from "./components/YouMissed";
 import Colors from "../../../constants/constants";
 import SimpleHeader from '../Header/simple_header';
+import httpClients from "../../../Redux/utils";
 
 const NotificationScreen = (props) => {
   const [showScreen, setShowScreen] = useState(0);
+  // const [data , setData] = useState();
+  // const [isLoading, setLoading] = useState(true);
+
+  // const getAllNotifications =async ()=>{
+  //   const res = await httpClients.get('notification/getAll');
+  //   console.log(res.data.data);
+  //   if(res.data.data.length>0)
+  //   {
+  //     setData(res.data.data);
+  //     setLoading(false);
+  //   }
+  // };
+
+  // useEffect(()=>{
+  //   getAllCategories();
+  // },[]);
 
   let content = <Recent />;
 

@@ -136,6 +136,7 @@ const HomePage = ({ navigation }) => {
   };
 
   const token = useSelector((state) => state.user.token);
+  const userToken = useSelector((state) => state.user.userToken);
   const changeShop = () => {
     console.log("RoadSter");
     navigation.navigate("RoadSter");
@@ -175,18 +176,11 @@ const HomePage = ({ navigation }) => {
   };
 
   useEffect(() => {
-    console.log("token ==>", token);
+    console.log("userToken ==>", userToken);
     getHome();
   }, []);
 
-  const fadeIn = {
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
-  };
+  
 
   return (
     <SafeAreaView style={styles.container}>
