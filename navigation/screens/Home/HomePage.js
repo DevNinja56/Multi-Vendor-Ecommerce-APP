@@ -1,127 +1,31 @@
 import React, { useEffect, useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  Text,
-  Dimensions,
-  Image,
-  ScrollView,
-} from "react-native";
+import { SafeAreaView, View, Text, Dimensions, ScrollView } from "react-native";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
 
 import MainScreen from "./MainScreen";
-import ImageSliderCustom from "../../../components/HomeComponents/ImageSliderCustom";
-import ImageTopBottomSlider from "../../../components/HomeComponents/ImageTopBottomSlider";
 import WinterDeals from "./WinterDeals";
-
 import SeasonDeals from "./SeasonDeals";
-import TodayDeals from "./TodayDeals";
-import BeautyDeals from "./BeautyDeals";
 import FashionPredictionDeals from "./FashionPredictionDeals";
 import Header from "../Header";
 
 import { styles } from "../../../Styles/styles";
 import { useSelector, useDispatch } from "react-redux";
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from "react-native-animatable";
 
-import {
-  FASHIONPREDICTIONDUMMY,
-  CATEGORYDUMMY,
-  TOPBRANDSDUMMY,
-  BEAUTYDUMMY,
-  INFLUENCERSDUMMY,
-  STYLECASDUMMY,
-  WEADINGDUMMY,
-  DAILYEDITORDUMMY,
-  DAILYEDITORGRIDDUMMY,
-  INFLUENCERPROFILEDUMMY,
-  DAILYEDITORHIMDUMMY,
-  TODAYDUMMY,
-} from "../../../data/dummy-data";
 import { SliderBox } from "react-native-image-slider-box";
 
-import FashionPredictionCards from "../../../components/FashionPredictionCards";
-
 import CategoryCards from "../../../components/CategoryCards";
-import DealsCards from "../../../components/DealsCards";
-import InfluencerCards from "../../../components/InfluencerCards";
-import FastImage from "react-native-fast-image";
 
 import Httpclients from "../../../Redux/utils";
 import Loader from "../Components/Loader";
-
-const renderGridItem = (itemData) => {
-  return (
-    <FashionPredictionCards
-      image={itemData.item.image}
-      // name={itemData.item.title}
-      // date={itemData.item.date}
-    />
-  );
-};
 
 const renderCategoryGridItem = (itemData) => {
   return (
     <CategoryCards
       image={itemData.item.image}
-      // name={itemData.item.title}
-    />
-  );
-};
-
-const renderDealsGridItem = (itemData) => {
-  return (
-    <CategoryCards
-      image={itemData.item.image}
-      name={itemData.item.title}
-      style={{
-        ...styles.mainContainerdeals2Card,
-        width: widthPercentageToDP(10),
-        height: heightPercentageToDP(20),
-      }}
-      // imageContainerstyle={styles.imageContainerstyle1}
-      imageContainerstyle={{ width: "100%", height: "100%" }}
-    />
-  );
-};
-
-const renderDailyEditorGGridItem = (itemData) => {
-  return (
-    <CategoryCards
-      image={itemData.item.image}
-      style={{
-        ...styles.mainContainerdeals2Card,
-        width: widthPercentageToDP(10),
-        height: heightPercentageToDP(20),
-      }}
-      // imageContainerstyle={styles.imageContainerstyle1}
-      imageContainerstyle={{ width: "100%", height: "100%" }}
-    />
-  );
-};
-
-const renderProfileInfluencerGGridItem = (itemData) => {
-  return (
-    <InfluencerCards
-      image={itemData.item.image}
-      style={styles.mainContainerdeals2Card}
-      imageContainerstyle={styles.imageContainerstyle2}
-    />
-  );
-};
-
-const renderWinterItem = (itemData) => {
-  return <DealsCards imageUrl={itemData.item.image} />;
-};
-
-const renderWeadingItem = (itemData) => {
-  return (
-    <DealsCards
-      imageUrl={itemData.item.image}
-      style={styles.weadingCardsStyle}
     />
   );
 };
@@ -129,8 +33,7 @@ const renderWeadingItem = (itemData) => {
 const HomePage = ({ navigation }) => {
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
-  const [firstSliderImage, setFirstSliderImage] = useState([]);
-  const [secondSliderImage, setSecondSliderImage] = useState([]);
+  const dimensions = Dimensions.get("window");
 
   const isEmpty = (obj) => {
     return Object.keys(obj).length === 0;
@@ -143,33 +46,6 @@ const HomePage = ({ navigation }) => {
     navigation.navigate("RoadSter");
   };
 
-  const winterWear = () => {
-    console.log("WinterWear");
-    navigation.navigate("WinterWear");
-  };
-  const menWear = () => {
-    console.log("WinterWear");
-    navigation.navigate("Men");
-  };
-  const womenWear = () => {
-    console.log("WinterWear");
-    navigation.navigate("Women");
-  };
-  const kidsWear = () => {
-    console.log("WinterWear");
-    navigation.navigate("Kids");
-  };
-  const footwareWear = () => {
-    console.log("WinterWear");
-    navigation.navigate("Footware");
-  };
-
-  const [imagesSlides] = useState([
-    require("../../../assets/slider1.png"),
-    require("../../../assets/slider2.png"),
-    require("../../../assets/slider3.png"),
-  ]);
-
   const getHome = async () => {
     const res = await Httpclients.get("home/getAll");
     setData(res.data.data);
@@ -177,12 +53,46 @@ const HomePage = ({ navigation }) => {
   };
 
   useEffect(() => {
-
     console.log("token ==>", userToken);
     getHome();
   }, []);
 
-  
+  const SingleRowData = ({ heading, fun, data }) => {
+    return (
+      <View style={styles.dealCards}>
+        <View style={styles.textTop}>
+          <Text style={styles.textheadingStyle}>{heading}</Text>
+        </View>
+        <WinterDeals fun={fun} data={data} />
+      </View>
+    );
+  };
+
+  const TowColumnData = ({ heading, data }) => {
+    return (
+      <View style={styles.dealCards}>
+        <View style={styles.textTop}>
+          <Text style={styles.textheadingStyle}>{heading}</Text>
+        </View>
+        <SeasonDeals data={data} />
+      </View>
+    );
+  };
+
+  const ThreeColumnData = ({ heading, data }) => {
+    return (
+      <View style={styles.dealCards}>
+        <View style={styles.textTop}>
+          <Text style={styles.textheadingStyle}>{heading}</Text>
+        </View>
+
+        <FashionPredictionDeals
+          renderGridItem={renderCategoryGridItem}
+          data={data}
+        />
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -199,46 +109,33 @@ const HomePage = ({ navigation }) => {
       ) : (
         <ScrollView style={styles.container}>
           <View style={styles.firstContainer}>
-            <MainScreen
-             data={data.categoryList}
-            />
+            <MainScreen data={data.categoryList} />
           </View>
 
           {data.first_SliderImages.status ? (
             <View style={styles.imageContainer}>
-              {/* <FastImage
-              source={require("../../../assets/firstImage.png")}
-              style={styles.image}
-              resizeMode={FastImage.resizeMode.cover}
-            /> */}
               <SliderBox
                 images={data.first_SliderImages.image}
                 dotColor="#FF3E6C"
                 inactiveDotColor="#90A4AE"
                 resizeMethod={"resize"}
                 resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
+                parentWidth={dimensions.width * 1}
                 sliderBoxHeight={"100%"}
               />
             </View>
           ) : null}
 
           <View style={styles.imageBannerContainer}>
-            <Animatable.Image 
-            
-            source={require("../../../assets/imageBanner.png")} resizeMode={'contain'} style={{
-                ...styles.image,
-              }}
-              animation={'lightSpeedIn'}
-              iterationCount="infinite"
-              />
-            {/* <FastImage
+            <Animatable.Image
               source={require("../../../assets/imageBanner.png")}
+              resizeMode={"contain"}
               style={{
                 ...styles.image,
               }}
-              resizeMode={FastImage.resizeMode.cover}
-            /> */}
+              animation={"lightSpeedIn"}
+              iterationCount="infinite"
+            />
           </View>
           {data.second_SliderImages.status ? (
             <SliderBox
@@ -247,7 +144,7 @@ const HomePage = ({ navigation }) => {
               inactiveDotColor="#90A4AE"
               resizeMethod={"resize"}
               resizeMode={"cover"}
-              parentWidth={Dimensions.get("window").width * 1}
+              parentWidth={dimensions.width * 1}
               sliderBoxHeight={heightPercentageToDP(30)}
             />
           ) : null}
@@ -260,238 +157,160 @@ const HomePage = ({ navigation }) => {
                 inactiveDotColor="#90A4AE"
                 resizeMode={"cover"}
                 resizeMethod={"resize"}
-                //resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
+                parentWidth={dimensions.width * 1}
                 sliderBoxHeight={heightPercentageToDP(15)}
               />
-              {/* <ImageTopBottomSlider data={secondSliderImage}
-            backgroundColorStyle={{ backgroundColor: "white" }}
-          /> */}
             </View>
           ) : null}
 
           {data.first_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.first_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.first_Carousal.data} />
-            </View>
+            <SingleRowData
+              heading={data.first_Carousal.Heading}
+              fun={changeShop}
+              data={data.first_Carousal.data}
+            />
           ) : null}
 
           {data.first_TwoColumnView.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.first_TwoColumnView.Heading}
-                </Text>
-              </View>
-              <SeasonDeals data={data.first_TwoColumnView.data} />
-            </View>
+            <TowColumnData
+              heading={data.first_TwoColumnView.Heading}
+              data={data.first_TwoColumnView.data}
+            />
           ) : null}
 
           {data.third_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.third_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.third_Carousal.data} />
-            </View>
+            <SingleRowData
+              heading={data.third_Carousal.Heading}
+              fun={changeShop}
+              data={data.third_Carousal.data}
+            />
           ) : null}
 
           {data.four_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.four_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.four_Carousal.data} />
-            </View>
+            <SingleRowData
+              heading={data.four_Carousal.Heading}
+              fun={changeShop}
+              data={data.four_Carousal.data}
+            />
           ) : null}
 
           {data.four_SliderImages.status ? (
             <View style={styles.imageBanner2Container}>
-              {/* <FastImage
-                source={require("../../../assets/banner1.png")}
-                style={styles.image}
-                resizeMode={FastImage.resizeMode.cover}
-              /> */}
-
               <SliderBox
                 images={data.four_SliderImages.image}
                 dotColor="#FF3E6C"
                 inactiveDotColor="#90A4AE"
                 resizeMethod={"resize"}
                 resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
+                parentWidth={dimensions.width * 1}
                 sliderBoxHeight={"100%"}
               />
             </View>
           ) : null}
 
-          {data.first_TwoColumnView.status ? (
-            <View style={styles.seasonCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.fifth_Carousal.Heading}
-                </Text>
-              </View>
-
-              <FashionPredictionDeals
-                renderGridItem={renderGridItem}
-                data={data.first_TwoColumnView.data}
-              />
-            </View>
+          {data.second_TwoColumnView.status ? (
+            <TowColumnData
+              heading={data.second_TwoColumnView.Heading}
+              data={data.second_TwoColumnView.data}
+            />
           ) : null}
 
           {data.sixth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.sixth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.sixth_Carousal.data} />
-            </View>
+            <SingleRowData
+              heading={data.sixth_Carousal.Heading}
+              fun={changeShop}
+              data={data.sixth_Carousal.data}
+            />
           ) : null}
 
           {data.seventh_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.seventh_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.seventh_Carousal.data} />
-            </View>
+            <SingleRowData
+              heading={data.seventh_Carousal.Heading}
+              fun={changeShop}
+              data={data.seventh_Carousal.data}
+            />
           ) : null}
 
-          {data.seventh_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.eighth_Carousal.Heading}
-                </Text>
-              </View>
-
-              <FashionPredictionDeals
-                renderGridItem={renderCategoryGridItem}
-                data={data.eighth_Carousal.data}
-              />
-            </View>
+          {data.second_ThreeColumnView.status ? (
+            <ThreeColumnData
+              heading={data.second_ThreeColumnView.Heading}
+              data={data.second_ThreeColumnView.data}
+            />
           ) : null}
 
           {data.nineth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.nineth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals fun={changeShop} data={data.nineth_Carousal.data} />
-            </View>
-          ) : null}
-
-          <View style={styles.imageBanner3Container}>
-            <FastImage
-              source={require("../../../assets/banner2.png")}
-              style={styles.imageBanner2}
-              resizeMode={FastImage.resizeMode.cover}
+            <SingleRowData
+              heading={data.nineth_Carousal.Heading}
+              fun={changeShop}
+              data={data.nineth_Carousal.data}
             />
-          </View>
-
-          {data.second_TwoColumnView.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.second_TwoColumnView.Heading}
-                </Text>
-              </View>
-              <SeasonDeals data={data.second_TwoColumnView.data} />
-            </View>
           ) : null}
 
-          {data.eleventh_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.eleventh_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.eleventh_Carousal.data}
-              />
-            </View>
-          ) : null}
-
-          {data.second_TwoColumnView.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.twelveth_Carousal.Heading}
-                </Text>
-              </View>
-
-              <FashionPredictionDeals
-                renderGridItem={renderCategoryGridItem}
-                data={data.second_TwoColumnView.data}
-              />
-            </View>
-          ) : null}
-
-          {data.thirteenth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.thirteenth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.thirteenth_Carousal.data}
+          {data.third_SliderImages.status ? (
+            <View style={styles.imageBanner3Container}>
+              <SliderBox
+                images={data.third_SliderImages.image}
+                dotColor="#FF3E6C"
+                inactiveDotColor="#90A4AE"
+                resizeMode={"cover"}
+                resizeMethod={"resize"}
+                parentWidth={dimensions.width * 1}
+                sliderBoxHeight={"100%"}
               />
             </View>
           ) : null}
 
           {data.third_TwoColumnView.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.third_TwoColumnView.Heading}
-                </Text>
-              </View>
-              <SeasonDeals data={data.third_TwoColumnView.data} />
-            </View>
+            <TowColumnData
+              heading={data.third_TwoColumnView.Heading}
+              data={data.third_TwoColumnView.data}
+            />
+          ) : null}
+
+          {data.eleventh_Carousal.status ? (
+            <SingleRowData
+              heading={data.eleventh_Carousal.Heading}
+              fun={changeShop}
+              data={data.eleventh_Carousal.data}
+            />
+          ) : null}
+
+          {data.second_ThreeColumnView.status ? (
+            <ThreeColumnData
+              heading={data.second_ThreeColumnView.Heading}
+              data={data.second_ThreeColumnView.data}
+            />
+          ) : null}
+
+          {data.thirteenth_Carousal.status ? (
+            <SingleRowData
+              heading={data.thirteenth_Carousal.Heading}
+              fun={changeShop}
+              data={data.thirteenth_Carousal.data}
+            />
+          ) : null}
+
+          {data.four_TwoColumnView.status ? (
+            <TowColumnData
+              heading={data.four_TwoColumnView.Heading}
+              data={data.four_TwoColumnView.data}
+            />
           ) : null}
 
           {data.fifth_SliderImages.status ? (
             <View
               style={{
                 ...styles.imageBanner3Container,
-                height: Dimensions.get("window").width * 0.37,
-                // borderRadius: 20,
-                // elevation: 10,
+                height: dimensions.width * 0.37,
               }}
             >
-              {/* <Image
-              source={require("../../../assets/banner3.png")}
-              style={{ ...styles.imageBanner2 }}
-              resizeMode="cover"
-            /> */}
-
               <SliderBox
                 images={data.fifth_SliderImages.image}
                 dotColor="#FF3E6C"
                 inactiveDotColor="#90A4AE"
                 resizeMethod={"resize"}
                 resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
+                parentWidth={dimensions.width * 1}
                 sliderBoxHeight={"100%"}
               />
             </View>
@@ -505,44 +324,25 @@ const HomePage = ({ navigation }) => {
                 marginVertical: 10,
               }}
             >
-              {/* <FastImage
-              source={require("../../../assets/banner4.png")}
-              style={styles.image}
-              resizeMode={FastImage.resizeMode.cover}
-            /> */}
-
               <SliderBox
                 images={data.sixth_SliderImages.image}
                 dotColor="#FF3E6C"
                 inactiveDotColor="#90A4AE"
                 resizeMethod={"resize"}
                 resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
+                parentWidth={dimensions.width * 1}
                 sliderBoxHeight={"100%"}
               />
             </View>
           ) : null}
 
           {data.fifteenth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.fifteenth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.fifteenth_Carousal.data}
-              />
-            </View>
+            <SingleRowData
+              heading={data.fifteenth_Carousal.Heading}
+              fun={changeShop}
+              data={data.fifteenth_Carousal.data}
+            />
           ) : null}
-
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>MYNTRA GIFT CARDS</Text>
-          </View>
-          <BeautyDeals renderFun={renderWeadingItem} data={WEADINGDUMMY} />
-        </View> */}
 
           {data.seventh_SliderImages.status ? (
             <View style={styles.dealCards}>
@@ -557,82 +357,50 @@ const HomePage = ({ navigation }) => {
                   dotColor="#FF3E6C"
                   inactiveDotColor="#90A4AE"
                   resizeMethod={"resize"}
-                resizeMode={"cover"}
-                parentWidth={Dimensions.get("window").width * 1}
-                sliderBoxHeight={heightPercentageToDP(30)}
+                  resizeMode={"cover"}
+                  parentWidth={dimensions.width * 1}
+                  sliderBoxHeight={heightPercentageToDP(30)}
                 />
               </View>
             </View>
           ) : null}
 
           {data.sixteenth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.sixteenth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.sixteenth_Carousal.data}
-              />
-            </View>
+            <SingleRowData
+              heading={data.sixteenth_Carousal.Heading}
+              fun={changeShop}
+              data={data.sixteenth_Carousal.data}
+            />
           ) : null}
 
-          {data.twelveth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.twelveth_Carousal.Heading}
-                </Text>
-              </View>
-
-              <FashionPredictionDeals
-                renderGridItem={renderCategoryGridItem}
-                data={data.twelveth_Carousal.data}
-              />
-            </View>
+          {data.second_ThreeColumnView.status ? (
+            <ThreeColumnData
+              heading={data.second_ThreeColumnView.Heading}
+              data={data.second_ThreeColumnView.data}
+            />
           ) : null}
 
-         
-
-        {data.four_TwoColumnView.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.four_TwoColumnView.Heading}
-                </Text>
-              </View>
-              <SeasonDeals data={data.four_TwoColumnView.data} />
-            </View>
+          {data.fifth_TwoColumnView.status ? (
+            <TowColumnData
+              heading={data.fifth_TwoColumnView.Heading}
+              data={data.fifth_TwoColumnView.data}
+            />
           ) : null}
 
-{data.sixteenth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.sixteenth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.sixteenth_Carousal.data}
-              />
-            </View>
+          {data.sixteenth_Carousal.status ? (
+            <SingleRowData
+              heading={data.sixteenth_Carousal.Heading}
+              fun={changeShop}
+              data={data.sixteenth_Carousal.data}
+            />
           ) : null}
 
-{data.sixteenth_Carousal.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.sixteenth_Carousal.Heading}
-                </Text>
-              </View>
-              <WinterDeals
-                fun={changeShop}
-                data={data.sixteenth_Carousal.data}
-              />
-            </View>
+          {data.seventh_Carousal.status ? (
+            <SingleRowData
+              heading={data.seventh_Carousal.Heading}
+              fun={changeShop}
+              data={data.seventh_Carousal.data}
+            />
           ) : null}
 
           {/* <View style={styles.dealCards}>
@@ -734,30 +502,34 @@ const HomePage = ({ navigation }) => {
         </View> */}
 
           <View style={styles.footer}>
-          <View
-            style={{
-              width: "50%",
-              borderBottomColor: "black",
-              borderBottomWidth: 1,
-            }}
-          />
-          <Text
-            style={{
-              color: "black",
-              fontFamily: "whitney-book-italic",
-              fontSize: widthPercentageToDP(4.5),
-              textAlign: "center",
-              paddingHorizontal: 10,
-            }}
-          >
-            "Elegance is not standing out, but being remembered."
-          </Text>
-          <Text
-            style={{ fontSize: widthPercentageToDP(3), color: "grey", fontFamily: "whitney-light" }}
-          >
-            Giorgio Armani
-          </Text>
-        </View>
+            <View
+              style={{
+                width: "50%",
+                borderBottomColor: "black",
+                borderBottomWidth: 1,
+              }}
+            />
+            <Text
+              style={{
+                color: "black",
+                fontFamily: "whitney-book-italic",
+                fontSize: widthPercentageToDP(4.5),
+                textAlign: "center",
+                paddingHorizontal: 10,
+              }}
+            >
+              "Elegance is not standing out, but being remembered."
+            </Text>
+            <Text
+              style={{
+                fontSize: widthPercentageToDP(3),
+                color: "grey",
+                fontFamily: "whitney-light",
+              }}
+            >
+              Giorgio Armani
+            </Text>
+          </View>
         </ScrollView>
       )}
     </SafeAreaView>

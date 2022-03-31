@@ -31,15 +31,15 @@ import Httpclients from "../../../Redux/utils";
 
 import { BottomSheet } from "react-native-elements";
 import Colors from "../../../constants/constants";
-import Loader from '../Components/Loader'
-
+import Loader from "../Components/Loader";
+import { ScrollView } from "react-native-gesture-handler";
 
 const grey = "#91A1BD";
 const RosterScreen = (props) => {
   const [data, setData] = useState();
   const [isVisible, setIsVisible] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
-  const [isLoading, setLoading] = useState(false)
+  const [isLoading, setLoading] = useState(false);
 
   let content = <GenderModel />;
 
@@ -79,30 +79,8 @@ const RosterScreen = (props) => {
     );
   };
 
-  const NewMorph = ({ children, size, style }) => {
-    return (
-      <View style={styles.topShadow}>
-        <View style={styles.bottomShadow}>
-          <View
-            style={[
-              styles.inner,
-              {
-                width: size || 40,
-                height: size || 40,
-                borderRadius: size / 2 || 40 / 2,
-              },
-              style,
-            ]}
-          >
-            {children}
-          </View>
-        </View>
-      </View>
-    );
-  };
-
   const getAllProducts = async () => {
-    setLoading(true)
+    setLoading(true);
     const res = await Httpclients.get("product/getAll");
     setLoading(false);
     console.log(res.data.status);
@@ -118,24 +96,26 @@ const RosterScreen = (props) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header clickHandler={() => props.navigation.goBack()} />
+
       <View style={styles.mainContainer}>
         <View style={{ flex: 1 }}>
-          <FastImage
-            source={require("../../../assets/promocode.png")}
-            resizeMode={FastImage.resizeMode.cover}
-            style={styles.imageContainer}
-          />
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <View>
+              <FastImage
+                source={require("../../../assets/promocode.png")}
+                resizeMode={FastImage.resizeMode.cover}
+                style={styles.imageContainer}
+              />
 
-          <ShoppingDeals data={data} renderGridItem={renderGridItem} />
-
+              <ShoppingDeals data={data} renderGridItem={renderGridItem} />
+            </View>
+          </ScrollView>
           <View style={styles.buttonConatainer}>
             <View
               style={{
                 flex: 1,
                 height: "100%",
-
                 justifyContent: "center",
-                // borderRightWidth: 0.2,
               }}
             >
               <TouchableOpacity
@@ -233,11 +213,8 @@ const RosterScreen = (props) => {
           </BottomSheet>
         </View>
       </View>
-      {isLoading &&
-        <Loader
-          color={"FF3E6C"}
-        />
-      }
+
+      {isLoading && <Loader color={"FF3E6C"} />}
     </SafeAreaView>
   );
 };
@@ -251,17 +228,13 @@ const styles = StyleSheet.create({
 
   mainContainer: {
     flex: 1,
-
     backgroundColor: "#fcfcfc",
-    // marginTop: 32,
-    // marginHorizontal: 32,
   },
   topContainer: {
     marginHorizontal: 16,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    // borderWidth: 1,
   },
   inner: {
     backgroundColor: "white",
@@ -294,10 +267,6 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: "white",
     alignSelf: "center",
-    // flex: 1,
-    // backgroundColor: "#f6f6f6",
-    // justifyContent: "center",
-    // alignItems: "center",
   },
   buttonConatainer: {
     justifyContent: "space-between",
@@ -305,17 +274,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 50,
     backgroundColor: "white",
-    // backgroundColor: "rgba(251, 251, 251, 0.8)",
-    // backgroundColor: "transparent",
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: -3,
-    //   height: -3,
-    // },
-    // shadowOpacity: 0.89,
-    // shadowRadius: 4.65,
-
-    // elevation: 7,
     borderTopWidth: 0.3,
   },
 });

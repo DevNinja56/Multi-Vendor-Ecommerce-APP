@@ -155,7 +155,7 @@ const ShoppingCards = (props) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
+    flex: 0.5,
     backgroundColor: "white",
     // elevation: 4,
     borderWidth: 0.25,

@@ -1,14 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  useWindowDimensions,
-} from "react-native";
-// import { useWindowDimensions } from "react-native";
+import { View, StyleSheet, useWindowDimensions } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import { ScrollView } from "react-native-gesture-handler";
 import Recent from "./components/Recent";
 import YouMissed from "./components/YouMissed";
 import Colors from "../../../constants/constants";
@@ -18,7 +10,6 @@ import { useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 
 const NotificationScreen = (props) => {
-  const [showScreen, setShowScreen] = useState(0);
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
   const userToken = useSelector((state) => state.user.userToken);
@@ -29,7 +20,7 @@ const NotificationScreen = (props) => {
         Authorization: userToken,
       },
     });
-    console.log("Data===>"+res.data.data);
+    console.log("Data===>" + res.data.data);
 
     setData(res.data.data);
     setLoading(false);
@@ -39,20 +30,13 @@ const NotificationScreen = (props) => {
     getAllNotifications();
   }, []);
 
-  let content = <Recent />;
-
-  if (showScreen == 0) {
-    content = <Recent />;
-  } else {
-    content = <YouMissed />;
-  }
-
   const FirstRoute = () => {
-    // isLoading ? <Recent dataList={data.Recent} /> : <Recent />;
-    return isLoading ?<Recent />:<Recent dataList={data.Recent}/>;
+    return isLoading ? <Recent /> : <Recent dataList={data.Recent} />;
   };
 
-  const SecondRoute = () => {return  isLoading ?<YouMissed />:<YouMissed dataList={data.Earlier}/>;};
+  const SecondRoute = () => {
+    return isLoading ? <YouMissed /> : <YouMissed dataList={data.Earlier} />;
+  };
 
   const renderScene = SceneMap({
     recent: FirstRoute,
@@ -83,7 +67,9 @@ const NotificationScreen = (props) => {
         clickHandler={() => props.navigation.goBack()}
         headerTitle={"Notifications"}
       />
-      {isLoading ? <Loader color={Colors.Primary}/> : (
+      {isLoading ? (
+        <Loader color={Colors.Primary} />
+      ) : (
         <TabView
           navigationState={{ index, routes }}
           renderScene={renderScene}
@@ -94,7 +80,7 @@ const NotificationScreen = (props) => {
             backgroundColor: "white",
           }}
         />
-      ) }
+      )}
       {/* <View
         style={{
           width: "100%",
