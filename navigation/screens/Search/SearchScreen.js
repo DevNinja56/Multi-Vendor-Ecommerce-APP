@@ -84,7 +84,6 @@ const SearchScreen = (props) => {
                 keyExtractor={(item, index) => "unique" + index}
                 renderItem={_renderItem}
               />
-
             </View>
           </TouchableWithoutFeedback>
         </Modal>

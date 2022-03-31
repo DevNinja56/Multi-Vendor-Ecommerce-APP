@@ -178,7 +178,7 @@ const HomePage = ({ navigation }) => {
 
   useEffect(() => {
 
-    console.log("token ==>", userToken);
+    console.log("token ==>", token);
     getHome();
   }, []);
 
