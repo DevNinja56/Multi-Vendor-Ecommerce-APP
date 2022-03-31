@@ -29,6 +29,7 @@ import TodayDeals from "./TodayDeals";
 import Httpclients from "../../../Redux/utils";
 import Colors from '../../../constants/constants'
 import SimpleHeader from '../Header/simple_header'
+import { widthPercentageToDP } from "react-native-responsive-screen";
 const images = [
   require("../../../assets/sliderImages1.png"),
   require("../../../assets/sliderImages2.png"),
@@ -56,7 +57,7 @@ const renderItem = (itemData) => {
               color: "white",
             }}
           >
-            {itemData.item.Rating}
+            {itemData.item.rating}
           </Text>
           <Ionicons name="md-star" size={12} color={"white"} />
         </View>
@@ -79,7 +80,7 @@ const renderItem = (itemData) => {
               }}
             >
               <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
-               {itemData.item.Customer_Name}
+               {itemData.item.user.name}
               </Text>
               <View
                 style={{
@@ -90,7 +91,7 @@ const renderItem = (itemData) => {
                 }}
               />
               <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
-                {itemData.item.Date}
+                {itemData.item.created_at}
               </Text>
             </View>
             <View
@@ -157,7 +158,7 @@ const DetailsScreen = (props) => {
     const res = await Httpclients.get("product/sku2");
     console.log(res.data.status);
     if (res.data.status==="success") {
-      console.log(res.data.data);
+      console.log(res.data.data.Gallery_Images);
       setData(res.data.data);
       setLoading(false);
     } else {
@@ -201,7 +202,7 @@ const DetailsScreen = (props) => {
                 </Text>
               </View>
               <View style={styles.raitingCard}>
-                <Text style={styles.textPicRaiting}>{data.Rating}</Text>
+                <Text style={styles.textPicRaiting}>{Math.trunc( data.Rating.value)}</Text>
                 <Ionicons name="md-star" size={10} color="#03956E" />
                 <View
                   style={{
@@ -232,13 +233,60 @@ const DetailsScreen = (props) => {
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 16 }}>
                   {data.Product_Title}
                 </Text>{" "}
-                Women Black Dress
+                {data.brand.name} 
+                <Text
+              style={{
+                color: "#FF3E6C",
+                // fontFamily: "whitney-bold",
+                // fontSize: widthPercentageToDP(3),
+                // marginTop: 5,
+                // marginLeft: 5,
+              }}
+            >
+              {" "}
+              {data.Category.name}
+            </Text>
               </Text>
             </View>
             <View>
-              <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 16 }}>
-                Rs {data.Regular_Price}
-              </Text>
+            <Text
+            style={{
+              fontSize: widthPercentageToDP(3.5),
+              marginTop: 5,
+            }}
+          >
+            <Text
+              style={{
+                color: "#9F9F9F",
+                textDecorationLine: "line-through",
+                fontFamily: "whitney-book",
+              }}
+            >
+              {data.Regular_Price}PKR
+            </Text>
+            <Text
+              style={{
+                color: "black",
+                fontFamily: "whitney-semi-bold",
+                marginTop: 3,
+              }}
+            >
+              {"  "}
+             {data.Discounted_Price}PKR
+            </Text>
+            <Text
+              style={{
+                color: "#FF3E6C",
+                fontFamily: "whitney-bold",
+                fontSize: widthPercentageToDP(3),
+                // marginTop: 5,
+                // marginLeft: 5,
+              }}
+            >
+              {"  "}
+              Stock Left {data.stock}
+            </Text>
+          </Text>
             </View>
             <View>
               <Text
@@ -278,10 +326,10 @@ const DetailsScreen = (props) => {
             </View>
           </View> */}
           {/* Return View */}
-          {/* <View style={styles.descriptionStyle}>
+          <View style={{...styles.descriptionStyle,marginTop:15,}}>
             <View style={{ justifyContent: "center" }}>
               <Text style={{ ...styles.textStyle, fontSize: 14 }}>
-                Easy 15 days returns and exchanges
+                {data.exchange_Policy.title}
               </Text>
               <Text
                 style={{
@@ -291,11 +339,10 @@ const DetailsScreen = (props) => {
                   width: "90%",
                 }}
               >
-                Choose to return or exchange for a different size (if available)
-                within 15 days.
+                {data.exchange_Policy.text}
               </Text>
             </View>
-          </View> */}
+          </View>
           {/* Size View */}
           <View style={styles.sizeStyle}>
             <View
@@ -433,7 +480,7 @@ const DetailsScreen = (props) => {
                                   fontFamily: "whitney-semi-bold",
                                 }}
                               >
-                                {gender.size_Name}
+                                
                               </Text>
                             </View>
                           </TouchableOpacity>
@@ -464,7 +511,7 @@ const DetailsScreen = (props) => {
                                   color:'black'
                                 }}
                               >
-                                {gender.size_Name}
+                                
                               </Text>
                             </View>
                           </TouchableOpacity>
@@ -579,7 +626,7 @@ const DetailsScreen = (props) => {
                 }}
               >
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 14 }}>
-                  Fabric
+                  {data.Custom_Fields[0].heading}
                 </Text>
                 <Text
                   style={{
@@ -588,7 +635,7 @@ const DetailsScreen = (props) => {
                     marginTop: 5,
                   }}
                 >
-                  Acrylic
+                  {data.Custom_Fields[0].text}
                 </Text>
               </View>
               <View
@@ -603,7 +650,7 @@ const DetailsScreen = (props) => {
                 }}
               >
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 14 }}>
-                  Neck
+                {data.Custom_Fields[1].heading}
                 </Text>
                 <Text
                   style={{
@@ -612,7 +659,7 @@ const DetailsScreen = (props) => {
                     marginTop: 5,
                   }}
                 >
-                  V Neck
+                  {data.Custom_Fields[1].text}
                 </Text>
               </View>
             </View>
@@ -635,7 +682,7 @@ const DetailsScreen = (props) => {
                 }}
               >
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 14 }}>
-                  Sleeve Length
+                {data.Custom_Fields[2].heading}
                 </Text>
                 <Text
                   style={{
@@ -644,7 +691,7 @@ const DetailsScreen = (props) => {
                     marginTop: 5,
                   }}
                 >
-                  Half Sleeves
+                 {data.Custom_Fields[2].text}
                 </Text>
               </View>
               <View
@@ -659,7 +706,7 @@ const DetailsScreen = (props) => {
                 }}
               >
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 14 }}>
-                  Wash Care
+                {data.Custom_Fields[3].heading}
                 </Text>
                 <Text
                   style={{
@@ -668,7 +715,7 @@ const DetailsScreen = (props) => {
                     marginTop: 5,
                   }}
                 >
-                  Machine Wash
+                  {data.Custom_Fields[3].text}
                 </Text>
               </View>
             </View>
@@ -691,7 +738,7 @@ const DetailsScreen = (props) => {
                 }}
               >
                 <Text style={{ fontFamily: "whitney-semi-bold", fontSize: 14 }}>
-                  Product Details
+                {data.Custom_Fields[4].heading}
                 </Text>
                 <Text
                   style={{
@@ -700,8 +747,7 @@ const DetailsScreen = (props) => {
                     marginTop: 5,
                   }}
                 >
-                  Jumper in a soft knit with low dropped shoulders, extra-long
-                  sleeves and ribbing around the neck, cuffs and hem.
+                 {data.Custom_Fields[4].text}
                 </Text>
               </View>
             </View>
@@ -807,7 +853,7 @@ const DetailsScreen = (props) => {
             </View>
           </View>
           {/* Rating View */}
-          <View
+           <View
             style={{
               ...styles.sizeStyle,
             }}
@@ -831,7 +877,7 @@ const DetailsScreen = (props) => {
                       color: "grey",
                     }}
                   >
-                    {data.Rating}
+                    {Math.trunc (data.Rating.value)}
                   </Text>
                   <Ionicons name="md-star" size={14} color="#03956E" />
                 </View>
@@ -842,7 +888,7 @@ const DetailsScreen = (props) => {
                     textAlign: "center",
                   }}
                 >
-                  668 Verified Buyers
+                  {data.Rating.persons} Verified Buyers
                 </Text>
               </View>
               <View
@@ -896,9 +942,9 @@ const DetailsScreen = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                 {console.log(data.Rating_Details[4]['5'])}
+                 {console.log(data.Rating_Details[4].value)}
            
-                <SliderCustom  fill={data.Rating_Details[4]['5']}/>
+                <SliderCustom fill={parseInt(data.Rating_Details[4].value) * 10}/>
            
         
                   </View>
@@ -950,7 +996,7 @@ const DetailsScreen = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                   <SliderCustom  fill={data.Rating_Details[3]['4']}/>
+                   <SliderCustom  fill={parseInt(data.Rating_Details[3].value) * 10}/>
                   </View>
                   <View style={{ flex: 0.15 }}>
                     <Text
@@ -1000,7 +1046,7 @@ const DetailsScreen = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                    <SliderCustom  fill={data.Rating_Details[2]['3']}/>
+                    <SliderCustom  fill={parseInt(data.Rating_Details[2].value) * 10}/>
                   </View>
                   <View style={{ flex: 0.15 }}>
                     <Text
@@ -1050,7 +1096,7 @@ const DetailsScreen = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                    <SliderCustom  fill={data.Rating_Details[1]['2']}/>
+                    <SliderCustom  fill={parseInt(data.Rating_Details[1].value) * 10}/>
                   </View>
                   <View style={{ flex: 0.15 }}>
                     <Text
@@ -1100,7 +1146,7 @@ const DetailsScreen = (props) => {
                       justifyContent: "center",
                     }}
                   >
-                   <SliderCustom  fill={data.Rating_Details[0]['1']}/>
+                   <SliderCustom  fill={parseInt(data.Rating_Details[0].value) * 10}/>
                   </View>
                   <View style={{ flex: 0.15 }}>
                     <Text
@@ -1806,7 +1852,8 @@ const DetailsScreen = (props) => {
               data={data.Reviews}
               renderItem={renderItem}
             />
-            {/* <Text
+            {data.Reviews.length<1?
+            <Text
               style={{
                 fontFamily: "whitney-semi-bold",
                 fontSize: 14,
@@ -1814,8 +1861,8 @@ const DetailsScreen = (props) => {
                 marginVertical: 10,
               }}
             >
-              View all 35 reviews
-            </Text> */}
+              View all {data.Reviews.length-1} reviews
+            </Text>:null}
           </View>
           <View
             style={{
@@ -1905,7 +1952,7 @@ const DetailsScreen = (props) => {
                     marginHorizontal: 10,
                   }}
                 >
-                  Cash on delivery available
+                  {data.Cash_OnDeliveryText}
                 </Text>
               </View>
               <View
@@ -1925,7 +1972,7 @@ const DetailsScreen = (props) => {
                     marginHorizontal: 10,
                   }}
                 >
-                  Easy 15 days return & exchange available
+                  {data.exchange_Policy.text}
                 </Text>
               </View>
             </View>
@@ -1956,7 +2003,7 @@ const DetailsScreen = (props) => {
             </View>
           </View>
         </View>
-        <View style={styles.footer}>
+        <View style={styles.footer}> 
           <View
             style={{
               width: "50%",
@@ -1984,7 +2031,7 @@ const DetailsScreen = (props) => {
           >
             Giorgio Armani
           </Text>
-        </View>
+        </View> 
         </NativeBaseProvider>
       </ScrollView>
       </>
@@ -2026,6 +2073,7 @@ const styles = StyleSheet.create({
   },
   descriptionStyle: {
     // padding: 20,
+    
     paddingLeft: 20,
     paddingTop: 10,
     paddingBottom: 7,
@@ -2044,7 +2092,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   sizeStyle: {
-    marginVertical: 10,
+    marginTop: 15,
     paddingVertical: 10,
     paddingHorizontal: 20,
     backgroundColor: "white",
