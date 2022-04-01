@@ -4,7 +4,7 @@ import { StyleSheet, FlatList,  } from "react-native";
 const ShoppingDeals = (props) => {
   return (
     <FlatList
-      scrollEnabled={true}
+      // scrollEnabled={true}
       keyExtractor={(item, index) => item.id}
       data={props.data}
       renderItem={props.renderGridItem}

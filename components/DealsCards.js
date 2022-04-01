@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import FastImage from "react-native-fast-image";
-import Colors from "../constants/constants";
+import Colors from "../Src/Constants/colors";
 
 const DealsCards = (props) => {
   console.log("URL====>"+props.imageurl)

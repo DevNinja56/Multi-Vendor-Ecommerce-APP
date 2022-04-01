@@ -15,7 +15,8 @@ import {
 } from "react-native-responsive-screen";
 
 import { Ionicons } from "@expo/vector-icons";
-import { titleCase } from "../constants/title_case";
+import { titleCase } from "../Src/Constants/title_case";
+
 
 const ShoppingCards = (props) => {
 
@@ -155,7 +156,7 @@ const ShoppingCards = (props) => {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
+    flex: 0.5,
     backgroundColor: "white",
     // elevation: 4,
     borderWidth: 0.25,

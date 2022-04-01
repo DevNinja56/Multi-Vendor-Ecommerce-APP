@@ -17,7 +17,7 @@ const StoryScrollView = (props) => {
     <View style={styles.screen}>
       {/* <View style={{ ...styles.screen, ...props.style }}> */}
         <TouchableOpacity
-          onPress={props.winterWear}
+          onPress={props.topCategories}
           style={styles.imageContainer}
         >
           <FastImage
