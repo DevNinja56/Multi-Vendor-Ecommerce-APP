@@ -4,10 +4,10 @@ import AppLoading from "expo-app-loading";
 import {View} from 'react-native'
 import * as Font from "expo-font";
 import { loadAsync } from "expo-font";
-import { Store, persistor } from "./Redux/store";
+import { Store, persistor } from "./Src/Redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import Services from './Services'
+import Services from './Src/Services'
 import MainApp from './MainApp'
 
 const fetchFonts = () => {

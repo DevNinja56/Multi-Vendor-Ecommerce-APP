@@ -15,7 +15,8 @@ import {
 } from "react-native-responsive-screen";
 
 import { Ionicons } from "@expo/vector-icons";
-import { titleCase } from "../constants/title_case";
+import { titleCase } from "../Src/Constants/title_case";
+
 
 const ShoppingCards = (props) => {
 

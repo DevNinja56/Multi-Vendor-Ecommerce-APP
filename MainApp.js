@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import messaging from '@react-native-firebase/messaging';
-import { saveToken } from './Redux/action'
-import MainContainer from "./navigation/screens/MainContainer";
+import { saveToken } from './Src/Redux/action'
+import MainContainer from "./Src/Navigators/MainContainer";
 
 const MainApp = () => {
     const dispatch = useDispatch();
