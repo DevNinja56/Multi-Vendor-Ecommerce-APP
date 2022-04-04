@@ -12,7 +12,7 @@ const renderItem = (itemData) => {
         <View
           style={{
             borderRadius: 50 / 2,
-            backgroundColor: itemData.item.bg_Color,
+            backgroundColor: itemData.item.bg_color,
             justifyContent: "center",
             alignItems: "center",
             height: 50,

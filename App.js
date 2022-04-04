@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import AppLoading from "expo-app-loading";
 import {View} from 'react-native'
 import * as Font from "expo-font";
@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import Services from './Src/Services'
 import MainApp from './MainApp'
+import SplashScreen from 'react-native-splash-screen'
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -45,6 +46,12 @@ const fetchFonts = () => {
 
 export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
+
+
+  useEffect(()=>{
+    setTimeout(() => SplashScreen.hide(), 2000);
+  },[])
+
   if (!dataLoaded) {
     return (
       <AppLoading

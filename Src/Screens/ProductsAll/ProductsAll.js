@@ -81,7 +81,7 @@ const ProductsAll = (props) => {
 
   const getAllProducts = async () => {
     setLoading(true);
-    const res = await Httpclients.get("product/getAll");
+    const res = await Httpclients.get("product/getAll?size=&color=&category=");
     setLoading(false);
     console.log(res.data.status);
     console.log(res.data.data);
