@@ -36,11 +36,11 @@ const OrderDetails = (props) => {
 
   const getOrderDetailsData = async () => {
     const res = await httpClients.get("order/getById/1");
-    console.log("Order Details Data : " + res.data.data.products.length);
+    // console.log("Order Details Data : " + res.data.data.products.length);
     if (res.data.status === "success") {
-      console.log(res.data.data.products);
+      console.log(res.data.data);
       setData(res.data.data);
-      setProductsData(res.data.data.products);
+      setProductsData(res.data.data.order_details);
       setLoading(false);
     } else {
       console.log("no data available");
@@ -61,7 +61,7 @@ const OrderDetails = (props) => {
       >
         <FastImage
           source={{
-            uri: itemData.item.product_Image,
+            uri: itemData.item.products.feature_image,
             priority: FastImage.priority.high,
           }}
           resizeMode={FastImage.resizeMode.cover}
@@ -74,7 +74,7 @@ const OrderDetails = (props) => {
               fontSize: heightPercentageToDP(2.1),
             }}
           >
-            {itemData.item.Product_Name.toUpperCase()}
+            {itemData.item.products.name.toUpperCase()}
           </Text>
           <Text
             style={{
@@ -83,7 +83,7 @@ const OrderDetails = (props) => {
               marginTop: 7,
             }}
           >
-            {itemData.item.Category_Name}
+            {itemData.item.products.product_categories[0].categories.name}
           </Text>
           <View style={styles.itemStyle}>
             <Text
@@ -103,7 +103,7 @@ const OrderDetails = (props) => {
               marginTop: 7,
             }}
           >
-            $ {itemData.item.Price}
+            $ {itemData.item.amount}
           </Text>
         </View>
       </View>
@@ -128,7 +128,7 @@ const OrderDetails = (props) => {
           >
             Order from{" "}
             <Text style={{ ...styles.headingStyle }}>
-              {data.Order_Date}
+              {data.order_date}
             </Text>
           </Text>
           <Text
@@ -137,7 +137,7 @@ const OrderDetails = (props) => {
               fontSize: heightPercentageToDP(2),
             }}
           >
-            {data.Status}
+            {data.status.toUpperCase()}
           </Text>
         </View>
         <View style={styles.flatListStyle}>
@@ -172,7 +172,7 @@ const OrderDetails = (props) => {
                 fontSize: heightPercentageToDP(2),
               }}
             >
-              {data.Order_Id}
+              {data.id}
             </Text>
           </View>
           <View>
@@ -210,7 +210,7 @@ const OrderDetails = (props) => {
                 fontSize: heightPercentageToDP(2),
               }}
             >
-              ${data.Total_Price}
+              ${data.amount}
             </Text>
           </View>
         </View>

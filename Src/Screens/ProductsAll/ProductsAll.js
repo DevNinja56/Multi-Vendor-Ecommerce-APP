@@ -69,10 +69,10 @@ const ProductsAll = (props) => {
         detaislScreen={detaislScreen}
         name={itemData.item.name}
         feature_image={itemData.item.feature_image}
-        category_name={itemData.item.category_name}
-        discounted_Price={itemData.item.discounted_Price}
+        category_name={itemData.item.product_categories[0].categories.name}
+        discounted_Price={itemData.item.discounted_price}
         quantity={itemData.item.quantity}
-        regular_Price={itemData.item.regular_Price}
+        regular_Price={itemData.item.regular_price}
         rating={itemData.item.rating}
         discount={itemData.item.discount}
       />

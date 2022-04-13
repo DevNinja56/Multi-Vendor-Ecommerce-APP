@@ -12,7 +12,7 @@ const renderItem = (itemData) => {
         <View
           style={{
             borderRadius: 50 / 2,
-            backgroundColor: itemData.item.bg_Color,
+            backgroundColor: itemData.item.bg_color,
             justifyContent: "center",
             alignItems: "center",
             height: 50,
@@ -40,7 +40,7 @@ const renderItem = (itemData) => {
             marginVertical: 2.5,
           }}
         >
-          {itemData.item.time_To_Send}
+          {itemData.item.time_to_send}
         </Text>
         <Text
           style={{

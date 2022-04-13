@@ -128,7 +128,7 @@ const SearchScreen = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <View style={styles.searchLayoutStyles}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>props.navigation.goBack()}>
             <AntDesign name="arrowleft" size={24} color="black" />
           </TouchableOpacity>
           <Text

@@ -40,7 +40,7 @@ const renderItem = (itemData) => {
             marginVertical: 2.5,
           }}
         >
-          {itemData.item.time_To_Send}
+          {itemData.item.time_to_send}
         </Text>
         <Text
           style={{

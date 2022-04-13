@@ -166,7 +166,7 @@ const HomePage = ({ navigation }) => {
 
           {data.first_Carousal.status ? (
             <SingleRowData
-              heading={data.first_Carousal.Heading}
+              heading={data.first_Carousal.heading}
               fun={changeShop}
               data={data.first_Carousal.data}
             />
@@ -174,14 +174,14 @@ const HomePage = ({ navigation }) => {
 
           {data.first_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.first_TwoColumnView.Heading}
+              heading={data.first_TwoColumnView.heading}
               data={data.first_TwoColumnView.data}
             />
           ) : null}
 
           {data.third_Carousal.status ? (
             <SingleRowData
-              heading={data.third_Carousal.Heading}
+              heading={data.third_Carousal.heading}
               fun={changeShop}
               data={data.third_Carousal.data}
             />
@@ -189,7 +189,7 @@ const HomePage = ({ navigation }) => {
 
           {data.four_Carousal.status ? (
             <SingleRowData
-              heading={data.four_Carousal.Heading}
+              heading={data.four_Carousal.heading}
               fun={changeShop}
               data={data.four_Carousal.data}
             />
@@ -211,14 +211,14 @@ const HomePage = ({ navigation }) => {
 
           {data.second_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.second_TwoColumnView.Heading}
+              heading={data.second_TwoColumnView.heading}
               data={data.second_TwoColumnView.data}
             />
           ) : null}
 
           {data.sixth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixth_Carousal.Heading}
+              heading={data.sixth_Carousal.heading}
               fun={changeShop}
               data={data.sixth_Carousal.data}
             />
@@ -226,7 +226,7 @@ const HomePage = ({ navigation }) => {
 
           {data.seventh_Carousal.status ? (
             <SingleRowData
-              heading={data.seventh_Carousal.Heading}
+              heading={data.seventh_Carousal.heading}
               fun={changeShop}
               data={data.seventh_Carousal.data}
             />
@@ -234,14 +234,14 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.nineth_Carousal.status ? (
             <SingleRowData
-              heading={data.nineth_Carousal.Heading}
+              heading={data.nineth_Carousal.heading}
               fun={changeShop}
               data={data.nineth_Carousal.data}
             />
@@ -263,14 +263,14 @@ const HomePage = ({ navigation }) => {
 
           {data.third_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.third_TwoColumnView.Heading}
+              heading={data.third_TwoColumnView.heading}
               data={data.third_TwoColumnView.data}
             />
           ) : null}
 
           {data.eleventh_Carousal.status ? (
             <SingleRowData
-              heading={data.eleventh_Carousal.Heading}
+              heading={data.eleventh_Carousal.heading}
               fun={changeShop}
               data={data.eleventh_Carousal.data}
             />
@@ -278,14 +278,14 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.thirteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.thirteenth_Carousal.Heading}
+              heading={data.thirteenth_Carousal.heading}
               fun={changeShop}
               data={data.thirteenth_Carousal.data}
             />
@@ -293,7 +293,7 @@ const HomePage = ({ navigation }) => {
 
           {data.four_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.four_TwoColumnView.Heading}
+              heading={data.four_TwoColumnView.heading}
               data={data.four_TwoColumnView.data}
             />
           ) : null}
@@ -339,7 +339,7 @@ const HomePage = ({ navigation }) => {
 
           {data.fifteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.fifteenth_Carousal.Heading}
+              heading={data.fifteenth_Carousal.heading}
               fun={changeShop}
               data={data.fifteenth_Carousal.data}
             />
@@ -349,7 +349,7 @@ const HomePage = ({ navigation }) => {
             <View style={styles.dealCards}>
               <View style={styles.textTop}>
                 <Text style={styles.textheadingStyle}>
-                  {data.seventh_SliderImages.Heading}
+                  {data.seventh_SliderImages.heading}
                 </Text>
               </View>
               <View style={{ marginVertical: 5 }}>
@@ -368,7 +368,7 @@ const HomePage = ({ navigation }) => {
 
           {data.sixteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixteenth_Carousal.Heading}
+              heading={data.sixteenth_Carousal.heading}
               fun={changeShop}
               data={data.sixteenth_Carousal.data}
             />
@@ -376,21 +376,21 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.fifth_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.fifth_TwoColumnView.Heading}
+              heading={data.fifth_TwoColumnView.heading}
               data={data.fifth_TwoColumnView.data}
             />
           ) : null}
 
           {data.sixteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixteenth_Carousal.Heading}
+              heading={data.sixteenth_Carousal.heading}
               fun={changeShop}
               data={data.sixteenth_Carousal.data}
             />
@@ -398,7 +398,7 @@ const HomePage = ({ navigation }) => {
 
           {data.seventh_Carousal.status ? (
             <SingleRowData
-              heading={data.seventh_Carousal.Heading}
+              heading={data.seventh_Carousal.heading}
               fun={changeShop}
               data={data.seventh_Carousal.data}
             />
