@@ -21,7 +21,7 @@ import {
 import HomePage from "../Screens/TabScreens/DrawerScreens/Home/HomePage";
 import DrawerNavigator from "./DrawerNavigator";
 import CategoriesScreen from "../Screens/TabScreens/Categories/CategoriesScreen";
-import ProfileScreen from "../Screens/TabScreens/Profile/ProfileScreen";
+import Profile from "../Screens/TabScreens/Profile";
 
 // Names
 const homeName = "Home";
@@ -73,16 +73,7 @@ const TabNavigator = () => {
         }
       })
     }
-      // screenOptions={{
-      //   tabBarActiveTintColor: "#FF3E6C",
-      //   inactiveTintColor: "#0F0F0F",
-
-      //   labelStyle: {
-      //     paddingBottom: 10,
-      //     fontSize: widthPercentageToDP(2.5),
-      //     fontFamily: "whitney-medium",
-      //   },
-      // }}
+     
     >
       <Tab.Screen
         name={homeName}
@@ -114,7 +105,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name={profileName}
-        component={ProfileScreen}
+        component={Profile}
         options={{
           headerTitle: "Profile",
           headerTitleStyle: {

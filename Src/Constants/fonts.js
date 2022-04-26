@@ -6,7 +6,7 @@ export const Fonts = {
     kepler_light: "kepler-light",
     kepler_bold: "kepler-bold",
     whitney_bold: "whitney-bold",
-    whitney_bold: "whitney-bold",
+    whitney_book: "whitney-book",
     whitney_book_italic: "whitney-book-italic",
     whitney_light: "whitney-light",
     whitney_light_italic: "whitney-light-italic",

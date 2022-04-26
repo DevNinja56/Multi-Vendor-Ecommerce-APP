@@ -17,3 +17,5 @@ export { default as BagWhite } from "./bagWhite.svg";
 export { default as OrignalProduct } from "./orignal_product.svg";
 export { default as ContactlessDelivery } from "./contactless_delivery.svg";
 export { default as SecurePayment } from "./secure_payment.svg";
+export { default as LocationIcon } from "./location.svg";
+export { default as PaymentIcon } from "./payment.svg";

@@ -38,6 +38,7 @@ const SimpleHeader = (props) => {
                             fontSize: heightPercentageToDP(2.5),
                             letterSpacing: 0.4,
                             marginLeft: 10,
+                            color:'#282828',
                         }}
                     >
                        {props.headerTitle} 
