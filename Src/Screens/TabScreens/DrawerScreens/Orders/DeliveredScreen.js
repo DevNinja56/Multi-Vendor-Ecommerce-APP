@@ -27,15 +27,15 @@ const renderItem = (itemData,clicked) => {
   return (
     <View style={styles.cardStyleMainStyle}>
      <View style={styles.topTextlayoutStyle}>
-       <Text style={{...styles.headingStyle,fontSize:heightPercentageToDP(1.75)}}>Order #{itemData.item.Order_Id}</Text>
-       <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.65)}}>{itemData.item.Order_Date}</Text>
+       <Text style={{...styles.headingStyle,fontSize:heightPercentageToDP(2)}}>Order #{itemData.item.id}</Text>
+       <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.75)}}>{itemData.item.order_date}</Text>
      </View>
      <View style={{paddingTop:10}}>
-     <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.65)}}>Tracking Number: QWCFVD41K8</Text>
+     <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.75)}}>Tracking Number: QWCFVD41K8</Text>
      </View>
      <View style={{...styles.topTextlayoutStyle,marginTop:10}}>
-     <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.65)}}>Items: {itemData.item.Items}</Text>
-       <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.65)}}>Total Price: <Text style={styles.headingStyle}>${itemData.item.Total_Price}</Text></Text>
+     <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.75)}}>Items: {itemData.item.items}</Text>
+       <Text style={{...styles.textStyle,fontSize:heightPercentageToDP(1.75)}}>Total Price: <Text style={styles.headingStyle}>${itemData.item.amount}</Text></Text>
      </View>
      
      <TouchableOpacity style={styles.buttonStyle} onPress={clicked}>

@@ -11,7 +11,7 @@ import SeasonDeals from "../../../../../navigation/screens/Home/SeasonDeals";
 import FashionPredictionDeals from "../../../../../navigation/screens/Home/FashionPredictionDeals";
 
 
-import { styles } from "../../../../Styles/styles";
+import { commonStyles } from "../../../../Styles/commonStyles";
 import { useSelector, useDispatch } from "react-redux";
 import * as Animatable from "react-native-animatable";
 
@@ -60,9 +60,9 @@ const HomePage = ({ navigation }) => {
 
   const SingleRowData = ({ heading, fun, data }) => {
     return (
-      <View style={styles.dealCards}>
-        <View style={styles.textTop}>
-          <Text style={styles.textheadingStyle}>{heading}</Text>
+      <View style={commonStyles.dealCards}>
+        <View style={commonStyles.textTop}>
+          <Text style={commonStyles.textheadingStyle}>{heading}</Text>
         </View>
         <WinterDeals fun={fun} data={data} />
       </View>
@@ -71,9 +71,9 @@ const HomePage = ({ navigation }) => {
 
   const TowColumnData = ({ heading, data }) => {
     return (
-      <View style={styles.dealCards}>
-        <View style={styles.textTop}>
-          <Text style={styles.textheadingStyle}>{heading}</Text>
+      <View style={commonStyles.dealCards}>
+        <View style={commonStyles.textTop}>
+          <Text style={commonStyles.textheadingStyle}>{heading}</Text>
         </View>
         <SeasonDeals data={data} />
       </View>
@@ -82,9 +82,9 @@ const HomePage = ({ navigation }) => {
 
   const ThreeColumnData = ({ heading, data }) => {
     return (
-      <View style={styles.dealCards}>
-        <View style={styles.textTop}>
-          <Text style={styles.textheadingStyle}>{heading}</Text>
+      <View style={commonStyles.dealCards}>
+        <View style={commonStyles.textTop}>
+          <Text style={commonStyles.textheadingStyle}>{heading}</Text>
         </View>
 
         <FashionPredictionDeals
@@ -96,7 +96,7 @@ const HomePage = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={commonStyles.container}>
       <Header
         clickHandler={() => navigation.toggleDrawer()}
         notificationClickHandler={() => navigation.navigate("Notifications")}
@@ -108,13 +108,13 @@ const HomePage = ({ navigation }) => {
       {isLoading ? (
         <Loader color={"FF3E6C"} />
       ) : (
-        <ScrollView style={styles.container}>
-          <View style={styles.firstContainer}>
+        <ScrollView style={commonStyles.container}>
+          <View style={commonStyles.firstContainer}>
             <MainScreen data={data.categoryList} />
           </View>
 
           {data.first_SliderImages.status ? (
-            <View style={styles.imageContainer}>
+            <View style={commonStyles.imageContainer}>
               <SliderBox
                 images={data.first_SliderImages.image}
                 dotColor="#FF3E6C"
@@ -127,12 +127,12 @@ const HomePage = ({ navigation }) => {
             </View>
           ) : null}
 
-          <View style={styles.imageBannerContainer}>
+          <View style={commonStyles.imageBannerContainer}>
             <Animatable.Image
               source={require("../../../../../assets/imageBanner.png")}
               resizeMode={"contain"}
               style={{
-                ...styles.image,
+                ...commonStyles.image,
               }}
               animation={"lightSpeedIn"}
               iterationCount="infinite"
@@ -151,7 +151,7 @@ const HomePage = ({ navigation }) => {
           ) : null}
 
           {data.third_SliderImages.status ? (
-            <View style={styles.sliderContainer2}>
+            <View style={commonStyles.sliderContainer2}>
               <SliderBox
                 images={data.third_SliderImages.image}
                 dotColor="#FF3E6C"
@@ -166,7 +166,7 @@ const HomePage = ({ navigation }) => {
 
           {data.first_Carousal.status ? (
             <SingleRowData
-              heading={data.first_Carousal.Heading}
+              heading={data.first_Carousal.heading}
               fun={changeShop}
               data={data.first_Carousal.data}
             />
@@ -174,14 +174,14 @@ const HomePage = ({ navigation }) => {
 
           {data.first_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.first_TwoColumnView.Heading}
+              heading={data.first_TwoColumnView.heading}
               data={data.first_TwoColumnView.data}
             />
           ) : null}
 
           {data.third_Carousal.status ? (
             <SingleRowData
-              heading={data.third_Carousal.Heading}
+              heading={data.third_Carousal.heading}
               fun={changeShop}
               data={data.third_Carousal.data}
             />
@@ -189,14 +189,14 @@ const HomePage = ({ navigation }) => {
 
           {data.four_Carousal.status ? (
             <SingleRowData
-              heading={data.four_Carousal.Heading}
+              heading={data.four_Carousal.heading}
               fun={changeShop}
               data={data.four_Carousal.data}
             />
           ) : null}
 
           {data.four_SliderImages.status ? (
-            <View style={styles.imageBanner2Container}>
+            <View style={commonStyles.imageBanner2Container}>
               <SliderBox
                 images={data.four_SliderImages.image}
                 dotColor="#FF3E6C"
@@ -211,14 +211,14 @@ const HomePage = ({ navigation }) => {
 
           {data.second_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.second_TwoColumnView.Heading}
+              heading={data.second_TwoColumnView.heading}
               data={data.second_TwoColumnView.data}
             />
           ) : null}
 
           {data.sixth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixth_Carousal.Heading}
+              heading={data.sixth_Carousal.heading}
               fun={changeShop}
               data={data.sixth_Carousal.data}
             />
@@ -226,7 +226,7 @@ const HomePage = ({ navigation }) => {
 
           {data.seventh_Carousal.status ? (
             <SingleRowData
-              heading={data.seventh_Carousal.Heading}
+              heading={data.seventh_Carousal.heading}
               fun={changeShop}
               data={data.seventh_Carousal.data}
             />
@@ -234,21 +234,21 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.nineth_Carousal.status ? (
             <SingleRowData
-              heading={data.nineth_Carousal.Heading}
+              heading={data.nineth_Carousal.heading}
               fun={changeShop}
               data={data.nineth_Carousal.data}
             />
           ) : null}
 
           {data.third_SliderImages.status ? (
-            <View style={styles.imageBanner3Container}>
+            <View style={commonStyles.imageBanner3Container}>
               <SliderBox
                 images={data.third_SliderImages.image}
                 dotColor="#FF3E6C"
@@ -263,14 +263,14 @@ const HomePage = ({ navigation }) => {
 
           {data.third_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.third_TwoColumnView.Heading}
+              heading={data.third_TwoColumnView.heading}
               data={data.third_TwoColumnView.data}
             />
           ) : null}
 
           {data.eleventh_Carousal.status ? (
             <SingleRowData
-              heading={data.eleventh_Carousal.Heading}
+              heading={data.eleventh_Carousal.heading}
               fun={changeShop}
               data={data.eleventh_Carousal.data}
             />
@@ -278,14 +278,14 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.thirteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.thirteenth_Carousal.Heading}
+              heading={data.thirteenth_Carousal.heading}
               fun={changeShop}
               data={data.thirteenth_Carousal.data}
             />
@@ -293,7 +293,7 @@ const HomePage = ({ navigation }) => {
 
           {data.four_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.four_TwoColumnView.Heading}
+              heading={data.four_TwoColumnView.heading}
               data={data.four_TwoColumnView.data}
             />
           ) : null}
@@ -301,7 +301,7 @@ const HomePage = ({ navigation }) => {
           {data.fifth_SliderImages.status ? (
             <View
               style={{
-                ...styles.imageBanner3Container,
+                ...commonStyles.imageBanner3Container,
                 height: dimensions.width * 0.37,
               }}
             >
@@ -320,7 +320,7 @@ const HomePage = ({ navigation }) => {
           {data.sixth_SliderImages.status ? (
             <View
               style={{
-                ...styles.imageContainer,
+                ...commonStyles.imageContainer,
                 height: heightPercentageToDP(50),
                 marginVertical: 10,
               }}
@@ -339,17 +339,17 @@ const HomePage = ({ navigation }) => {
 
           {data.fifteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.fifteenth_Carousal.Heading}
+              heading={data.fifteenth_Carousal.heading}
               fun={changeShop}
               data={data.fifteenth_Carousal.data}
             />
           ) : null}
 
           {data.seventh_SliderImages.status ? (
-            <View style={styles.dealCards}>
-              <View style={styles.textTop}>
-                <Text style={styles.textheadingStyle}>
-                  {data.seventh_SliderImages.Heading}
+            <View style={commonStyles.dealCards}>
+              <View style={commonStyles.textTop}>
+                <Text style={commonStyles.textheadingStyle}>
+                  {data.seventh_SliderImages.heading}
                 </Text>
               </View>
               <View style={{ marginVertical: 5 }}>
@@ -368,7 +368,7 @@ const HomePage = ({ navigation }) => {
 
           {data.sixteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixteenth_Carousal.Heading}
+              heading={data.sixteenth_Carousal.heading}
               fun={changeShop}
               data={data.sixteenth_Carousal.data}
             />
@@ -376,21 +376,21 @@ const HomePage = ({ navigation }) => {
 
           {data.second_ThreeColumnView.status ? (
             <ThreeColumnData
-              heading={data.second_ThreeColumnView.Heading}
+              heading={data.second_ThreeColumnView.heading}
               data={data.second_ThreeColumnView.data}
             />
           ) : null}
 
           {data.fifth_TwoColumnView.status ? (
             <TowColumnData
-              heading={data.fifth_TwoColumnView.Heading}
+              heading={data.fifth_TwoColumnView.heading}
               data={data.fifth_TwoColumnView.data}
             />
           ) : null}
 
           {data.sixteenth_Carousal.status ? (
             <SingleRowData
-              heading={data.sixteenth_Carousal.Heading}
+              heading={data.sixteenth_Carousal.heading}
               fun={changeShop}
               data={data.sixteenth_Carousal.data}
             />
@@ -398,22 +398,22 @@ const HomePage = ({ navigation }) => {
 
           {data.seventh_Carousal.status ? (
             <SingleRowData
-              heading={data.seventh_Carousal.Heading}
+              heading={data.seventh_Carousal.heading}
               fun={changeShop}
               data={data.seventh_Carousal.data}
             />
           ) : null}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>COLORS OF THE SEASON</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>COLORS OF THE SEASON</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>TRENDS FOR HIM</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>TRENDS FOR HIM</Text>
           </View>
           <View
             style={{ backgroundColor: "#026D5E", alignItems: "center", flex: 1 }}
@@ -422,9 +422,9 @@ const HomePage = ({ navigation }) => {
           </View>
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>LATEST PICK THIS WEEK</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>LATEST PICK THIS WEEK</Text>
           </View>
           <View style={{ marginVertical: 5 }}>
             <ImageSliderCustom
@@ -433,16 +433,16 @@ const HomePage = ({ navigation }) => {
           </View>
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>LATEST KIDSWEAR PICKS</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>LATEST KIDSWEAR PICKS</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>BEST BEAUTY FINDS</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>BEST BEAUTY FINDS</Text>
           </View>
           <View style={{ marginVertical: 5 }}>
             <ImageSliderCustom
@@ -451,16 +451,16 @@ const HomePage = ({ navigation }) => {
           </View>
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>PERFECT PICKS FOR HOME</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>PERFECT PICKS FOR HOME</Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>BEST BEAUTY FINDS</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>BEST BEAUTY FINDS</Text>
           </View>
           <View style={{ marginVertical: 5 }}>
             <ImageSliderCustom
@@ -469,9 +469,9 @@ const HomePage = ({ navigation }) => {
           </View>
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>
               LATEST LOOKS BY MFS INFLUENCERS
             </Text>
           </View>
@@ -482,18 +482,18 @@ const HomePage = ({ navigation }) => {
           />
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>
               INFLUENCER INSPIRED CLASSY WEDDING LOOKS
             </Text>
           </View>
           <BeautyDeals renderFun={renderWinterItem} data={DAILYEDITORDUMMY} />
         </View> */}
 
-          {/* <View style={styles.dealCards}>
-          <View style={styles.textTop}>
-            <Text style={styles.textheadingStyle}>FASHION EDITORIAL</Text>
+          {/* <View style={commonStyles.dealCards}>
+          <View style={commonStyles.textTop}>
+            <Text style={commonStyles.textheadingStyle}>FASHION EDITORIAL</Text>
           </View>
           <View style={{ marginVertical: 5 }}>
             <ImageSliderCustom
@@ -502,7 +502,7 @@ const HomePage = ({ navigation }) => {
           </View>
         </View> */}
 
-          <View style={styles.footer}>
+          <View style={commonStyles.footer}>
             <View
               style={{
                 width: "50%",

@@ -64,7 +64,7 @@ const OrdersScreen = (props) => {
 
 
   const getCancelledOrderData = async () => {
-    const res = await HttpClients.get("order/getAll/?status=canceled");
+    const res = await HttpClients.get("order/getAll/?status=cancel");
     console.log(res.data.status);
     if (res.data.status === "success") {
       console.log(res.data.data);

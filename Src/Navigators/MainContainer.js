@@ -21,6 +21,8 @@ import EnterPassword from '../Screens/Login&SignUp/EnterPassword';
 import SetPassword from '../Screens/Login&SignUp/SetPassword';
 import OrderConfirmed from '../Screens/Checkout/OrderConfirmed';
 import SearchScreen from '../Screens/Search/SearchScreen';
+import ProfileEdit from "../Screens/ProfileEdit";
+import AddressDetails from "../Screens/AddressDetails";
 
 
 
@@ -67,7 +69,8 @@ export default function MainContainer() {
           <Stack.Screen name="SetPassword" component={SetPassword} />
           <Stack.Screen name="OrderConfirmed" component={OrderConfirmed} />
           <Stack.Screen name="Search" component={SearchScreen} />
-          
+          <Stack.Screen name="ProfileEdit" component={ProfileEdit} />
+          <Stack.Screen name="AddressDetails" component={AddressDetails} />
          
         </Stack.Navigator>
       </NavigationContainer>

@@ -69,7 +69,7 @@ const WishListScreen = (props) => {
             <Text
               style={{
                 fontFamily: "whitney-semi-bold",
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: heightPercentageToDP(2),
                 marginVertical: 5,
               }}
             >
@@ -113,19 +113,21 @@ const WishListScreen = (props) => {
                     color: "#9F9F9F",
                     textDecorationLine: "line-through",
                     fontFamily: "whitney-book",
+                    fontSize: widthPercentageToDP(3),
                   }}
                 >
-                  {item.products.regular_Price}
+                  {item.products.regular_price}
                 </Text>
                 <Text
                   style={{
                     color: "black",
                     fontFamily: "whitney-semi-bold",
                     marginTop: 3,
+                    fontSize: widthPercentageToDP(3),
                   }}
                 >
                   {"  "}
-                  {item.products.discounted_Price}
+                  {item.products.discounted_price}
                 </Text>
                 <Text
                   style={{

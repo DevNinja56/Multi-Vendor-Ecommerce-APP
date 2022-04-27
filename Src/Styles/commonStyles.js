@@ -3,7 +3,7 @@ import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsi
 
 import Colors from "../Constants/colors";
 
- export const styles = StyleSheet.create({
+ export const commonStyles = StyleSheet.create({
 
   // Home Style
     container: {
