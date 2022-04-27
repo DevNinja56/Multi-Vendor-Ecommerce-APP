@@ -15,7 +15,7 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import Colors from "../../Constants/colors";
 import { styles } from "./style";
 
-const AddressDetails = () => {
+const AddressDetails = (props) => {
   const [checked, setChecked] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [check1, setCheck1] = useState(false);
@@ -177,7 +177,7 @@ const AddressDetails = () => {
               fontSize: heightPercentageToDP(2),
             }}
           >
-           SAVE
+            SAVE
           </Text>
         </TouchableOpacity>
       </View>

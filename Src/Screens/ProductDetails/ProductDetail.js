@@ -29,128 +29,97 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";
 import Colors from "../../Constants/colors";
-const images = [
-  require("../../../assets/sliderImages1.png"),
-  require("../../../assets/sliderImages2.png"),
-  require("../../../assets/sliderImages3.png"),
-];
-const renderItem = (itemData) => {
-  return (
-    <View>
-      <View style={{ flexDirection: "row", marginVertical: 10 }}>
-        <View
-          style={{
-            flex: 0.15,
-            height: 33,
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#04A48E",
-            paddingHorizontal: 10,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: "whitney-semi-bold",
-              fontSize: 20,
-              color: "white",
-            }}
-          >
-            {itemData.item.rating}
-          </Text>
-          <Ionicons name="md-star" size={12} color={"white"} />
-        </View>
-        <View style={{ flex: 0.8, marginLeft: 5 }}>
-          <Text style={{ fontFamily: "whitney-book", fontSize: 12 }}>
-            {itemData.item.review}
-          </Text>
+
+const ProductDetail = (props) => {
+  const images = [
+    require("../../../assets/sliderImages1.png"),
+    require("../../../assets/sliderImages2.png"),
+    require("../../../assets/sliderImages3.png"),
+  ];
+  const renderItem = (itemData) => {
+    return (
+      <View>
+        <View style={{ flexDirection: "row", marginVertical: 10 }}>
           <View
             style={{
+              flex: 0.15,
+              height: 33,
               flexDirection: "row",
-              marginTop: 20,
-              justifyContent: "space-between",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "#04A48E",
+              paddingHorizontal: 10,
             }}
           >
+            <Text
+              style={{
+                fontFamily: "whitney-semi-bold",
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              {itemData.item.rating}
+            </Text>
+            <Ionicons name="md-star" size={12} color={"white"} />
+          </View>
+          <View style={{ flex: 0.8, marginLeft: 5 }}>
+            <Text style={{ fontFamily: "whitney-book", fontSize: 12 }}>
+              {itemData.item.review}
+            </Text>
             <View
               style={{
                 flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
+                marginTop: 20,
+                justifyContent: "space-between",
               }}
             >
-              <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
-                {itemData.item.user.name}
-              </Text>
               <View
                 style={{
-                  height: "100%",
-                  borderWidth: 1,
-                  marginHorizontal: 5,
-                  borderColor: "#9F9F9F",
-                }}
-              />
-              <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
-                {itemData.item.created_at}
-              </Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Ionicons name="thumbs-up-outline" size={18} color={"black"} />
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontFamily: "whitney-book",
-                  fontSize: 10,
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
-                18
-              </Text>
-              <Ionicons
-                name="thumbs-down-outline"
-                size={18}
-                color={"black"}
-                style={{ marginLeft: 5 }}
-              />
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontFamily: "whitney-book",
-                  fontSize: 10,
-                }}
-              >
-                2
-              </Text>
+                <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
+                  {itemData.item.user.name}
+                </Text>
+                <View
+                  style={{
+                    height: "100%",
+                    borderWidth: 1,
+                    marginHorizontal: 5,
+                    borderColor: "#9F9F9F",
+                  }}
+                />
+                <Text style={{ fontFamily: "whitney-book", fontSize: 10 }}>
+                  {itemData.item.created_at}
+                </Text>
+              </View>
+
             </View>
           </View>
         </View>
+        <View style={{ borderWidth: 1, flex: 1, borderColor: "#9F9F9F" }} />
       </View>
-      <View style={{ borderWidth: 1, flex: 1, borderColor: "#9F9F9F" }} />
-    </View>
-  );
-};
-const SliderCustom = (props) => {
-  return (
-    <Box alignItems="center" w="100%">
-      <Slider
-        defaultValue={props.fill}
-        size="sm"
-        colorScheme="green"
-        w="75%"
-        maxW="300"
-      >
-        <Slider.Track bg="green.100">
-          <Slider.FilledTrack bg="green.600" />
-        </Slider.Track>
-      </Slider>
-    </Box>
-  );
-};
-const ProductDetail = (props) => {
+    );
+  };
+  const SliderCustom = (props) => {
+    return (
+      <Box alignItems="center" w="100%">
+        <Slider
+          defaultValue={props.fill}
+          size="sm"
+          colorScheme="green"
+          w="75%"
+          maxW="300"
+        >
+          <Slider.Track bg="green.100">
+            <Slider.FilledTrack bg="green.600" />
+          </Slider.Track>
+        </Slider>
+      </Box>
+    );
+  };
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [size, setSize] = useState(0);
@@ -182,14 +151,14 @@ const ProductDetail = (props) => {
         <>
           <SimpleHeader
             clickHandler={() => props.navigation.goBack()}
-            headerTitle={data.name}
+            headerTitle={data.product_title}
           />
           <ScrollView>
             <NativeBaseProvider>
               <View style={styles.main}>
                 <View style={styles.image}>
                   <SliderBox
-                    images={data.gallery_images}
+                    images={data.images}
                     sliderBoxHeight={"100%"}
                     //   onCurrentImagePressed={(index) =>
                     //     console.warn(`image ${index} pressed`)
@@ -252,7 +221,7 @@ const ProductDetail = (props) => {
                           fontSize: 16,
                         }}
                       >
-                        {data.name}
+                        {data.product_title}
                       </Text>{" "}
                       {data.brand.name}
                       <Text
@@ -265,7 +234,7 @@ const ProductDetail = (props) => {
                         }}
                       >
                         {" "}
-                        {data.category.name}
+                        {data.feature_categories.name}
                       </Text>
                     </Text>
                   </View>
@@ -487,7 +456,7 @@ const ProductDetail = (props) => {
                                   <View
                                     style={{
                                       // borderColor: "#FF3E6C",
-                                      backgroundColor: gender.Color_Name,
+                                      backgroundColor: gender.color_Name,
                                       borderWidth: 1,
                                       width: 40,
                                       height: 40,
@@ -516,7 +485,7 @@ const ProductDetail = (props) => {
                                   <View
                                     style={{
                                       //   flexDirection: "row",
-                                      backgroundColor: gender.Color_Name,
+                                      backgroundColor: gender.color_Name,
                                       // borderWidth: 1,
                                       width: 40,
                                       height: 40,
@@ -631,87 +600,91 @@ const ProductDetail = (props) => {
                         </View>
                       )}
 
-                      {
-                        data.in_cart?   <View
-                        style={{
-                          backgroundColor: "#FF3E6C",
-                          flex: 0.55,
-                          borderRadius: 2,
-                          justifyContent: "center",
-                          // alignItems: "center",
-                        }}
-                      >
-                        <TouchableOpacity
-                          onPress={() => props.navigation.navigate("Checkout")}
-                        >
-                          <View
-                            style={{
-                              // flex: 1,
-                              flexDirection: "row",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              // height: 30,
-                            }}
-                          >
-                            <FontAwesome
-                              name="shopping-bag"
-                              size={14}
-                              color={"white"}
-                            />
-                            <Text
-                              style={{
-                                fontFamily: "whitney-semi-bold",
-                                color: "white",
-                                fontSize: 14,
-                                marginHorizontal: 5,
-                              }}
-                            >
-                              REMOVE FROM CART
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      </View>:
+                      {data.in_cart ? (
                         <View
-                        style={{
-                          backgroundColor: "#FF3E6C",
-                          flex: 0.55,
-                          borderRadius: 2,
-                          justifyContent: "center",
-                          // alignItems: "center",
-                        }}
-                      >
-                        <TouchableOpacity
-                          onPress={() => props.navigation.navigate("Checkout")}
+                          style={{
+                            backgroundColor: "#FF3E6C",
+                            flex: 0.55,
+                            borderRadius: 2,
+                            justifyContent: "center",
+                            // alignItems: "center",
+                          }}
                         >
-                          <View
-                            style={{
-                              // flex: 1,
-                              flexDirection: "row",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              // height: 30,
-                            }}
+                          <TouchableOpacity
+                            onPress={() =>
+                              props.navigation.navigate("Checkout")
+                            }
                           >
-                            <FontAwesome
-                              name="shopping-bag"
-                              size={14}
-                              color={"white"}
-                            />
-                            <Text
+                            <View
                               style={{
-                                fontFamily: "whitney-semi-bold",
-                                color: "white",
-                                fontSize: 14,
-                                marginHorizontal: 5,
+                                // flex: 1,
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                // height: 30,
                               }}
                             >
-                              ADD TO CART
-                            </Text>
-                          </View>
-                        </TouchableOpacity>
-                      </View>
-                      }
-                    
+                              <FontAwesome
+                                name="shopping-bag"
+                                size={14}
+                                color={"white"}
+                              />
+                              <Text
+                                style={{
+                                  fontFamily: "whitney-semi-bold",
+                                  color: "white",
+                                  fontSize: 14,
+                                  marginHorizontal: 5,
+                                }}
+                              >
+                                REMOVE FROM CART
+                              </Text>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      ) : (
+                        <View
+                          style={{
+                            backgroundColor: "#FF3E6C",
+                            flex: 0.55,
+                            borderRadius: 2,
+                            justifyContent: "center",
+                            // alignItems: "center",
+                          }}
+                        >
+                          <TouchableOpacity
+                            onPress={() =>
+                              props.navigation.navigate("Checkout")
+                            }
+                          >
+                            <View
+                              style={{
+                                // flex: 1,
+                                flexDirection: "row",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                // height: 30,
+                              }}
+                            >
+                              <FontAwesome
+                                name="shopping-bag"
+                                size={14}
+                                color={"white"}
+                              />
+                              <Text
+                                style={{
+                                  fontFamily: "whitney-semi-bold",
+                                  color: "white",
+                                  fontSize: 14,
+                                  marginHorizontal: 5,
+                                }}
+                              >
+                                ADD TO CART
+                              </Text>
+                            </View>
+                          </TouchableOpacity>
+                        </View>
+                      )}
                     </View>
                   </View>
                 </View>
@@ -721,211 +694,48 @@ const ProductDetail = (props) => {
                     ...styles.sizeStyle,
                   }}
                 >
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <View
-                      style={{
-                        borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 0.45,
-                        borderColor: "#C9C9C9",
-                        // height: 48,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
+                  {!data || !data.custom_fields.length ?
+                    <View />
+                    : <FlatList
+                      data={data.custom_fields}
+                      keyExtractor={(item, index) => "unqiue" + index}
+                      numColumns={2}
+                      renderItem={({ item, index }) => {
+                        return (
+                          <View
+                            style={{
+                              borderBottomWidth: 1,
+                              paddingBottom: 8,
+                              flex: 0.50,
+                              borderColor: "#C9C9C9",
+                              margin:5,
+                              // height: 48,
+                              justifyContent: "space-between",
+                              // alignItems: "center",
+                            }}
+                          >
+                            <Text
+                              style={{
+                                fontFamily: "whitney-semi-bold",
+                                fontSize: 14,
+                              }}
+                            >
+                              {item.heading}
+                            </Text>
+                            <Text
+                              style={{
+                                fontFamily: "whitney-book",
+                                fontSize: 14,
+                                marginTop: 5,
+                              }}
+                            >
+                              {item.text}
+                            </Text>
+                          </View>
+                        )
                       }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        {data.custom_fields[0].heading}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        {data.custom_fields[0].text}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 0.45,
-                        borderColor: "#C9C9C9",
-                        // height: 48,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        {data.custom_fields[1].heading}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        {data.custom_fields[1].text}
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginVertical: 20,
-                    }}
-                  >
-                    <View
-                      style={{
-                        borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 0.45,
-                        borderColor: "#C9C9C9",
-                        // height: 48,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        {data.custom_fields[2].heading}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        {data.custom_fields[2].text}
-                      </Text>
-                    </View>
-                    <View
-                      style={{
-                        borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 0.45,
-                        borderColor: "#C9C9C9",
-                        // height: 48,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        {data.custom_fields[3].heading}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        {data.custom_fields[3].text}
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginVertical: 20,
-                    }}
-                  >
-                    <View
-                      style={{
-                        borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 1,
-                        borderColor: "#C9C9C9",
-                        // height: 55,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        {data.custom_fields[4].heading}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        {data.custom_fields[4].text}
-                      </Text>
-                    </View>
-                  </View>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: 10,
-                    }}
-                  >
-                    <View
-                      style={{
-                        // borderBottomWidth: 1,
-                        paddingBottom: 8,
-                        flex: 0.45,
-                        borderColor: "#C9C9C9",
-                        // height: 50,
-                        justifyContent: "space-between",
-                        // alignItems: "center",
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontFamily: "whitney-semi-bold",
-                          fontSize: 14,
-                        }}
-                      >
-                        Material & Care
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: "whitney-book",
-                          fontSize: 14,
-                          marginTop: 5,
-                        }}
-                      >
-                        100% Acrylic Machine Wash
-                      </Text>
-                    </View>
-                  </View>
+                    />}
+
                 </View>
                 {/* Tag View */}
                 <View
@@ -1107,7 +917,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                            437
+                            {data.rating_details[4].value}
                           </Text>
                         </View>
                       </View>
@@ -1159,7 +969,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                            437
+                          {data.rating_details[3].value}
                           </Text>
                         </View>
                       </View>
@@ -1211,7 +1021,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                            437
+                            {data.rating_details[2].value}
                           </Text>
                         </View>
                       </View>
@@ -1263,7 +1073,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                            437
+                            {data.rating_details[1].value}
                           </Text>
                         </View>
                       </View>
@@ -1315,7 +1125,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                            437
+                            {data.rating_details[0].value}
                           </Text>
                         </View>
                       </View>

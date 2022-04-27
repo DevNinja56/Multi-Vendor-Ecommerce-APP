@@ -1,18 +1,18 @@
-import axios from 'axios';
-import { Alert } from 'react-native'
+import axios from "axios";
+import { Alert } from "react-native";
 
-const baseURL = 'https://mantra16.herokuapp.com/';
+const baseURL = "http://mantra16.herokuapp.com/";
 
 axios.defaults.withCredentials = true;
 
 const DefaultHttpOptions = {
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 };
 
-const getOptions = headers => {
+const getOptions = (headers) => {
   const options = {
     ...DefaultHttpOptions,
     headers: { ...DefaultHttpOptions.headers, ...headers },
@@ -26,7 +26,7 @@ const get = (path, customOptions = {}) => {
   const options = getOptions(headers);
   return axios
     .get(baseURL + path, { ...options, ...others })
-    .then(result => {
+    .then((result) => {
       return result;
     })
     .catch((error) => {
@@ -34,10 +34,9 @@ const get = (path, customOptions = {}) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        console.log('=====>', error.response.data);
-        return error.response
+        console.log("=====>", error.response.data);
+        return error.response;
       }
-
     });
 };
 
@@ -46,7 +45,7 @@ const post = (path, body, customOptions = {}) => {
   const options = getOptions(headers);
   return axios
     .post(baseURL + path, body, { ...options, ...others })
-    .then(result => {
+    .then((result) => {
       return result;
     })
     .catch((error) => {
@@ -54,9 +53,9 @@ const post = (path, body, customOptions = {}) => {
       if (error.response) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
-        Alert.alert('', error.response.data.message)
+        Alert.alert("", error.response.data.message);
         console.log(error.response.data);
-        return error.response
+        return error.response;
       }
     });
 };
@@ -65,7 +64,7 @@ const put = (path, body) => {
   const options = getOptions();
   return axios
     .put(baseURL + path, body, { ...options })
-    .then(result => {
+    .then((result) => {
       return result;
     })
     .catch((error) => {
@@ -74,7 +73,7 @@ const put = (path, body) => {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx
         console.log(error.response.data.message);
-        return error.response
+        return error.response;
       }
     });
 };
@@ -82,7 +81,7 @@ const put = (path, body) => {
 const httpClients = {
   get,
   post,
-  put
-}
+  put,
+};
 
 export default httpClients;
