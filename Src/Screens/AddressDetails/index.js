@@ -1,5 +1,4 @@
-import { Picker } from "@react-native-picker/picker";
-import React, { useState } from "react";
+import React from "react";
 import {
   StyleSheet,
   View,
@@ -8,178 +7,87 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { CheckBox, Icon } from "react-native-elements";
+import FastImage from "react-native-fast-image";
 import { heightPercentageToDP } from "react-native-responsive-screen";
-import { HomeIcon } from "../../../assets/svg";
 import SimpleHeader from "../../Components/Header/simple_header";
-import Colors from "../../Constants/colors";
 import { styles } from "./style";
 
 const AddressDetails = (props) => {
-  const [checked, setChecked] = useState(0);
-  const [selectedLanguage, setSelectedLanguage] = useState();
-  const [check1, setCheck1] = useState(false);
-  var gender = ["Home", "Office", "Other"];
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.containerMain}>
       <SimpleHeader
         clickHandler={() => props.navigation.goBack()}
-        headerTitle={"Address"}
+        headerTitle={"ADDRESS"}
         placement={"left"}
       />
-      <ScrollView style={{ flexGrow: 1 }}>
-        <View style={styles.container_1_Styles}>
-          <ScrollView horizontal>
-            <View style={styles.btnStyle}>
-              {gender.map((gender, key) => {
-                return (
-                  <View key={gender}>
-                    {checked == key ? (
-                      <TouchableOpacity style={styles.btn}>
-                        <View
-                          style={{
-                            flex: 1,
-                            paddingVertical: 16,
-                            paddingHorizontal: 30,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            backgroundColor: Colors.Primary,
-                            borderRadius: 5,
-                            //   elevation: 4,
-                          }}
-                        >
-                          <HomeIcon />
-                          <Text style={styles.textChecked}>{gender}</Text>
-                        </View>
-                      </TouchableOpacity>
-                    ) : (
-                      <TouchableOpacity
-                        onPress={() => {
-                          setChecked(key);
-                        }}
-                        style={styles.btn}
-                      >
-                        <View
-                          style={{
-                            flex: 1,
-                            paddingVertical: 16,
-                            paddingHorizontal: 30,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            backgroundColor: "white",
-                            borderRadius: 5,
-                            //   elevation: 4,
-                          }}
-                        >
-                          <HomeIcon />
-                          <Text style={styles.textUnChecked}>{gender}</Text>
-                        </View>
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                );
-              })}
-            </View>
-          </ScrollView>
-        </View>
+      <Text
+        style={{
+          ...styles.headingStyle,
+          fontSize: heightPercentageToDP(3.5),
+          color: "black",
+          marginTop: heightPercentageToDP(5),
+          marginLeft: heightPercentageToDP(3),
+        }}
+      >
+        My Address
+      </Text>
 
-        <View style={styles.container_2_Styles}>
+      <View style={styles.addressDetailsStyle}>
+        <View
+          style={{
+            flex: 0.6,
+            padding: heightPercentageToDP(2),
+            justifyContent: "space-evenly",
+          }}
+        >
           <Text
             style={{
               ...styles.headingStyle,
               fontSize: heightPercentageToDP(3),
+              color: "white",
             }}
           >
-            Enter Address Details
+            SHAHID SHAMS
           </Text>
-          <View style={{ marginTop: 25 }}>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <TextInput
-                placeholder="First Name"
-                style={{ ...styles.textInputStyle, flex: 0.45 }}
-              />
-              <TextInput
-                placeholder="Last Name"
-                style={{ ...styles.textInputStyle, flex: 0.45 }}
-              />
-            </View>
-            <TextInput
-              placeholder="Street Address, Landmark etc."
-              style={styles.textInputStyle}
-            />
-
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <Picker
-                style={{ ...styles.textInputStyle, flex: 0.45, width: "100%" }}
-                selectedValue={selectedLanguage}
-                mode={"dropdown"}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedLanguage(itemValue)
-                }
-              >
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-              </Picker>
-
-              <TextInput
-                placeholder="Last Name"
-                style={{ ...styles.textInputStyle, flex: 0.45 }}
-              />
-            </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <CheckBox
-                checkedIcon={
-                  <Icon
-                    name="checkbox-active"
-                    type="fontisto"
-                    color={Colors.Primary}
-                    size={25}
-                    //   iconStyle={{ marginRight: 10 }}
-                  />
-                }
-                uncheckedIcon={
-                  <Icon
-                    name="checkbox-passive"
-                    type="fontisto"
-                    color="grey"
-                    size={25}
-                    //   iconStyle={{ marginRight: 10 }}
-                  />
-                }
-                checked={check1}
-                onPress={() => setCheck1(!check1)}
-              />
-              <Text
-                style={{
-                  ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2.2),
-                }}
-              >
-                Save for faster checkout next time
-              </Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
-      <View style={styles.footerStyle}>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => props.screenSet(2)}
-        >
           <Text
             style={{
-              ...styles.headerText,
-              color: "white",
+              fontFamily: "whitney-light",
               fontSize: heightPercentageToDP(2),
+              color: "white",
             }}
           >
-            SAVE
+            Office 526, 5th Floor, Siddiq Trade Center, Lahore
           </Text>
-        </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flex: 0.4,
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+          }}
+        >
+          <TouchableOpacity>
+            <Text
+              style={{
+                padding: heightPercentageToDP(2),
+                ...styles.headingStyle,
+                fontSize: heightPercentageToDP(1.75),
+                color: "black",
+              }}
+            >
+              Change
+            </Text>
+          </TouchableOpacity>
+          <FastImage
+            source={require("../../../assets/locationPicDetails.png")}
+            style={{
+              height: heightPercentageToDP(11),
+              width: heightPercentageToDP(12.5),
+              marginRight: heightPercentageToDP(1),
+            }}
+            resizeMode={FastImage.resizeMode.contain}
+          />
+        </View>
       </View>
     </View>
   );
