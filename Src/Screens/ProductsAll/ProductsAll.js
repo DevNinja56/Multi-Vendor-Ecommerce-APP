@@ -40,6 +40,7 @@ const ProductsAll = (props) => {
   const [isVisible, setIsVisible] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
   const [isLoading, setLoading] = useState(false);
+  const [category, selectCategory] = useState("")
 
   let content = <GenderModel />;
 
@@ -93,6 +94,8 @@ const ProductsAll = (props) => {
     }
   };
 
+
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header clickHandler={() => props.navigation.goBack()} />
@@ -111,6 +114,7 @@ const ProductsAll = (props) => {
             </View>
           </ScrollView>
           <View style={styles.buttonConatainer}>
+
             <View
               style={{
                 flex: 1,
@@ -136,6 +140,7 @@ const ProductsAll = (props) => {
                 </Text>
               </TouchableOpacity>
             </View>
+
             <View style={{ borderWidth: 0.3, height: "60%" }} />
 
             <View
@@ -172,7 +177,9 @@ const ProductsAll = (props) => {
                 </View>
               </TouchableOpacity>
             </View>
+
             <View style={{ borderWidth: 0.3, height: "60%" }} />
+
             <View
               style={{
                 flex: 1,
@@ -207,6 +214,7 @@ const ProductsAll = (props) => {
                 </View>
               </TouchableOpacity>
             </View>
+
           </View>
           <BottomSheet modalProps={{}} isVisible={isVisible}>
             {content}
