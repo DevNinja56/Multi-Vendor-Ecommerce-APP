@@ -27,7 +27,9 @@ const AddressAdd = (props) => {
         headerTitle={"Address"}
         placement={"left"}
       />
-      <ScrollView style={{ flexGrow: 1 }}>
+      <ScrollView
+        style={{ flexGrow: 1, backgroundColor: Colors.BackgroundClr }}
+      >
         <View style={styles.container_1_Styles}>
           <Text
             style={{
