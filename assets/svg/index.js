@@ -19,3 +19,5 @@ export { default as ContactlessDelivery } from "./contactless_delivery.svg";
 export { default as SecurePayment } from "./secure_payment.svg";
 export { default as LocationIcon } from "./location.svg";
 export { default as PaymentIcon } from "./payment.svg";
+export { default as LocationColor } from "./locationColor.svg";
+export { default as DeleteIcon } from "./deleteIcon.svg";

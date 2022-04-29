@@ -37,27 +37,31 @@ import { ScrollView } from "react-native-gesture-handler";
 const grey = "#91A1BD";
 const ProductsAll = (props) => {
   const [data, setData] = useState();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isFilter, setFilter] = useState(false);
+  const [isGender, setGender] = useState(false);
+  const [isSorting, setSorting] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
   const [isLoading, setLoading] = useState(false);
 
   let content = <GenderModel />;
 
-  const closeBottomSheet = () => {
-    setIsVisible(false);
-  };
+  // const closeBottomSheet = () => {
+  //   setIsVisible(false);
+  // };
 
   useEffect(() => {
     getAllProducts();
   }, []);
 
-  if (whichScreen === 0) {
-    content = <GenderModel closeBottomSheet={closeBottomSheet} />;
-  } else if (whichScreen === 1) {
-    content = <SortingModel closeBottomSheet={closeBottomSheet} />;
-  } else if (whichScreen === 2) {
-    content = <FilterModel closeBottomSheet={closeBottomSheet} />;
-  }
+  // if (whichScreen === 0) {
+  //   content = <GenderModel closeBottomSheet={closeBottomSheet} />;
+  // } else if (whichScreen === 1) {
+  //   content = <SortingModel closeBottomSheet={closeBottomSheet} />;
+  // } else if (whichScreen === 2) {
+  //   content = (
+  //     <FilterModel isFilter={isVisible} closeBottomSheet={closeBottomSheet} />
+  //   );
+  // }
 
   const detaislScreen = () => {
     props.navigation.navigate("Details");
@@ -121,7 +125,7 @@ const ProductsAll = (props) => {
               <TouchableOpacity
                 onPress={() => {
                   setWhichScreen(0);
-                  setIsVisible(true);
+                  setGender(true);
                 }}
               >
                 <Text
@@ -149,7 +153,7 @@ const ProductsAll = (props) => {
               <TouchableOpacity
                 onPress={() => {
                   setWhichScreen(1);
-                  setIsVisible(true);
+                  setSorting(true);
                 }}
               >
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -184,7 +188,7 @@ const ProductsAll = (props) => {
               <TouchableOpacity
                 onPress={() => {
                   setWhichScreen(2);
-                  setIsVisible(true);
+                  setFilter(true);
                 }}
               >
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -208,9 +212,37 @@ const ProductsAll = (props) => {
               </TouchableOpacity>
             </View>
           </View>
-          <BottomSheet modalProps={{}} isVisible={isVisible}>
+          {/* <BottomSheet modalProps={{}} isVisible={isVisible}>
             {content}
-          </BottomSheet>
+          </BottomSheet> */}
+
+          {isFilter && (
+            <FilterModel
+              onClearClick={() => setFilter(false)}
+              closeClick={() => setFilter(false)}
+              // data={data}
+              isFilter={isFilter}
+              // durationData={durationData}
+            />
+          )}
+          {isGender && (
+            <GenderModel
+              onClearClick={() => setGender(false)}
+              closeClick={() => setGender(false)}
+              // data={data}
+              isGender={isGender}
+              // durationData={durationData}
+            />
+          )}
+          {isSorting && (
+            <SortingModel
+              onClearClick={() => setSorting(false)}
+              closeClick={() => setSorting(false)}
+              // data={data}
+              isSorting={isSorting}
+              // durationData={durationData}
+            />
+          )}
         </View>
       </View>
 

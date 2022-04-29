@@ -6,13 +6,52 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
+  FlatList,
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import SimpleHeader from "../../Components/Header/simple_header";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import { styles } from "./style";
+import { DeleteIcon, LocationColor } from "../../../assets/svg";
 
 const AddressDetails = (props) => {
+  const data = [1, 2, 3];
+  const renderItem = ({ item, index }) => {
+    return (
+      <View style={styles.locationCardsStyle}>
+        <View style={styles.locationcardIcon}>
+          <LocationColor />
+        </View>
+        <View style={styles.locationCardInfo}>
+          <Text
+            style={{
+              ...styles.headingStyle,
+              color: "black",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            Office
+          </Text>
+          <Text
+            style={{
+              ...styles.textlight,
+              color: "black",
+              fontSize: heightPercentageToDP(1.5),
+            }}
+          >
+            Office 526, 5th Floor, Siddiq.....
+          </Text>
+        </View>
+        <TouchableOpacity style={styles.locaionCardChangeBtn}>
+          <Text>Change</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.locationCardDelete}>
+          <DeleteIcon />
+        </TouchableOpacity>
+      </View>
+    );
+  };
   return (
     <View style={styles.containerMain}>
       <SimpleHeader
@@ -89,6 +128,27 @@ const AddressDetails = (props) => {
           />
         </View>
       </View>
+
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate("AddressAdd")}
+        style={styles.addLoctionBtn}
+      >
+        <AntDesign name="plus" size={24} color="black" />
+        <Text
+          style={{
+            ...styles.headingStyle,
+            fontSize: heightPercentageToDP(2.5),
+            // alignSelf: "center",
+            textAlign: "center",
+            flex: 1,
+            color: "black",
+          }}
+        >
+          Add another location
+        </Text>
+      </TouchableOpacity>
+
+      <FlatList data={data} renderItem={renderItem} />
     </View>
   );
 };

@@ -7,25 +7,23 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TabNavigator from "./TabNavigator";
 import ProductsAll from "../Screens/ProductsAll/ProductsAll";
 import ProductDetail from "../Screens/ProductDetails/ProductDetail";
-import LoginScreen from '../Screens/Login&SignUp/LoginScreen';
+import LoginScreen from "../Screens/Login&SignUp/LoginScreen";
 import TopCategories from "../Screens/TopCategories/TopCategories";
-import NotificationScreen from '../Screens/Notifications/NotificationScreen';
-import WishListScreen from '../Screens/WishList/WishListScreen';
-import CartScreen from '../Screens/Cart/CartScreen';
-import OrderDetails from '../Screens/TabScreens/DrawerScreens/Orders/OrderDetails';
-import TermsOfUse from '../Screens/TabScreens/DrawerScreens/Legal/TermsOfUse';
-import PrivacyPolicy from '../Screens/TabScreens/DrawerScreens/Legal/PrivacyPolicy';
-import Checkout from '../Screens/Checkout/Checkout';
-import OTP from '../Screens/Login&SignUp/Otp';
-import EnterPassword from '../Screens/Login&SignUp/EnterPassword';
-import SetPassword from '../Screens/Login&SignUp/SetPassword';
-import OrderConfirmed from '../Screens/Checkout/OrderConfirmed';
-import SearchScreen from '../Screens/Search/SearchScreen';
+import NotificationScreen from "../Screens/Notifications/NotificationScreen";
+import WishListScreen from "../Screens/WishList/WishListScreen";
+import CartScreen from "../Screens/Cart/CartScreen";
+import OrderDetails from "../Screens/TabScreens/DrawerScreens/Orders/OrderDetails";
+import TermsOfUse from "../Screens/TabScreens/DrawerScreens/Legal/TermsOfUse";
+import PrivacyPolicy from "../Screens/TabScreens/DrawerScreens/Legal/PrivacyPolicy";
+import Checkout from "../Screens/Checkout/Checkout";
+import OTP from "../Screens/Login&SignUp/Otp";
+import EnterPassword from "../Screens/Login&SignUp/EnterPassword";
+import SetPassword from "../Screens/Login&SignUp/SetPassword";
+import OrderConfirmed from "../Screens/Checkout/OrderConfirmed";
+import SearchScreen from "../Screens/Search/SearchScreen";
 import ProfileEdit from "../Screens/ProfileEdit";
 import AddressDetails from "../Screens/AddressDetails";
-
-
-
+import AddressAdd from "../Screens/AddressDetails/AddressAdd";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -33,24 +31,10 @@ export default function MainContainer() {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false }}>
-          <Stack.Screen
-            name="HomeScreen"
-            component={TabNavigator}
-           
-          />
-          <Stack.Screen
-            name="ProductsAll"
-            component={ProductsAll}
-           
-         
-          />
-          <Stack.Screen
-            name="Details"
-            component={ProductDetail}
-            
-           
-          />
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="HomeScreen" component={TabNavigator} />
+          <Stack.Screen name="ProductsAll" component={ProductsAll} />
+          <Stack.Screen name="Details" component={ProductDetail} />
           <Stack.Screen
             name="LoginScreen"
             component={LoginScreen}
@@ -71,7 +55,7 @@ export default function MainContainer() {
           <Stack.Screen name="Search" component={SearchScreen} />
           <Stack.Screen name="ProfileEdit" component={ProfileEdit} />
           <Stack.Screen name="AddressDetails" component={AddressDetails} />
-         
+          <Stack.Screen name="AddressAdd" component={AddressAdd} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
