@@ -7,8 +7,13 @@ import {
   Button,
   TouchableOpacity,
   Image,
+  Modal,
 } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 
 const { height } = Dimensions.get("screen");
 const modalHeight = height * 0.5;
@@ -26,62 +31,94 @@ const SortingModel = (props) => {
     "Customer Rating",
   ];
   return (
-    <View style={styles.content}>
-      <View style={styles.header}>
-        <Text style={styles.text}>SORT BY</Text>
-        <TouchableOpacity onPress={props.closeBottomSheet}>
-          <Entypo name="circle-with-cross" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-      <View>
-        <View
-          style={{
-            width: "100%",
-            height: 1,
-            backgroundColor: "black",
-            marginTop: 10,
-          }}
-        />
-        <View style={styles.btn}>
-          {gender.map((gender, key) => {
-            return (
-              <View key={gender}>
-                {checked == key ? (
-                  <TouchableOpacity style={styles.btn}>
-                    <View style={{ flexDirection: "row" }}>
-                      {/* <Image
+    <Modal
+      onRequestClose={() => console.log("hiii")}
+      visible={props.isSorting}
+      animationType="slide"
+      transparent={true}
+    >
+      <View style={styles.mainModal}>
+        <View style={styles.innerModal}>
+          <View style={styles.content}>
+            <View style={styles.header}>
+              <Text style={styles.text}>SORT BY</Text>
+              <TouchableOpacity onPress={props.closeClick}>
+                <Entypo name="circle-with-cross" size={24} color="black" />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <View
+                style={{
+                  width: "100%",
+                  height: 1,
+                  backgroundColor: "black",
+                  marginTop: 10,
+                }}
+              />
+              <View style={styles.btn}>
+                {gender.map((gender, key) => {
+                  return (
+                    <View key={gender}>
+                      {checked == key ? (
+                        <TouchableOpacity style={styles.btn}>
+                          <View style={{ flexDirection: "row" }}>
+                            {/* <Image
                                                         style={styles.img}
                                                         source={require('../assets/radioChecked.png')}
                                                     /> */}
-                      <Text style={styles.textChecked}>{gender}</Text>
-                    </View>
-                  </TouchableOpacity>
-                ) : (
-                  <TouchableOpacity
-                    onPress={() => {
-                      setChecked(key);
-                    }}
-                    style={styles.btn}
-                  >
-                    <View style={{ flexDirection: "row" }}>
-                      {/* <Image
+                            <Text style={styles.textChecked}>{gender}</Text>
+                          </View>
+                        </TouchableOpacity>
+                      ) : (
+                        <TouchableOpacity
+                          onPress={() => {
+                            setChecked(key);
+                          }}
+                          style={styles.btn}
+                        >
+                          <View style={{ flexDirection: "row" }}>
+                            {/* <Image
                                                         style={styles.img}
                                                         source={require('../assets/radioUnchecked.png')}
                                                     /> */}
-                      <Text style={styles.textUnChecked}>{gender}</Text>
+                            <Text style={styles.textUnChecked}>{gender}</Text>
+                          </View>
+                        </TouchableOpacity>
+                      )}
                     </View>
-                  </TouchableOpacity>
-                )}
+                  );
+                })}
               </View>
-            );
-          })}
+            </View>
+          </View>
         </View>
       </View>
-    </View>
+    </Modal>
   );
 };
 
 const styles = StyleSheet.create({
+  mainModal: {
+    flex: 1,
+    backgroundColor: "rgba(0,0,0,0.7)",
+  },
+  innerModal: {
+    width: widthPercentageToDP(100),
+    height: heightPercentageToDP(70),
+    borderTopRightRadius: widthPercentageToDP(4),
+    borderTopLeftRadius: widthPercentageToDP(4),
+    backgroundColor: "white",
+    position: "absolute",
+    bottom: "0%",
+  },
+  bottomView: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-around",
+    position: "absolute",
+    bottom: "2%",
+  },
   content: {
     // flex: 1,
     // justifyContent: "space-between",
