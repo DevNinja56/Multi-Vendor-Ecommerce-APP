@@ -274,7 +274,7 @@ const ProductDetail = (props) => {
                         }}
                       >
                         {"  "}
-                        Stock Left {data.stock}
+                        Stock Left {data.quantity}
                       </Text>
                     </Text>
                   </View>

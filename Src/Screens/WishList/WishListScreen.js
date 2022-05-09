@@ -19,7 +19,8 @@ import Colors from "../../Constants/colors";
 import httpClients from "../../Redux/utils";
 import Loader from "../../Components/Loader";
 
-import {titleCase} from '../../Constants/title_case';
+import { titleCase } from '../../Constants/title_case';
+import RemoveDialog from "../../Components/RemoveDialog";
 
 
 
@@ -27,6 +28,8 @@ import {titleCase} from '../../Constants/title_case';
 const WishListScreen = (props) => {
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
+  const [isRemove, setRemove] = useState(false);
+  const [removeId, setRemoveId] = useState();
 
   const getWishlistData = async () => {
     const res = await httpClients.get("wishlist/getAll");
@@ -35,20 +38,28 @@ const WishListScreen = (props) => {
   };
 
   const deleteWishlist = async (id) => {
-    const res = await httpClients.get("wishlist/delete/"+id);
-    if(res.data.status=="success")
-    {
+    const res = await httpClients.get("wishlist/delete/" + id);
+    if (res.data.status == "success") {
       console.log("Hi");
       setLoading(true);
       getWishlistData();
     }
   };
 
+  const removeItem = () => {
+    deleteWishlist(removeId);
+   setRemove(false)
+  };
+
   const renderItem = ({ item, index }) => {
     return (
       <View style={styles.cardStyle}>
         <TouchableOpacity
-          onPress={() => deleteWishlist(item.id)}
+          onPress={() => {
+            // () => deleteWishlist(item.id)
+            setRemoveId(item.id);
+            setRemove(true);
+          }}
           style={{ alignSelf: "flex-end", margin: -10 }}
         >
           <CancelBtn
@@ -192,6 +203,16 @@ const WishListScreen = (props) => {
         <Loader color={Colors.Primary} />
       ) : (
         <FlatList data={data} renderItem={renderItem} />
+      )}
+
+      {isRemove && (
+        <RemoveDialog
+          onClearClick={() => setRemove(false)}
+          closeClick={() => setRemove(false)}
+          isRemove={isRemove}
+          removeClick={removeItem}
+          title={"Do you really want to remove this item from wishlist?"}
+        />
       )}
     </SafeAreaView>
   );

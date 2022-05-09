@@ -67,7 +67,7 @@ const Authenticated = (props) => {
             </View>
             <View style={styles.buttonStyle}>
               <TouchableOpacity
-              onPress={props.profileEdit}
+                onPress={props.profileEdit}
                 style={{
                   flex: 1,
                   justifyContent: "center",
@@ -77,7 +77,7 @@ const Authenticated = (props) => {
                 <Text
                   style={{
                     fontFamily: "whitney-semi-bold",
-                    fontSize: widthPercentageToDP((4)),
+                    fontSize: widthPercentageToDP(4),
                     color: "white",
                   }}
                 >
@@ -88,7 +88,7 @@ const Authenticated = (props) => {
           </View>
 
           <View style={styles.buttonsGroupLayout}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={props.paymentMethod}>
               <View
                 style={{
                   flexDirection: "row",

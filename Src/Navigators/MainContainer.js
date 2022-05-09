@@ -24,6 +24,8 @@ import SearchScreen from "../Screens/Search/SearchScreen";
 import ProfileEdit from "../Screens/ProfileEdit";
 import AddressDetails from "../Screens/AddressDetails";
 import AddressAdd from "../Screens/AddressDetails/AddressAdd";
+import PaymentMethod from "../Screens/Payment";
+import PaymentAdd from "../Screens/Payment/PaymentAdd";
 
 // const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
@@ -56,6 +58,8 @@ export default function MainContainer() {
           <Stack.Screen name="ProfileEdit" component={ProfileEdit} />
           <Stack.Screen name="AddressDetails" component={AddressDetails} />
           <Stack.Screen name="AddressAdd" component={AddressAdd} />
+          <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
+          <Stack.Screen name="PaymentAdd" component={PaymentAdd} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

@@ -43,6 +43,7 @@ const ProductsAll = (props) => {
   const [whichScreen, setWhichScreen] = useState(0);
   const [isLoading, setLoading] = useState(false);
   const [category, selectCategory] = useState("")
+  const [gender, setActiveGender] = useState(0)
 
   useEffect(() => {
     getAllProducts();
@@ -124,7 +125,7 @@ const ProductsAll = (props) => {
                     textAlign: "center",
                   }}
                 >
-                  MEN
+                  {gender == 0 ? "MEN" : gender == 1 ? "Boys" : gender == 2 ? "Girls" : gender == 3 ? "Women" : ""}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -204,26 +205,22 @@ const ProductsAll = (props) => {
             </View>
 
           </View>
-          {/* <BottomSheet modalProps={{}} isVisible={isVisible}>
-            {content}
-          </BottomSheet> */}
 
+          {isGender && (
+            <GenderModel
+              onClearClick={() => setGender(false)}
+              closeClick={() => setGender(false)}
+              onGenderClick={(id) => setActiveGender(id)}
+              isGender={isGender}
+            />
+          )}
           {isFilter && (
             <FilterModel
               onClearClick={() => setFilter(false)}
               closeClick={() => setFilter(false)}
               // data={data}
               isFilter={isFilter}
-              // durationData={durationData}
-            />
-          )}
-          {isGender && (
-            <GenderModel
-              onClearClick={() => setGender(false)}
-              closeClick={() => setGender(false)}
-              // data={data}
-              isGender={isGender}
-              // durationData={durationData}
+            // durationData={durationData}
             />
           )}
           {isSorting && (
@@ -232,7 +229,7 @@ const ProductsAll = (props) => {
               closeClick={() => setSorting(false)}
               // data={data}
               isSorting={isSorting}
-              // durationData={durationData}
+            // durationData={durationData}
             />
           )}
         </View>

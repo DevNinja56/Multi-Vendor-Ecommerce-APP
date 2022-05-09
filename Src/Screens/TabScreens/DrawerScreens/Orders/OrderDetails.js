@@ -23,11 +23,13 @@ import Colors from "../../../../Constants/colors";
 import SimpleHeader from "../../../../Components/Header/simple_header";
 import httpClients from "../../../../Redux/utils";
 import Loader from "../../../../Components/Loader";
+import CancelOrderDialog from "../../../../Components/CancelOrderDialog";
 
 const OrderDetails = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [productsData, setProductsData] = useState([]);
+  const [isCancelOrder, setCancelOrder] = useState(false);
 
   useEffect(() => {
     // console.log("Call");
@@ -215,7 +217,7 @@ const OrderDetails = (props) => {
           </View>
         </View>
 
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity style={styles.buttonStyle} onPress={()=>setCancelOrder(true)}>
           <Text
             style={{
               ...styles.headingStyle,
@@ -228,6 +230,14 @@ const OrderDetails = (props) => {
         </TouchableOpacity>
       </View>
 }
+{isCancelOrder && (
+        <CancelOrderDialog
+          onClearClick={() => setCancelOrder(false)}
+          closeClick={() => setCancelOrder(false)}
+          isCancelOrder={isCancelOrder}
+         
+        />
+      )}
     </SafeAreaView>
   );
 };

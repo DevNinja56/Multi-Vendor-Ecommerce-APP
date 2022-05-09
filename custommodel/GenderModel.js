@@ -20,7 +20,7 @@ const modalHeight = height * 0.4;
 const marginSpace = Dimensions.get("window").height * 0.1;
 
 const GenderModel = (props) => {
-  const [checked, setChecked] = useState(0);
+  const [checked, setChecked] = useState(props.key);
   var gender = ["Men", "Boys", "Girls", "Women"];
   return (
     <Modal
@@ -32,9 +32,6 @@ const GenderModel = (props) => {
       <View style={styles.mainModal}>
         <View style={styles.innerModal}>
           <SafeAreaView style={styles.screen}>
-            {/* <Portal>
-        <Modalize ref={modalRef} modalHeight={modalHeight}> */}
-
             <View style={styles.content}>
               <View style={styles.header}>
                 <Text style={styles.text}>GENDER</Text>
@@ -58,25 +55,18 @@ const GenderModel = (props) => {
                         {checked == key ? (
                           <TouchableOpacity style={styles.btn}>
                             <View style={{ flexDirection: "row" }}>
-                              {/* <Image
-                                                        style={styles.img}
-                                                        source={require('../assets/radioChecked.png')}
-                                                    /> */}
                               <Text style={styles.textChecked}>{gender}</Text>
                             </View>
                           </TouchableOpacity>
                         ) : (
                           <TouchableOpacity
                             onPress={() => {
-                              setChecked(key);
+                              props.onGenderClick(key);
+                              setChecked(key)
                             }}
                             style={styles.btn}
                           >
                             <View style={{ flexDirection: "row" }}>
-                              {/* <Image
-                                                        style={styles.img}
-                                                        source={require('../assets/radioUnchecked.png')}
-                                                    /> */}
                               <Text style={styles.textUnChecked}>{gender}</Text>
                             </View>
                           </TouchableOpacity>

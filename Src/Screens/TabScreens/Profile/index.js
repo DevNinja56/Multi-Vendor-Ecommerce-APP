@@ -8,7 +8,10 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import {
   Ionicons,
   AntDesign,
@@ -27,12 +30,17 @@ import NotAuthenticated from "./NotAuthenticated";
 import Authenticated from "./Authenticated";
 
 const Profile = (props) => {
-    const profileEdit =()=>props.navigation.navigate('ProfileEdit');
-    const addressDetails =()=>props.navigation.navigate('AddressDetails');
-    return (
-        // <NotAuthenticated />
-        <Authenticated profileEdit={profileEdit} addressDetails={addressDetails}/>
-    );
-}
+  const profileEdit = () => props.navigation.navigate("ProfileEdit");
+  const addressDetails = () => props.navigation.navigate("AddressDetails");
+  const paymentMethod = () => props.navigation.navigate("PaymentMethod");
+  return (
+    // <NotAuthenticated />
+    <Authenticated
+      profileEdit={profileEdit}
+      addressDetails={addressDetails}
+      paymentMethod={paymentMethod}
+    />
+  );
+};
 
 export default Profile;
