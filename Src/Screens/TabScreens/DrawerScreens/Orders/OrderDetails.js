@@ -15,21 +15,21 @@ import {
   widthPercentageToDP,
 } from "react-native-responsive-screen";
 
-
-
-
-
 import Colors from "../../../../Constants/colors";
 import SimpleHeader from "../../../../Components/Header/simple_header";
 import httpClients from "../../../../Redux/utils";
 import Loader from "../../../../Components/Loader";
 import CancelOrderDialog from "../../../../Components/CancelOrderDialog";
+import ReasonForCancelDialog from "../../../../Components/ReasonForCancelDialog";
+import OrderCancelledDialog from "../../../../Components/OrderCancelledDialog";
 
 const OrderDetails = (props) => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState();
   const [productsData, setProductsData] = useState([]);
   const [isCancelOrder, setCancelOrder] = useState(false);
+  const [reasonCancel, setReasonCancel] = useState(false);
+  const [orderCancelled, setOrderCancelled] = useState(false);
 
   useEffect(() => {
     // console.log("Call");
@@ -52,7 +52,6 @@ const OrderDetails = (props) => {
 
   const renderItem = (itemData) => {
     return (
-
       <View
         style={{
           ...styles.textTopStyle,
@@ -118,32 +117,30 @@ const OrderDetails = (props) => {
         clickHandler={() => props.navigation.goBack()}
       />
 
-      {isLoading ? <Loader color={Colors.Primary}/> :
-
-      <View style={styles.detailsCardStyle}>
-        <View style={styles.textTopStyle}>
-          <Text
-            style={{
-              ...styles.textStyle,
-              fontSize: heightPercentageToDP(2.2),
-            }}
-          >
-            Order from{" "}
-            <Text style={{ ...styles.headingStyle }}>
-              {data.order_date}
+      {isLoading ? (
+        <Loader color={Colors.Primary} />
+      ) : (
+        <View style={styles.detailsCardStyle}>
+          <View style={styles.textTopStyle}>
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: heightPercentageToDP(2.2),
+              }}
+            >
+              Order from{" "}
+              <Text style={{ ...styles.headingStyle }}>{data.order_date}</Text>
             </Text>
-          </Text>
-          <Text
-            style={{
-              ...styles.textStyle,
-              fontSize: heightPercentageToDP(2),
-            }}
-          >
-            {data.status.toUpperCase()}
-          </Text>
-        </View>
-        <View style={styles.flatListStyle}>
-          
+            <Text
+              style={{
+                ...styles.textStyle,
+                fontSize: heightPercentageToDP(2),
+              }}
+            >
+              {data.status.toUpperCase()}
+            </Text>
+          </View>
+          <View style={styles.flatListStyle}>
             <FlatList
               scrollEnabled={true}
               showsVerticalScrollIndicator={false}
@@ -152,90 +149,114 @@ const OrderDetails = (props) => {
                 item.key;
               }}
               renderItem={renderItem}
-            // contentContainerStyle={styles.flatListStyle}
+              // contentContainerStyle={styles.flatListStyle}
             />
-           
-        </View>
+          </View>
 
-        <View style={{ ...styles.textTopStyle, marginHorizontal: 10 }}>
-          <View>
-            <Text
-              style={{
-                ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
-                marginTop: 7,
-              }}
-            >
-              Order number:
-            </Text>
-            <Text
-              style={{
-                ...styles.headingStyle,
-                fontSize: heightPercentageToDP(2),
-              }}
-            >
-              {data.id}
-            </Text>
+          <View style={{ ...styles.textTopStyle, marginHorizontal: 10 }}>
+            <View>
+              <Text
+                style={{
+                  ...styles.textStyle,
+                  fontSize: heightPercentageToDP(2),
+                  marginTop: 7,
+                }}
+              >
+                Order number:
+              </Text>
+              <Text
+                style={{
+                  ...styles.headingStyle,
+                  fontSize: heightPercentageToDP(2),
+                }}
+              >
+                {data.id}
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={{
+                  ...styles.textStyle,
+                  fontSize: heightPercentageToDP(2),
+                  marginTop: 7,
+                }}
+              >
+                Quantity:
+              </Text>
+              <Text
+                style={{
+                  ...styles.headingStyle,
+                  fontSize: heightPercentageToDP(2),
+                }}
+              >
+                {productsData.length}
+              </Text>
+            </View>
+            <View>
+              <Text
+                style={{
+                  ...styles.textStyle,
+                  fontSize: heightPercentageToDP(2),
+                  marginTop: 7,
+                }}
+              >
+                Total amount:
+              </Text>
+              <Text
+                style={{
+                  ...styles.headingStyle,
+                  fontSize: heightPercentageToDP(2),
+                }}
+              >
+                ${data.amount}
+              </Text>
+            </View>
           </View>
-          <View>
-            <Text
-              style={{
-                ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
-                marginTop: 7,
-              }}
-            >
-              Quantity:
-            </Text>
-            <Text
-              style={{
-                ...styles.headingStyle,
-                fontSize: heightPercentageToDP(2),
-              }}
-            >
-              {productsData.length}
-            </Text>
-          </View>
-          <View>
-            <Text
-              style={{
-                ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
-                marginTop: 7,
-              }}
-            >
-              Total amount:
-            </Text>
-            <Text
-              style={{
-                ...styles.headingStyle,
-                fontSize: heightPercentageToDP(2),
-              }}
-            >
-              ${data.amount}
-            </Text>
-          </View>
-        </View>
 
-        <TouchableOpacity style={styles.buttonStyle} onPress={()=>setCancelOrder(true)}>
-          <Text
-            style={{
-              ...styles.headingStyle,
-              color: "white",
-              fontSize: heightPercentageToDP(2),
-            }}
+          <TouchableOpacity
+            style={styles.buttonStyle}
+            onPress={() => setCancelOrder(true)}
           >
-            Repeat Order
-          </Text>
-        </TouchableOpacity>
-      </View>
-}
-{isCancelOrder && (
+            <Text
+              style={{
+                ...styles.headingStyle,
+                color: "white",
+                fontSize: heightPercentageToDP(2),
+              }}
+            >
+              Repeat Order
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+      {isCancelOrder && (
         <CancelOrderDialog
           onClearClick={() => setCancelOrder(false)}
           closeClick={() => setCancelOrder(false)}
           isCancelOrder={isCancelOrder}
-         
+          reasonCancelBtn={() => {
+            setReasonCancel(true);
+          }}
+          cancelOrder={() => {
+            setCancelOrder(false);
+            setOrderCancelled(true);
+          }}
+        />
+      )}
+
+      {reasonCancel && (
+        <ReasonForCancelDialog
+          onClearClick={() => setReasonCancel(false)}
+          closeClick={() => setReasonCancel(false)}
+          reasonCancel={reasonCancel}
+        />
+      )}
+
+      {orderCancelled && (
+        <OrderCancelledDialog
+          onClearClick={() => setOrderCancelled(false)}
+          closeClick={() => setOrderCancelled(false)}
+          orderCancelled={orderCancelled}
         />
       )}
     </SafeAreaView>
