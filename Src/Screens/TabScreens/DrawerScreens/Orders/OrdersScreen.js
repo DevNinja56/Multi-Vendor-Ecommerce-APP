@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   useWindowDimensions,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import SimpleHeader from "../../../../Components/Header/simple_header";
 import DeliveredScreen from "./DeliveredScreen";
@@ -14,11 +14,12 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Colors from "../../../../Constants/colors";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import HttpClients from "../../../../Redux/utils";
-import Loader from '../../../../Components/Loader'
+import Loader from "../../../../Components/Loader";
+import { orderDetailDataCancelled } from "../../../../DummyData/dummydata";
 
 const OrdersScreen = (props) => {
   const detailsSCreen = () => {
-    props.navigation.navigate('Order Details');
+    props.navigation.navigate("Order Details");
   };
 
   const [isLoading, setLoading] = useState(true);
@@ -31,58 +32,60 @@ const OrdersScreen = (props) => {
     getDelieverdOrderData();
     getPendingOrderData();
     getCancelledOrderData();
-
   }, []);
 
-
   const getDelieverdOrderData = async () => {
-    const res = await HttpClients.get("order/getAll/?status=delieverd");
-    console.log(res.data.status);
-    if (res.data.status === "success") {
-      console.log(res.data.data);
-      setOrderData(res.data.data);
-      setLoading(false);
-    } else {
-      console.log("no data available");
-      setLoading(false);
-    }
+    // const res = await HttpClients.get("order/getAll/?status=delieverd");
+    // console.log(res.data.status);
+    // if (res.data.status === "success") {
+    //   console.log(res.data.data);
+    setOrderData(orderDetailDataCancelled.data);
+    setLoading(false);
+    // } else {
+    //   console.log("no data available");
+    //   setLoading(false);
+    // }
   };
-
 
   const getPendingOrderData = async () => {
-    const res = await HttpClients.get("order/getAll/?status=pending");
-    console.log(res.data.status);
-    if (res.data.status === "success") {
-      console.log(res.data.data);
-      setPendingData(res.data.data);
-      setLoading(false);
-    } else {
-      console.log("no data available");
-      setLoading(false);
-    }
+    // const res = await HttpClients.get("order/getAll/?status=pending");
+    // console.log(res.data.status);
+    // if (res.data.status === "success") {
+    //   console.log(res.data.data);
+    setPendingData(orderDetailDataCancelled.data);
+    setLoading(false);
+    // } else {
+    //   console.log("no data available");
+    //   setLoading(false);
+    // }
   };
 
-
   const getCancelledOrderData = async () => {
-    const res = await HttpClients.get("order/getAll/?status=cancel");
-    console.log(res.data.status);
-    if (res.data.status === "success") {
-      console.log(res.data.data);
-      setCancelledData(res.data.data);
-      setLoading(false);
-    } else {
-      console.log("no data available");
-      setLoading(false);
-    }
+    // const res = await HttpClients.get("order/getAll/?status=cancel");
+    // console.log(res.data.status);
+    // if (res.data.status === "success") {
+    //   console.log(res.data.data);
+    setCancelledData(orderDetailDataCancelled.data);
+    setLoading(false);
+    // } else {
+    //   console.log("no data available");
+    //   setLoading(false);
+    // }
   };
 
   let content = <DeliveredScreen />;
 
-  const FirstRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData} />;
+  const FirstRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData} />
+  );
 
-  const SecondRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData} />;
+  const SecondRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData} />
+  );
 
-  const ThirdRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData} />;
+  const ThirdRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData} />
+  );
 
   const renderScene = SceneMap({
     delivered: FirstRoute,
@@ -96,8 +99,7 @@ const OrdersScreen = (props) => {
       indicatorStyle={{ backgroundColor: Colors.Primary }}
       labelStyle={{
         fontSize: heightPercentageToDP(2),
-        fontFamily: 'whitney-semi-bold'
-
+        fontFamily: "whitney-semi-bold",
       }}
       style={{
         backgroundColor: "white",
@@ -122,7 +124,10 @@ const OrdersScreen = (props) => {
   // }
   return (
     <View style={styles.screen}>
-      <SimpleHeader clickHandler={() => props.navigation.goBack()} headerTitle={'Orders'} />
+      <SimpleHeader
+        clickHandler={() => props.navigation.goBack()}
+        headerTitle={"Orders"}
+      />
 
       <TabView
         navigationState={{ index, routes }}
@@ -132,16 +137,10 @@ const OrdersScreen = (props) => {
         renderTabBar={renderTabBar}
         style={{
           backgroundColor: "white",
-
         }}
-
       />
 
-      {isLoading &&
-        <Loader
-          color={"FF3E6C"}
-        />
-      }
+      {isLoading && <Loader color={"FF3E6C"} />}
       {/* <View
         style={{
           width: "100%",

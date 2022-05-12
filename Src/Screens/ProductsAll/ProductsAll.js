@@ -33,6 +33,7 @@ import { BottomSheet } from "react-native-elements";
 import Colors from "../../Constants/colors";
 import Loader from "../../Components/Loader";
 import { ScrollView } from "react-native-gesture-handler";
+import { productsAllData } from "../../DummyData/dummydata";
 
 const grey = "#91A1BD";
 const ProductsAll = (props) => {
@@ -42,8 +43,8 @@ const ProductsAll = (props) => {
   const [isSorting, setSorting] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
   const [isLoading, setLoading] = useState(false);
-  const [category, selectCategory] = useState("")
-  const [gender, setActiveGender] = useState(0)
+  const [category, selectCategory] = useState("");
+  const [gender, setActiveGender] = useState(0);
 
   useEffect(() => {
     getAllProducts();
@@ -70,20 +71,18 @@ const ProductsAll = (props) => {
   };
 
   const getAllProducts = async () => {
-    setLoading(true);
-    const res = await Httpclients.get("product/getAll?size=&color=&category=");
+    // setLoading(true);
+    // const res = await Httpclients.get("product/getAll?size=&color=&category=");
     setLoading(false);
-    console.log(res.data.status);
-    console.log(res.data.data);
-    if (res.data.data.length) {
-      setData(res.data.data);
-      console.log(res.data.data);
-    } else {
-      console.log("no data available");
-    }
+    // console.log(res.data.status);
+    // console.log(res.data.data);
+    // if (res.data.data.length) {
+    setData(productsAllData.data);
+    //   console.log(res.data.data);
+    // } else {
+    //   console.log("no data available");
+    // }
   };
-
-
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -103,7 +102,6 @@ const ProductsAll = (props) => {
             </View>
           </ScrollView>
           <View style={styles.buttonConatainer}>
-
             <View
               style={{
                 flex: 1,
@@ -125,7 +123,15 @@ const ProductsAll = (props) => {
                     textAlign: "center",
                   }}
                 >
-                  {gender == 0 ? "MEN" : gender == 1 ? "Boys" : gender == 2 ? "Girls" : gender == 3 ? "Women" : ""}
+                  {gender == 0
+                    ? "MEN"
+                    : gender == 1
+                    ? "Boys"
+                    : gender == 2
+                    ? "Girls"
+                    : gender == 3
+                    ? "Women"
+                    : ""}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -203,7 +209,6 @@ const ProductsAll = (props) => {
                 </View>
               </TouchableOpacity>
             </View>
-
           </View>
 
           {isGender && (
@@ -220,7 +225,7 @@ const ProductsAll = (props) => {
               closeClick={() => setFilter(false)}
               // data={data}
               isFilter={isFilter}
-            // durationData={durationData}
+              // durationData={durationData}
             />
           )}
           {isSorting && (
@@ -229,7 +234,7 @@ const ProductsAll = (props) => {
               closeClick={() => setSorting(false)}
               // data={data}
               isSorting={isSorting}
-            // durationData={durationData}
+              // durationData={durationData}
             />
           )}
         </View>

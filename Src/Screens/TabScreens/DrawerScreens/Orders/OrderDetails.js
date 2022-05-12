@@ -22,6 +22,7 @@ import Loader from "../../../../Components/Loader";
 import CancelOrderDialog from "../../../../Components/CancelOrderDialog";
 import ReasonForCancelDialog from "../../../../Components/ReasonForCancelDialog";
 import OrderCancelledDialog from "../../../../Components/OrderCancelledDialog";
+import { orderDetailsGetById } from "../../../../DummyData/dummydata";
 
 const OrderDetails = (props) => {
   const [isLoading, setLoading] = useState(true);
@@ -37,17 +38,17 @@ const OrderDetails = (props) => {
   }, []);
 
   const getOrderDetailsData = async () => {
-    const res = await httpClients.get("order/getById/1");
+    // const res = await httpClients.get("order/getById/1");
     // console.log("Order Details Data : " + res.data.data.products.length);
-    if (res.data.status === "success") {
-      console.log(res.data.data);
-      setData(res.data.data);
-      setProductsData(res.data.data.order_details);
-      setLoading(false);
-    } else {
-      console.log("no data available");
-      setLoading(false);
-    }
+    // if (res.data.status === "success") {
+    //   console.log(res.data.data);
+    setData(orderDetailsGetById.data);
+    setProductsData(orderDetailsGetById.data.order_details);
+    setLoading(false);
+    // } else {
+    //   console.log("no data available");
+    //   setLoading(false);
+    // }
   };
 
   const renderItem = (itemData) => {

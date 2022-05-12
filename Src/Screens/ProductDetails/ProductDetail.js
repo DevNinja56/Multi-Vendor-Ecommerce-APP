@@ -29,6 +29,7 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import { widthPercentageToDP } from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";
 import Colors from "../../Constants/colors";
+import { productDetailData } from "../../DummyData/dummydata";
 
 const ProductDetail = (props) => {
   const images = [
@@ -95,7 +96,6 @@ const ProductDetail = (props) => {
                   {itemData.item.created_at}
                 </Text>
               </View>
-
             </View>
           </View>
         </View>
@@ -130,16 +130,16 @@ const ProductDetail = (props) => {
     getProductData();
   }, []);
   const getProductData = async () => {
-    const res = await httpClients.get("product/sku2");
-    console.log(res.data.status);
-    if (res.data.status === "success") {
-      console.log(res.data.data);
-      setData(res.data.data);
-      setLoading(false);
-    } else {
-      console.log("no data available");
-      setLoading(false);
-    }
+    // const res = await httpClients.get("product/sku2");
+    // console.log(res.data.status);
+    // if (res.data.status === "success") {
+    //   console.log(res.data.data);
+    setData(productDetailData.data);
+    setLoading(false);
+    // } else {
+    //   console.log("no data available");
+    //   setLoading(false);
+    // }
   };
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
@@ -694,9 +694,10 @@ const ProductDetail = (props) => {
                     ...styles.sizeStyle,
                   }}
                 >
-                  {!data || !data.custom_fields.length ?
+                  {!data || !data.custom_fields.length ? (
                     <View />
-                    : <FlatList
+                  ) : (
+                    <FlatList
                       data={data.custom_fields}
                       keyExtractor={(item, index) => "unqiue" + index}
                       numColumns={2}
@@ -706,9 +707,9 @@ const ProductDetail = (props) => {
                             style={{
                               borderBottomWidth: 1,
                               paddingBottom: 8,
-                              flex: 0.50,
+                              flex: 0.5,
                               borderColor: "#C9C9C9",
-                              margin:5,
+                              margin: 5,
                               // height: 48,
                               justifyContent: "space-between",
                               // alignItems: "center",
@@ -732,10 +733,10 @@ const ProductDetail = (props) => {
                               {item.text}
                             </Text>
                           </View>
-                        )
+                        );
                       }}
-                    />}
-
+                    />
+                  )}
                 </View>
                 {/* Tag View */}
                 <View
@@ -969,7 +970,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                          {data.rating_details[3].value}
+                            {data.rating_details[3].value}
                           </Text>
                         </View>
                       </View>

@@ -10,7 +10,6 @@ import WinterDeals from "../../../../../navigation/screens/Home/WinterDeals";
 import SeasonDeals from "../../../../../navigation/screens/Home/SeasonDeals";
 import FashionPredictionDeals from "../../../../../navigation/screens/Home/FashionPredictionDeals";
 
-
 import { commonStyles } from "../../../../Styles/commonStyles";
 import { useSelector, useDispatch } from "react-redux";
 import * as Animatable from "react-native-animatable";
@@ -21,14 +20,10 @@ import CategoryCards from "../../../../../components/CategoryCards";
 import httpClients from "../../../../Redux/utils";
 import Header from "../../../../Components/Header";
 import Loader from "../../../../Components/Loader";
-
+import { homepageData } from "../../../../DummyData/dummydata";
 
 const renderCategoryGridItem = (itemData) => {
-  return (
-    <CategoryCards
-      image={itemData.item.image}
-    />
-  );
+  return <CategoryCards image={itemData.item.image} />;
 };
 
 const HomePage = ({ navigation }) => {
@@ -36,25 +31,26 @@ const HomePage = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const dimensions = Dimensions.get("window");
 
-  const isEmpty = (obj) => {
-    return Object.keys(obj).length === 0;
-  };
+  // const isEmpty = (obj) => {
+  //   return Object.keys(obj).length === 0;
+  // };
 
-  const token = useSelector((state) => state.user.token);
-  const userToken = useSelector((state) => state.user.userToken);
+  // const token = useSelector((state) => state.user.token);
+  // const userToken = useSelector((state) => state.user.userToken);
   const changeShop = () => {
     console.log("ProductsAll");
     navigation.navigate("ProductsAll");
   };
 
   const getHome = async () => {
-    const res = await httpClients.get("home/getAll");
-    setData(res.data.data);
+    // const res = await httpClients.get("home/getAll");
+    setData(homepageData.data);
+    // console.log(data);
     setLoading(false);
   };
 
   useEffect(() => {
-    console.log("token ==>", userToken);
+    // console.log("token ==>", userToken);
     getHome();
   }, []);
 

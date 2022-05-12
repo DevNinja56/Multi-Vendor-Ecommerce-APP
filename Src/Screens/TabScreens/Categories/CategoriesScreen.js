@@ -17,35 +17,36 @@ import Loader from "../../../Components/Loader";
 import Colors from "../../../Constants/colors";
 import httpClients from "../../../Redux/utils";
 import FastImage from "react-native-fast-image";
+import { categoryAllData } from "../../../DummyData/dummydata";
 
 const CategoriesScreen = ({ props, navigation }) => {
   const [showScreen, setShowScreen] = useState(false);
   const [data, setData] = useState();
   const [isLoading, setLoading] = useState(true);
-  const [activeIndex, setIndex] = useState(0)
+  const [activeIndex, setIndex] = useState(0);
 
   const showScreenTrue = (index) => {
-    const temArr = [...data]
+    const temArr = [...data];
     if (data[index].is_active) {
       for (let i = 0; i < temArr.length; i++) {
-        temArr[i].is_active = false
+        temArr[i].is_active = false;
       }
     } else {
       for (let i = 0; i < temArr.length; i++) {
-        temArr[i].is_active = false
+        temArr[i].is_active = false;
       }
-      temArr[index].is_active = true
+      temArr[index].is_active = true;
     }
-    setData(temArr)
+    setData(temArr);
   };
 
   const getAllCategories = async () => {
-    const res = await httpClients.get('category/getAll');
-    console.log(res.data.data);
-    if (res.data.data.length > 0) {
-      setData(res.data.data);
-      setLoading(false);
-    }
+    // const res = await httpClients.get('category/getAll');
+    // console.log(res.data.data);
+    // if (res.data.data.length > 0) {
+    setData(categoryAllData.data);
+    setLoading(false);
+    // }
   };
 
   useEffect(() => {
@@ -64,7 +65,8 @@ const CategoriesScreen = ({ props, navigation }) => {
         >
           <TouchableOpacity
             style={{ width: "100%" }}
-            onPress={() => showScreenTrue(index)}>
+            onPress={() => showScreenTrue(index)}
+          >
             <View style={{ flexDirection: "row" }}>
               <View
                 style={{

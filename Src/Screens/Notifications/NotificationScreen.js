@@ -8,6 +8,7 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import httpClients from "../../Redux/utils";
 import { useSelector } from "react-redux";
 import Loader from "../../Components/Loader";
+import { notificationData } from "../../DummyData/dummydata";
 
 const NotificationScreen = (props) => {
   const [data, setData] = useState();
@@ -15,14 +16,14 @@ const NotificationScreen = (props) => {
   const userToken = useSelector((state) => state.user.userToken);
 
   const getAllNotifications = async () => {
-    const res = await httpClients.get("notification/getAll", {
-      headers: {
-        Authorization: userToken,
-      },
-    });
-    console.log("Data===>" + res.data.data);
+    // const res = await httpClients.get("notification/getAll", {
+    //   headers: {
+    //     Authorization: userToken,
+    //   },
+    // });
+    // console.log("Data===>" + res.data.data);
 
-    setData(res.data.data);
+    setData(notificationData.data);
     setLoading(false);
   };
 
