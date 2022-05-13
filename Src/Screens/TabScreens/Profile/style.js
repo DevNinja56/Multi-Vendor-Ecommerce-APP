@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
   userNameText: {
     fontFamily: "whitney-medium",
-    fontSize: heightPercentageToDP(2.5),
+    fontSize: widthPercentageToDP(4.5),
     color: "white",
   },
   phoneText: {
@@ -36,23 +36,22 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   buttonStyle: {
-    backgroundColor: "#FF2C5E",
     width: "50%",
     height: "45%",
     marginRight: 20,
     overflow: "hidden",
-    borderRadius: 3,
+    // borderRadius: 3,
     // margin: 8,
     alignSelf: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.23,
+    // shadowRadius: 2.62,
 
-    elevation: 4,
+    // elevation: 4,
   },
   buttonHeadingStyle: {
     fontFamily: "whitney-semi-bold",

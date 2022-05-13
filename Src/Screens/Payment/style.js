@@ -14,19 +14,10 @@ export const styles = StyleSheet.create({
   addLoctionBtn: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: Colors.Primary,
-    margin: heightPercentageToDP(3),
-    padding: heightPercentageToDP(2),
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-
-    elevation: 5,
-    borderRadius: heightPercentageToDP(1),
+    // backgroundColor: Colors.Primary,
+    marginVertical: heightPercentageToDP(3),
+    marginHorizontal: heightPercentageToDP(3),
+    // padding: heightPercentageToDP(2),
   },
   cardLayout: {
     alignItems: "center",

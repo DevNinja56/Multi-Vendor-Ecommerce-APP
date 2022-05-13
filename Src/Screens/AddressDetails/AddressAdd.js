@@ -13,6 +13,7 @@ import { heightPercentageToDP } from "react-native-responsive-screen";
 import { HomeIcon } from "../../../assets/svg";
 import SimpleHeader from "../../Components/Header/simple_header";
 import Colors from "../../Constants/colors";
+import { commonStyles } from "../../Styles/commonStyles";
 import { styles } from "./style";
 
 const AddressAdd = (props) => {
@@ -182,7 +183,7 @@ const AddressAdd = (props) => {
       </ScrollView>
       <View style={styles.footerStyle}>
         <TouchableOpacity
-          style={styles.buttonStyle}
+          style={{ ...commonStyles.buttonStyle }}
           onPress={() => props.screenSet(2)}
         >
           <Text

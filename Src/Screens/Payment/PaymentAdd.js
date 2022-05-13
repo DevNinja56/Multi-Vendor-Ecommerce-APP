@@ -9,6 +9,7 @@ import {
 import SimpleHeader from "../../Components/Header/simple_header";
 import RemoveDialog from "../../Components/RemoveDialog";
 import Colors from "../../Constants/colors";
+import { commonStyles } from "../../Styles/commonStyles";
 import { styles } from "./style";
 
 const PaymentAdd = (props) => {
@@ -133,11 +134,14 @@ const PaymentAdd = (props) => {
         </View>
       </View>
 
-      <TouchableOpacity style={styles.addLoctionBtn} onPress={()=>setRemove(true)}>
+      <TouchableOpacity
+        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
+        onPress={() => setRemove(true)}
+      >
         <Text
           style={{
             ...styles.headingStyle,
-            fontSize: heightPercentageToDP(2.5),
+            fontSize: heightPercentageToDP(2),
             // alignSelf: "center",
             textAlign: "center",
             flex: 1,
@@ -153,7 +157,6 @@ const PaymentAdd = (props) => {
           onClearClick={() => setRemove(false)}
           closeClick={() => setRemove(false)}
           isRemove={isRemove}
-         
           title={"Do you want to remove this card?"}
         />
       )}

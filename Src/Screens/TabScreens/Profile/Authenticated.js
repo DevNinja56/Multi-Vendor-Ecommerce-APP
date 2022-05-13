@@ -28,6 +28,7 @@ import {
   ProfileIcon,
 } from "../../../../assets/svg";
 import { styles } from "./style";
+import { commonStyles } from "../../../Styles/commonStyles";
 
 const Authenticated = (props) => {
   return (
@@ -65,7 +66,9 @@ const Authenticated = (props) => {
             >
               <ProfileIcon width={"100%"} height={"100%"} />
             </View>
-            <View style={styles.buttonStyle}>
+            <View
+              style={{ ...styles.buttonStyle, ...commonStyles.buttonStyle }}
+            >
               <TouchableOpacity
                 onPress={props.profileEdit}
                 style={{

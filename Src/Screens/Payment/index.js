@@ -15,6 +15,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const PaymentMethod = (props) => {
   const data = [1, 2, 3, 4];
@@ -89,7 +90,7 @@ const PaymentMethod = (props) => {
       </View>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("PaymentAdd")}
-        style={styles.addLoctionBtn}
+        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
       >
         <AntDesign name="plus" size={24} color="white" />
         <Text
