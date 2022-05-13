@@ -21,6 +21,7 @@ import CategoryCards from "../../../../../components/CategoryCards";
 import httpClients from "../../../../Redux/utils";
 import Header from "../../../../Components/Header";
 import Loader from "../../../../Components/Loader";
+import crashlytics from '@react-native-firebase/crashlytics';
 
 
 const renderCategoryGridItem = (itemData) => {
@@ -94,6 +95,7 @@ const HomePage = ({ navigation }) => {
       </View>
     );
   };
+
 
   return (
     <SafeAreaView style={commonStyles.container}>
