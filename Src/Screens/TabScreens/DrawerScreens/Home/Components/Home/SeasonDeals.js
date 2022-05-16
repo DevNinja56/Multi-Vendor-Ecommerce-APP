@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, ScrollView, FlatList } from "react-native";
-
-import { SEASONDEMO } from "../../../data/dummy-data";
-import SeasonCards from "../../../components/SeasonCards";
+import SeasonCards from "../../../../../../Components/SeasonCards";
 
 const renderGridItem = (itemData) => {
   return <SeasonCards imageurl={itemData.item.image} />;

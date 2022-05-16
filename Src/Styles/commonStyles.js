@@ -5,6 +5,7 @@ import {
 } from "react-native-responsive-screen";
 
 import Colors from "../Constants/colors";
+import { Fonts } from "../Constants/fonts";
 
 export const commonStyles = StyleSheet.create({
   // Home Style
@@ -15,7 +16,8 @@ export const commonStyles = StyleSheet.create({
   },
 
   firstContainer: {
-    height: Dimensions.get("window").height * 0.12,
+    paddingVertical: heightPercentageToDP(0.75),
+    height: Dimensions.get("window").height * 0.13,
     backgroundColor: "white",
     elevation: 4,
   },
@@ -176,7 +178,7 @@ export const commonStyles = StyleSheet.create({
   },
 
   textheadingStyle: {
-    fontFamily: "whitney-medium-italic",
+    fontFamily: Fonts.whitney_semi_bold_italic,
     // backgroundColor: Colors.Primary,
     color: "white",
     fontSize: widthPercentageToDP(4),

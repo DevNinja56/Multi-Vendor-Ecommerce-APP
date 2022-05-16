@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, ScrollView, View, FlatList } from "react-native";
-
-import StoryScrollView from "../../../components/HomeComponents/StoryScrollView";
+import StoryScrollView from "./StoryScrollView";
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
+import { Fonts } from "../../../../../../Constants/fonts";
 
 const renderItem = (itemData) => {
   return (
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 5,
-    fontSize: widthPercentageToDP(2.5),
-    fontFamily: "whitney-book",
+    fontSize: widthPercentageToDP(3),
+    fontFamily: Fonts.whitney_medium,
+    color: "black",
   },
 });
 

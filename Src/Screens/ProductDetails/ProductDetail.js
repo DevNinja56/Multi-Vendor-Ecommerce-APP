@@ -23,7 +23,7 @@ import {
   Fontisto,
 } from "@expo/vector-icons";
 
-import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
+import TodayDeals from "../TabScreens/DrawerScreens/Home/Components/Home/TodayDeals";
 
 import SimpleHeader from "../../Components/Header/simple_header";
 import { widthPercentageToDP } from "react-native-responsive-screen";
@@ -95,7 +95,6 @@ const ProductDetail = (props) => {
                   {itemData.item.created_at}
                 </Text>
               </View>
-
             </View>
           </View>
         </View>
@@ -694,9 +693,10 @@ const ProductDetail = (props) => {
                     ...styles.sizeStyle,
                   }}
                 >
-                  {!data || !data.custom_fields.length ?
+                  {!data || !data.custom_fields.length ? (
                     <View />
-                    : <FlatList
+                  ) : (
+                    <FlatList
                       data={data.custom_fields}
                       keyExtractor={(item, index) => "unqiue" + index}
                       numColumns={2}
@@ -706,9 +706,9 @@ const ProductDetail = (props) => {
                             style={{
                               borderBottomWidth: 1,
                               paddingBottom: 8,
-                              flex: 0.50,
+                              flex: 0.5,
                               borderColor: "#C9C9C9",
-                              margin:5,
+                              margin: 5,
                               // height: 48,
                               justifyContent: "space-between",
                               // alignItems: "center",
@@ -732,10 +732,10 @@ const ProductDetail = (props) => {
                               {item.text}
                             </Text>
                           </View>
-                        )
+                        );
                       }}
-                    />}
-
+                    />
+                  )}
                 </View>
                 {/* Tag View */}
                 <View
@@ -969,7 +969,7 @@ const ProductDetail = (props) => {
                               color: "#4D4D4D",
                             }}
                           >
-                          {data.rating_details[3].value}
+                            {data.rating_details[3].value}
                           </Text>
                         </View>
                       </View>

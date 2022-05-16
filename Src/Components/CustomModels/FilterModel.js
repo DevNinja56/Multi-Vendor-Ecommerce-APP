@@ -9,18 +9,17 @@ import {
   Image,
   Modal,
 } from "react-native";
-import { Portal } from "@gorhom/portal";
-import { Modalize } from "react-native-modalize";
-import SizeModel from "../components/SizeModel";
-import ColorModel from "../components/ColorModel";
-import BrandModel from "../components/BrandModel";
-import { Entypo } from "@expo/vector-icons";
+
+import SizeModel from "../../Components/SizeModel";
+import ColorModel from "../../Components/ColorModel";
+import BrandModel from "../../Components/BrandModel";
+
 import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
-import Colors from "../Src/Constants/colors";
-import { Fonts } from "../Src/Constants/fonts";
+import Colors from "../../Constants/colors";
+import { Fonts } from "../../Constants/fonts";
 
 const { height } = Dimensions.get("window");
 const modalHeight = height * 0.6;
@@ -69,8 +68,8 @@ const FilterModel = (props) => {
               <Text
                 style={{
                   color: "#FF3E6C",
-                  fontSize: widthPercentageToDP(3.5),
-                  fontFamily: "whitney-book",
+                  fontSize: widthPercentageToDP(4),
+                  fontFamily: Fonts.whitney_medium,
                 }}
               >
                 CLEAR ALL
@@ -126,11 +125,14 @@ const FilterModel = (props) => {
           <View
             style={{
               flexDirection: "row",
-              height: "10%",
+              height: "9.5%",
+              // height: "100%",
               justifyContent: "center",
               alignItems: "center",
               // alignSelf: "flex-end",
-              elevation: 2,
+              borderTopWidth: heightPercentageToDP(0.1),
+
+              paddingVertical: heightPercentageToDP(0.5),
             }}
           >
             <TouchableOpacity
@@ -216,27 +218,27 @@ const styles = StyleSheet.create({
 
   text: {
     // flex: 1,
-    fontSize: 14,
-    fontFamily: "whitney-book",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_semi_bold,
     // letterSpacing: 48 * 0.02,
     // alignSelf: "flex-start",
-    color: "#9F9F9F",
+    color: "black",
   },
   textChecked: {
     width: "100%",
     height: "100%",
-    fontSize: 16,
-    fontFamily: "whitney-semi-bold",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_medium,
     letterSpacing: 48 * 0.02,
     alignSelf: "flex-start",
-    color: "#0F0F0F",
+    color: "black",
     padding: 10,
   },
   textUnChecked: {
-    fontSize: 16,
-    fontFamily: "whitney-book",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_light,
     // alignSelf: "flex-start",
-    color: "#4D4D4D",
+    color: "grey",
     padding: 10,
   },
   mainFilterContainer: {

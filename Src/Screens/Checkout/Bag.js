@@ -21,7 +21,13 @@ import {
 } from "@expo/vector-icons";
 import FastImage from "react-native-fast-image";
 import { FlatList } from "react-native-gesture-handler";
-import { BagIcon, ContactlessDelivery, CouponTagIcon, OrignalProduct, SecurePayment } from "../../../assets/svg";
+import {
+  BagIcon,
+  ContactlessDelivery,
+  CouponTagIcon,
+  OrignalProduct,
+  SecurePayment,
+} from "../../../assets/svg";
 
 const renderItem = (itemData) => {
   return (
@@ -245,7 +251,8 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.simpleText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(3.5),
+              color: "black",
             }}
           >
             Deliver to:{" "}
@@ -253,7 +260,7 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(4),
             }}
           >
             400001
@@ -647,31 +654,62 @@ const Bag = (props) => {
         </View>
       </View>
 
-
       <View
-          style={{
-            ...styles.container_1_Styles,
-            justifyContent: "space-between",
-            alignItems:'center',
-            padding:5
-          }}
-        >
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-            <OrignalProduct height={heightPercentageToDP(10)} width={heightPercentageToDP(10)}/>
-            <Text style={{...styles.headerText,fontSize:heightPercentageToDP(2)}}>Genuine Products</Text>
+        style={{
+          ...styles.container_1_Styles,
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 5,
+        }}
+      >
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <OrignalProduct
+            height={heightPercentageToDP(10)}
+            width={heightPercentageToDP(10)}
+          />
+          <Text
+            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+          >
+            Genuine Products
+          </Text>
         </View>
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-            <ContactlessDelivery height={heightPercentageToDP(10)} width={heightPercentageToDP(10)}/>
-            <Text style={{...styles.headerText,fontSize:heightPercentageToDP(2)}}>Genuine Products</Text>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <ContactlessDelivery
+            height={heightPercentageToDP(10)}
+            width={heightPercentageToDP(10)}
+          />
+          <Text
+            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+          >
+            Genuine Products
+          </Text>
         </View>
-        <View style={{justifyContent:'center',alignItems:'center'}}>
-            <SecurePayment height={heightPercentageToDP(10)} width={heightPercentageToDP(10)}/>
-            <Text style={{...styles.headerText,fontSize:heightPercentageToDP(2)}}>Genuine Products</Text>
+        <View style={{ justifyContent: "center", alignItems: "center" }}>
+          <SecurePayment
+            height={heightPercentageToDP(10)}
+            width={heightPercentageToDP(10)}
+          />
+          <Text
+            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+          >
+            Genuine Products
+          </Text>
         </View>
       </View>
-      
-      <TouchableOpacity style={styles.buttonStyle} onPress={()=>props.screenSet(1)}>
-          <Text style={{...styles.headerText,color:'white',fontSize:heightPercentageToDP(2)}}>PLACE ORDER</Text>
+
+      <TouchableOpacity
+        style={styles.buttonStyle}
+        onPress={() => props.screenSet(1)}
+      >
+        <Text
+          style={{
+            ...styles.headerText,
+            color: "white",
+            fontSize: heightPercentageToDP(2),
+          }}
+        >
+          PLACE ORDER
+        </Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -750,12 +788,12 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 16,
   },
-  buttonStyle:{
-      marginTop:10,
-      padding:16,
-      backgroundColor:Colors.Primary,
-      alignItems:'center'
-  }
+  buttonStyle: {
+    marginTop: 10,
+    padding: 16,
+    backgroundColor: Colors.Primary,
+    alignItems: "center",
+  },
 });
 
 export default Bag;

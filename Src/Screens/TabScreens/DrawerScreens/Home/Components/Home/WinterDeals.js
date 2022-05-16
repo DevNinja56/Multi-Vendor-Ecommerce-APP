@@ -1,8 +1,6 @@
 import React from "react";
 import { StyleSheet, FlatList } from "react-native";
-
-import { WINTERDUMMY } from "../../../data/dummy-data";
-import DealsCards from "../../../components/DealsCards";
+import DealsCards from "../../../../../../Components/DealsCards";
 
 const WinterDeals = (props) => {
   const renderWinterItem = (itemData) => {

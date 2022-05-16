@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   ScrollView,
   useWindowDimensions,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import SimpleHeader from "../../../../Components/Header/simple_header";
 import DeliveredScreen from "./DeliveredScreen";
@@ -14,11 +14,11 @@ import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Colors from "../../../../Constants/colors";
 import { heightPercentageToDP } from "react-native-responsive-screen";
 import HttpClients from "../../../../Redux/utils";
-import Loader from '../../../../Components/Loader'
+import Loader from "../../../../Components/Loader";
 
 const OrdersScreen = (props) => {
   const detailsSCreen = () => {
-    props.navigation.navigate('Order Details');
+    props.navigation.navigate("Order Details");
   };
 
   const [isLoading, setLoading] = useState(true);
@@ -31,9 +31,7 @@ const OrdersScreen = (props) => {
     getDelieverdOrderData();
     getPendingOrderData();
     getCancelledOrderData();
-
   }, []);
-
 
   const getDelieverdOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=delieverd");
@@ -48,7 +46,6 @@ const OrdersScreen = (props) => {
     }
   };
 
-
   const getPendingOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=pending");
     console.log(res.data.status);
@@ -61,7 +58,6 @@ const OrdersScreen = (props) => {
       setLoading(false);
     }
   };
-
 
   const getCancelledOrderData = async () => {
     const res = await HttpClients.get("order/getAll/?status=cancel");
@@ -78,11 +74,17 @@ const OrdersScreen = (props) => {
 
   let content = <DeliveredScreen />;
 
-  const FirstRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData} />;
+  const FirstRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={orderData} />
+  );
 
-  const SecondRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData} />;
+  const SecondRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={pendingData} />
+  );
 
-  const ThirdRoute = () => <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData} />;
+  const ThirdRoute = () => (
+    <DeliveredScreen detailsSCreen={detailsSCreen} data={cancelledData} />
+  );
 
   const renderScene = SceneMap({
     delivered: FirstRoute,
@@ -96,8 +98,7 @@ const OrdersScreen = (props) => {
       indicatorStyle={{ backgroundColor: Colors.Primary }}
       labelStyle={{
         fontSize: heightPercentageToDP(2),
-        fontFamily: 'whitney-semi-bold'
-
+        fontFamily: "whitney-semi-bold",
       }}
       style={{
         backgroundColor: "white",
@@ -122,7 +123,11 @@ const OrdersScreen = (props) => {
   // }
   return (
     <View style={styles.screen}>
-      <SimpleHeader clickHandler={() => props.navigation.goBack()} headerTitle={'Orders'} />
+      <SimpleHeader
+        clickHandler={() => props.navigation.goBack()}
+        headerTitle={"Orders"}
+        placement={"left"}
+      />
 
       <TabView
         navigationState={{ index, routes }}
@@ -132,16 +137,10 @@ const OrdersScreen = (props) => {
         renderTabBar={renderTabBar}
         style={{
           backgroundColor: "white",
-
         }}
-
       />
 
-      {isLoading &&
-        <Loader
-          color={"FF3E6C"}
-        />
-      }
+      {isLoading && <Loader color={"FF3E6C"} />}
       {/* <View
         style={{
           width: "100%",

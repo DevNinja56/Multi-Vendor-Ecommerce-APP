@@ -5,11 +5,10 @@ import {
   widthPercentageToDP,
 } from "react-native-responsive-screen";
 
-import MainScreen from "../../../../../navigation/screens/Home/MainScreen";
-import WinterDeals from "../../../../../navigation/screens/Home/WinterDeals";
-import SeasonDeals from "../../../../../navigation/screens/Home/SeasonDeals";
-import FashionPredictionDeals from "../../../../../navigation/screens/Home/FashionPredictionDeals";
-
+import MainScreen from "../Home/Components/Home/MainScreen";
+import WinterDeals from "../Home/Components/Home/WinterDeals";
+import SeasonDeals from "../Home/Components/Home/SeasonDeals";
+import FashionPredictionDeals from "../Home/Components/Home/FashionPredictionDeals";
 
 import { commonStyles } from "../../../../Styles/commonStyles";
 import { useSelector, useDispatch } from "react-redux";
@@ -17,19 +16,14 @@ import * as Animatable from "react-native-animatable";
 
 import { SliderBox } from "react-native-image-slider-box";
 
-import CategoryCards from "../../../../../components/CategoryCards";
+import CategoryCards from "../../../../Components/CategoryCards";
 import httpClients from "../../../../Redux/utils";
 import Header from "../../../../Components/Header";
 import Loader from "../../../../Components/Loader";
-import crashlytics from '@react-native-firebase/crashlytics';
-
+import crashlytics from "@react-native-firebase/crashlytics";
 
 const renderCategoryGridItem = (itemData) => {
-  return (
-    <CategoryCards
-      image={itemData.item.image}
-    />
-  );
+  return <CategoryCards image={itemData.item.image} />;
 };
 
 const HomePage = ({ navigation }) => {
@@ -95,7 +89,6 @@ const HomePage = ({ navigation }) => {
       </View>
     );
   };
-
 
   return (
     <SafeAreaView style={commonStyles.container}>

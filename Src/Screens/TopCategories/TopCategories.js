@@ -12,21 +12,22 @@ import {
 } from "react-native";
 import FastImage from "react-native-fast-image";
 import { heightPercentageToDP } from "react-native-responsive-screen";
-import CategoryCards from "../../../components/CategoryCards";
-import DealsCards from "../../../components/DealsCards";
+import CategoryCards from "../../Components/CategoryCards";
 
-import ImageSliderCustom from "../../../components/HomeComponents/ImageSliderCustom";
-import SersonChecklistCards from "../../../components/SersonChecklistCards";
+import DealsCards from "../../Components/DealsCards";
+
+import ImageSliderCustom from "../TabScreens/DrawerScreens/Home/Components/Home/ImageSliderCustom";
+import SersonChecklistCards from "../../Components/SersonChecklistCards";
 import {
   DAILYEDITORGRIDDUMMY,
   DAILYEDITORHIMDUMMY,
   SEASONCHECKLISTDUMMY,
 } from "../../../data/dummy-data";
 
-import BeautyDeals from "../../../navigation/screens/Home/BeautyDeals";
-import FashionPredictionDeals from "../../../navigation/screens/Home/FashionPredictionDeals";
-import SeasonDeals from "../../../navigation/screens/Home/SeasonDeals";
-import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
+// import BeautyDeals from "../../../navigation/screens/Home/BeautyDeals";
+import FashionPredictionDeals from "../TabScreens/DrawerScreens/Home/Components/Home/FashionPredictionDeals";
+import SeasonDeals from "../TabScreens/DrawerScreens/Home/Components/Home/SeasonDeals";
+import TodayDeals from "../TabScreens/DrawerScreens/Home/Components/Home/TodayDeals";
 import SimpleHeader from "../../Components/Header/simple_header";
 
 const renderGridItem = (itemData) => {
@@ -47,9 +48,8 @@ const renderDailyEditorGGridItem = (itemData) => {
   return (
     <CategoryCards
       image={itemData.item.image}
-      style={{...styles.mainContainerdeals2Card,width:null,height:null}}
+      style={{ ...styles.mainContainerdeals2Card, width: null, height: null }}
       imageContainerstyle={styles.imageContainerstyle2}
-     
     />
   );
 };
@@ -130,13 +130,13 @@ const TopCategories = (props) => {
             </FastImage>
           </View>
 
-         <View style={styles.headingLayoutStyles}>
+          <View style={styles.headingLayoutStyles}>
             <Text style={styles.headingStyle}>- In The Spotlight -</Text>
             <Text style={styles.textStyles}>What's Hot In Winter(wear)</Text>
           </View>
 
           <View style={styles.sliderContainer}>
-          <ImageSliderCustom
+            <ImageSliderCustom
               backgroundColorStyle={{ backgroundColor: "white" }}
             />
           </View>
@@ -172,7 +172,7 @@ const TopCategories = (props) => {
             />
           </View>
 
-         {/*   <View style={{ ...styles.backLayout, marginTop: 20 }}>
+          {/*   <View style={{ ...styles.backLayout, marginTop: 20 }}>
             <View style={styles.headingLayoutStyles}>
               <Text style={styles.headingStyle}>- Trends For Her -</Text>
               <Text style={styles.textStyles}>
@@ -458,7 +458,7 @@ const TopCategories = (props) => {
             }}
             resizeMode={FastImage.resizeMode.cover}
           />*/}
-        </View> 
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
