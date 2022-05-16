@@ -69,7 +69,7 @@ const FilterModel = (props) => {
               <Text
                 style={{
                   color: "#FF3E6C",
-                  fontSize: 14,
+                  fontSize: widthPercentageToDP(3.5),
                   fontFamily: "whitney-book",
                 }}
               >
@@ -141,7 +141,7 @@ const FilterModel = (props) => {
                 style={{
                   color: "#4D4D4D",
                   fontFamily: Fonts.whitney_semi_bold,
-                  fontSize: heightPercentageToDP(2.5),
+                  fontSize: widthPercentageToDP(4.5),
                 }}
               >
                 Close
@@ -159,7 +159,7 @@ const FilterModel = (props) => {
                 style={{
                   color: Colors.Primary,
                   fontFamily: Fonts.whitney_semi_bold,
-                  fontSize: heightPercentageToDP(2.5),
+                  fontSize: widthPercentageToDP(4.5),
                 }}
               >
                 Apply
