@@ -9,11 +9,13 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import Address from "./Address";
 import Bag from "./Bag";
 import Payment from "./Payment";
+import { Fonts } from "../../Constants/fonts";
 
 const Checkout = (props) => {
   const [screens, setScreen] = useState(0);
 
-  const orderConfirmedScreen= ()=>props.navigation.navigate("OrderConfirmed");
+  const orderConfirmedScreen = () =>
+    props.navigation.navigate("OrderConfirmed");
   const screenSet = (num) => {
     console.log("Call: " + num);
     setScreen(num);
@@ -33,7 +35,7 @@ const Checkout = (props) => {
   return (
     <SafeAreaView style={styles.screen}>
       <SimpleHeader
-        headerTitle={"Checkout"}
+        headerTitle={"Cart"}
         clickHandler={() => props.navigation.goBack()}
         placement={"left"}
       />
@@ -46,12 +48,16 @@ const Checkout = (props) => {
         <View style={styles.progressStepperStyle}>
           <View
             style={
-              screens === 1||screens===2 ? styles.selectLineStyle : styles.unSelectLineStyle
+              screens === 1 || screens === 2
+                ? styles.selectLineStyle
+                : styles.unSelectLineStyle
             }
           />
           <Text
             style={
-              screens === 1||screens===2 ? styles.selectTextStyle : styles.unSelectTextStyle
+              screens === 1 || screens === 2
+                ? styles.selectTextStyle
+                : styles.unSelectTextStyle
             }
           >
             Address
@@ -75,11 +81,11 @@ const Checkout = (props) => {
 
       <View style={styles.contentStyle}>
         {screens == 0 ? (
-          <Bag screenSet={screenSet}/>
+          <Bag screenSet={screenSet} />
         ) : screens == 1 ? (
-          <Address screenSet={screenSet}/>
+          <Address screenSet={screenSet} />
         ) : screens == 2 ? (
-          <Payment screenSet={orderConfirmedScreen}/>
+          <Payment screenSet={orderConfirmedScreen} />
         ) : null}
       </View>
     </SafeAreaView>
@@ -111,8 +117,8 @@ const styles = StyleSheet.create({
     height: 1,
   },
   selectTextStyle: {
-    fontFamily: "whitney-semi-bold",
-    fontSize: heightPercentageToDP(2),
+    fontFamily: Fonts.whitney_semi_bold,
+    fontSize: widthPercentageToDP(4),
     color: "black",
   },
   unSelectLineStyle: {
@@ -123,9 +129,9 @@ const styles = StyleSheet.create({
     height: 1,
   },
   unSelectTextStyle: {
-    fontFamily: "whitney-medium",
+    fontFamily: Fonts.whitney_medium,
     color: "#C5C5C5",
-    fontSize: heightPercentageToDP(2),
+    fontSize: widthPercentageToDP(4),
   },
   contentStyle: {
     flex: 1,

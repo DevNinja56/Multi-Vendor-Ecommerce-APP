@@ -19,13 +19,13 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
-import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
+
 import Colors from "../../Constants/colors";
 import { Entypo } from "@expo/vector-icons";
-import WinterDeals from "../../../navigation/screens/Home/WinterDeals";
+import WinterDeals from "../TabScreens/DrawerScreens/Home/Components/Home/WinterDeals";
 import httpClients from "../../Redux/utils";
 import RenderHtml from "react-native-render-html";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const SearchScreen = (props) => {
   const dataDummy = [1, 2, 3, 4];
@@ -103,18 +103,16 @@ const SearchScreen = (props) => {
 
   const _renderItem = ({ item, index }) => {
     const source = {
-      html:  '<span style=margin-left:10px>'+item._highlightResult.tag.value+'</span>'
-    }; 
+      html:
+        "<span style=margin-left:10px>" +
+        item._highlightResult.tag.value +
+        "</span>",
+    };
     return (
       <TouchableOpacity style={styles.searchRow}>
         <View style={styles.innerRow}>
           <AntDesign name="search1" size={24} color="black" />
-          <RenderHtml
-            contentWidth={width}
-            source={source}
-            tagsStyles
-            
-          />
+          <RenderHtml contentWidth={width} source={source} tagsStyles />
           {/* <Text style={styles.filterText}>{item.tag}</Text> */}
           <View style={styles.rightBtn}>
             <Feather name="arrow-up-left" size={24} color="black" />
@@ -128,7 +126,7 @@ const SearchScreen = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1 }}>
         <View style={styles.searchLayoutStyles}>
-          <TouchableOpacity onPress={()=>props.navigation.goBack()}>
+          <TouchableOpacity onPress={() => props.navigation.goBack()}>
             <AntDesign name="arrowleft" size={24} color="black" />
           </TouchableOpacity>
           <Text
@@ -141,47 +139,59 @@ const SearchScreen = (props) => {
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View>
             <View style={styles.trendingCardLayout}>
-              <Text
-                style={{
-                  fontFamily: Fonts.whitney_semi_bold,
-                  fontSize: heightPercentageToDP(2.5),
-                  padding: 8,
-                  backgroundColor: Colors.Primary,
-                  color: "white",
-                }}
-              >
-                TRENDING ON MYNTRA
-              </Text>
+              <View style={commonStyles.textTop}>
+                <Text
+                  style={{
+                    fontFamily: Fonts.whitney_semi_bold_italic,
+                    // backgroundColor: Colors.Primary,
+                    color: "white",
+                    fontSize: widthPercentageToDP(4),
+                    marginVertical: 10,
+                    textAlign: "center",
+                    paddingLeft: 16,
+                  }}
+                >
+                  TRENDING ON MYNTRA
+                </Text>
+              </View>
               <WinterDeals data={data} />
             </View>
 
             <View>
-              <Text
-                style={{
-                  fontFamily: Fonts.whitney_semi_bold,
-                  fontSize: heightPercentageToDP(2.5),
-                  padding: 8,
-                  backgroundColor: Colors.Primary,
-                  color: "white",
-                }}
-              >
-                POPULAR ON MYNTRA
-              </Text>
+              <View style={commonStyles.textTop}>
+                <Text
+                  style={{
+                    fontFamily: Fonts.whitney_semi_bold_italic,
+                    // backgroundColor: Colors.Primary,
+                    color: "white",
+                    fontSize: widthPercentageToDP(4),
+                    marginVertical: 10,
+                    textAlign: "center",
+                    paddingLeft: 16,
+                  }}
+                >
+                  POPULAR ON MYNTRA
+                </Text>
+              </View>
               <FlatList data={dataDummy} renderItem={renderItem} />
             </View>
 
             <View style={styles.trendingCardLayout}>
-              <Text
-                style={{
-                  fontFamily: Fonts.whitney_semi_bold,
-                  fontSize: heightPercentageToDP(2.5),
-                  padding: 8,
-                  backgroundColor: Colors.Primary,
-                  color: "white",
-                }}
-              >
-                TRENDING ON MYNTRA
-              </Text>
+              <View style={commonStyles.textTop}>
+                <Text
+                  style={{
+                    fontFamily: Fonts.whitney_semi_bold_italic,
+                    // backgroundColor: Colors.Primary,
+                    color: "white",
+                    fontSize: widthPercentageToDP(4),
+                    marginVertical: 10,
+                    textAlign: "center",
+                    paddingLeft: 16,
+                  }}
+                >
+                  TRENDING ON MYNTRA
+                </Text>
+              </View>
               <WinterDeals data={data} />
             </View>
           </View>
@@ -207,7 +217,6 @@ const SearchScreen = (props) => {
                 <TextInput
                   style={{ flex: 1, marginLeft: 10 }}
                   placeholder="Search For Brands & Products"
-                  
                   onChangeText={(text) => setSearch(text)}
                   value={search}
                 />
@@ -283,10 +292,10 @@ const styles = StyleSheet.create({
   },
   itemImageStyle: {
     // flex: 0.25,
-    height: heightPercentageToDP(10),
-    width: heightPercentageToDP(10),
-    // margin: 5,
-    borderRadius: heightPercentageToDP(10) / 2,
+    height: heightPercentageToDP(7),
+    width: heightPercentageToDP(7),
+    margin: 5,
+    borderRadius: heightPercentageToDP(7) / 2,
     elevation: 4,
     overflow: "hidden",
   },

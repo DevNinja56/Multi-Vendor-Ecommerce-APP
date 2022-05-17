@@ -23,8 +23,10 @@ import {
   Fontisto,
 } from "@expo/vector-icons";
 
-import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
+//import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
 import FastImage from "react-native-fast-image";
+import TodayDeals from "../TabScreens/DrawerScreens/Home/Components/Home/TodayDeals";
+
 import SimpleHeader from "../../Components/Header/simple_header";
 import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";

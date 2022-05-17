@@ -22,6 +22,7 @@ import Loader from "../../../../Components/Loader";
 import CancelOrderDialog from "../../../../Components/CancelOrderDialog";
 import ReasonForCancelDialog from "../../../../Components/ReasonForCancelDialog";
 import OrderCancelledDialog from "../../../../Components/OrderCancelledDialog";
+import { commonStyles } from "../../../../Styles/commonStyles";
 
 const OrderDetails = (props) => {
   const [isLoading, setLoading] = useState(true);
@@ -52,61 +53,74 @@ const OrderDetails = (props) => {
 
   const renderItem = (itemData) => {
     return (
-      <View
-        style={{
-          ...styles.textTopStyle,
-          justifyContent: "flex-start",
-          marginVertical: 20,
-          borderBottomWidth: widthPercentageToDP(0.1),
-        }}
-      >
-        <FastImage
-          source={{
-            uri: itemData.item.products.feature_image,
-            priority: FastImage.priority.high,
+      <View>
+        <View
+          style={{
+            ...styles.textTopStyle,
+            justifyContent: "flex-start",
+            marginVertical: heightPercentageToDP(1),
+            // borderBottomWidth: widthPercentageToDP(0.1),
           }}
-          resizeMode={FastImage.resizeMode.cover}
-          style={styles.imageStyle}
-        />
-        <View>
-          <Text
-            style={{
-              ...styles.headingStyle,
-              fontSize: heightPercentageToDP(2.1),
+        >
+          <FastImage
+            source={{
+              uri: itemData.item.products.feature_image,
+              priority: FastImage.priority.high,
             }}
-          >
-            {itemData.item.products.name.toUpperCase()}
-          </Text>
-          <Text
-            style={{
-              ...styles.textStyle,
-              fontSize: heightPercentageToDP(2),
-              marginTop: 7,
-            }}
-          >
-            {itemData.item.products.product_categories[0].categories.name}
-          </Text>
-          <View style={styles.itemStyle}>
+            resizeMode={FastImage.resizeMode.cover}
+            style={styles.imageStyle}
+          />
+          <View>
+            <Text
+              style={{
+                ...styles.headingStyle,
+                fontSize: widthPercentageToDP(3.8),
+                color: "black",
+              }}
+            >
+              {itemData.item.products.name.toUpperCase()}
+            </Text>
             <Text
               style={{
                 ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
-                color: "white",
+                fontSize: widthPercentageToDP(3.5),
+                marginTop: heightPercentageToDP(0.2),
+                color: "black",
               }}
             >
-              Items: 2
+              {itemData.item.products.product_categories[0].categories.name}
+            </Text>
+            <View style={styles.itemStyle}>
+              <Text
+                style={{
+                  ...styles.textStyle,
+                  fontSize: widthPercentageToDP(3.5),
+                  color: "white",
+                }}
+              >
+                Items: 2
+              </Text>
+            </View>
+            <Text
+              style={{
+                ...styles.headingStyle,
+                fontSize: widthPercentageToDP(3.5),
+                marginTop: heightPercentageToDP(0.3),
+                color: "black",
+              }}
+            >
+              $ {itemData.item.amount}
             </Text>
           </View>
-          <Text
-            style={{
-              ...styles.headingStyle,
-              fontSize: heightPercentageToDP(2.1),
-              marginTop: 7,
-            }}
-          >
-            $ {itemData.item.amount}
-          </Text>
         </View>
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "grey",
+            height: heightPercentageToDP(0.1),
+            marginVertical: heightPercentageToDP(0.75),
+          }}
+        />
       </View>
     );
   };
@@ -115,6 +129,7 @@ const OrderDetails = (props) => {
       <SimpleHeader
         headerTitle={"Order Details"}
         clickHandler={() => props.navigation.goBack()}
+        placement={"left"}
       />
 
       {isLoading ? (
@@ -125,7 +140,7 @@ const OrderDetails = (props) => {
             <Text
               style={{
                 ...styles.textStyle,
-                fontSize: heightPercentageToDP(2.2),
+                fontSize: widthPercentageToDP(4.2),
               }}
             >
               Order from{" "}
@@ -134,7 +149,7 @@ const OrderDetails = (props) => {
             <Text
               style={{
                 ...styles.textStyle,
-                fontSize: heightPercentageToDP(2),
+                fontSize: widthPercentageToDP(3),
               }}
             >
               {data.status.toUpperCase()}
@@ -158,8 +173,8 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
+                  fontSize: widthPercentageToDP(4),
+                  marginTop: heightPercentageToDP(0.5),
                 }}
               >
                 Order number:
@@ -167,7 +182,7 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                 }}
               >
                 {data.id}
@@ -177,8 +192,8 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
+                  fontSize: widthPercentageToDP(4),
+                  marginTop: heightPercentageToDP(0.5),
                 }}
               >
                 Quantity:
@@ -186,7 +201,7 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                 }}
               >
                 {productsData.length}
@@ -196,8 +211,8 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.textStyle,
-                  fontSize: heightPercentageToDP(2),
-                  marginTop: 7,
+                  fontSize: widthPercentageToDP(4),
+                  marginTop: heightPercentageToDP(0.5),
                 }}
               >
                 Total amount:
@@ -205,7 +220,7 @@ const OrderDetails = (props) => {
               <Text
                 style={{
                   ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                 }}
               >
                 ${data.amount}
@@ -214,7 +229,7 @@ const OrderDetails = (props) => {
           </View>
 
           <TouchableOpacity
-            style={styles.buttonStyle}
+            style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
             onPress={() => setCancelOrder(true)}
           >
             <Text
@@ -275,7 +290,7 @@ const styles = StyleSheet.create({
 
     elevation: 5,
     paddingHorizontal: 20,
-    paddingVertical: 30,
+    paddingVertical: 20,
     backgroundColor: "white",
     margin: 10,
     borderRadius: heightPercentageToDP(1.5),
@@ -288,6 +303,7 @@ const styles = StyleSheet.create({
 
   headingStyle: {
     fontFamily: "whitney-semi-bold",
+    color: "black",
   },
   textStyle: {
     fontFamily: "whitney-book",
@@ -296,31 +312,27 @@ const styles = StyleSheet.create({
     //   width:widthPercentageToDP(30),
     //   height:heightPercentageToDP(15),
 
-    height: heightPercentageToDP(18),
-    width: "30%",
-    borderRadius: 20,
+    height: heightPercentageToDP(11),
+    width: widthPercentageToDP(17),
+    borderRadius: widthPercentageToDP(2.5),
     margin: 10,
   },
   itemStyle: {
     width: widthPercentageToDP(20),
     backgroundColor: Colors.Primary,
-    marginTop: 7,
+    marginTop: 5,
     padding: 3,
     borderRadius: heightPercentageToDP(50),
     justifyContent: "center",
     alignItems: "center",
   },
   buttonStyle: {
-    marginTop: 20,
-    backgroundColor: Colors.Primary,
-    padding: 10,
+    marginVertical: heightPercentageToDP(2),
     alignSelf: "flex-end",
-    borderRadius: 10,
-    elevation: 4,
   },
-  flatListStyle: {
-    height: heightPercentageToDP(65),
-  },
+  // flatListStyle: {
+  //   height: heightPercentageToDP(65),
+  // },
 });
 
 export default OrderDetails;

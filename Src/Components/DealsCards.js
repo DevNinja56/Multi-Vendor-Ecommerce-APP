@@ -7,12 +7,10 @@ import {
   ActivityIndicator,
 } from "react-native";
 import FastImage from "react-native-fast-image";
-import Colors from "../Src/Constants/colors";
 
 const DealsCards = (props) => {
-  console.log("URL====>"+props.imageurl)
+  console.log("URL====>" + props.imageurl);
   return (
-    
     <View style={{ ...styles.dealcardStyle, ...props.style }}>
       <TouchableOpacity onPress={props.press} style={styles.imageDealCards}>
         <FastImage

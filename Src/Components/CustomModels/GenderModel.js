@@ -13,6 +13,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
+import { Fonts } from "../../Constants/fonts";
 
 const { height } = Dimensions.get("screen");
 const modalHeight = height * 0.4;
@@ -62,7 +63,7 @@ const GenderModel = (props) => {
                           <TouchableOpacity
                             onPress={() => {
                               props.onGenderClick(key);
-                              setChecked(key)
+                              setChecked(key);
                             }}
                             style={styles.btn}
                           >
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   innerModal: {
     width: widthPercentageToDP(100),
-    height: heightPercentageToDP(70),
+    height: heightPercentageToDP(35),
     borderTopRightRadius: widthPercentageToDP(4),
     borderTopLeftRadius: widthPercentageToDP(4),
     backgroundColor: "white",
@@ -126,25 +127,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 14,
-    fontFamily: "whitney-book",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_semi_bold,
     // letterSpacing: 48 * 0.02,
     // alignSelf: "flex-start",
-    color: "#9F9F9F",
+    color: "black",
   },
   textChecked: {
-    fontSize: 16,
-    fontFamily: "whitney-semi-bold",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_medium,
     // letterSpacing: 48 * 0.02,
     // alignSelf: "flex-start",
     color: "#0F0F0F",
   },
   textUnChecked: {
-    fontSize: 16,
-    fontFamily: "whitney-book",
+    fontSize: widthPercentageToDP(4.5),
+    fontFamily: Fonts.whitney_light,
     // letterSpacing: 48 * 0.02,
     // alignSelf: "flex-start",
-    color: "#4D4D4D",
+    color: "grey",
   },
   radio: {
     flexDirection: "row",

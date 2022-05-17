@@ -2,7 +2,10 @@ import React from "react";
 import { View, TouchableOpacity } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {heightPercentageToDP,widthPercentageToDP} from 'react-native-responsive-screen'
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import { Ionicons } from "@expo/vector-icons";
 import {
   BagIcon,
@@ -17,7 +20,6 @@ import {
 
 // Screens
 
-
 import HomePage from "../Screens/TabScreens/DrawerScreens/Home/HomePage";
 import DrawerNavigator from "./DrawerNavigator";
 import CategoriesScreen from "../Screens/TabScreens/Categories/CategoriesScreen";
@@ -26,7 +28,7 @@ import Profile from "../Screens/TabScreens/Profile";
 // Names
 const homeName = "Home";
 const catName = "Categories";
-const profileName = "ProfileTab";
+const profileName = "Profile";
 
 const Tab = createBottomTabNavigator();
 
@@ -42,21 +44,39 @@ const TabNavigator = () => {
           if (rn === homeName) {
             // iconName = focused ? "home" : "home-outline";
             iconName = focused ? (
-              <HomeActiveIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <HomeActiveIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             ) : (
-              <HomeIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <HomeIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             );
           } else if (rn === catName) {
             iconName = focused ? (
-              <CategoriesActiveIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <CategoriesActiveIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             ) : (
-              <CategoriesIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <CategoriesIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             );
           } else if (rn === profileName) {
             iconName = focused ? (
-              <ProfileActiveIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <ProfileActiveIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             ) : (
-              <ProfileIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+              <ProfileIcon
+                width={heightPercentageToDP(3)}
+                height={heightPercentageToDP(3)}
+              />
             );
           }
 
@@ -64,16 +84,14 @@ const TabNavigator = () => {
 
           return iconName;
         },
-        tabBarActiveTintColor:"#FF3E6C",
-        tabBarInactiveTintColor:"#0F0F0F",
-        tabBarLabelStyle:{
+        tabBarActiveTintColor: "#FF3E6C",
+        tabBarInactiveTintColor: "#0F0F0F",
+        tabBarLabelStyle: {
           padding: 2,
           fontSize: widthPercentageToDP(3),
           fontFamily: "whitney-medium",
-        }
-      })
-    }
-     
+        },
+      })}
     >
       <Tab.Screen
         name={homeName}
@@ -86,7 +104,7 @@ const TabNavigator = () => {
         options={{
           headerTitle: "Categories",
           headerTitleStyle: {
-            paddingVertical:5,
+            paddingVertical: 5,
             fontSize: widthPercentageToDP(3.5),
             fontFamily: "whitney-semi-bold",
             color: "grey",
@@ -94,10 +112,16 @@ const TabNavigator = () => {
           headerRight: () => (
             <View style={{ flexDirection: "row", paddingHorizontal: 10 }}>
               <TouchableOpacity style={{ paddingHorizontal: 10 }}>
-                <HeartIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+                <HeartIcon
+                  width={heightPercentageToDP(3)}
+                  height={heightPercentageToDP(3)}
+                />
               </TouchableOpacity>
               <TouchableOpacity style={{ paddingHorizontal: 10 }}>
-                <BagIcon width={heightPercentageToDP(3)} height={heightPercentageToDP(3)} />
+                <BagIcon
+                  width={heightPercentageToDP(3)}
+                  height={heightPercentageToDP(3)}
+                />
               </TouchableOpacity>
             </View>
           ),
@@ -109,7 +133,7 @@ const TabNavigator = () => {
         options={{
           headerTitle: "Profile",
           headerTitleStyle: {
-            paddingVertical:5,
+            paddingVertical: 5,
             fontSize: widthPercentageToDP(3.5),
             fontFamily: "whitney-semi-bold",
             color: "grey",

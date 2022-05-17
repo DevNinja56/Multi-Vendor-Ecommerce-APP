@@ -15,7 +15,10 @@ import {
 } from "react-native-responsive-screen";
 
 import { Ionicons } from "@expo/vector-icons";
-import { titleCase } from "../Src/Constants/title_case";
+import { titleCase } from "../Constants/title_case";
+import Colors from "../Constants/colors";
+import { Fonts } from "../Constants/fonts";
+import { HeartIcon } from "../../assets/svg";
 
 const ShoppingCards = (props) => {
   return (
@@ -39,7 +42,7 @@ const ShoppingCards = (props) => {
             </View>
             <View style={styles.raitingCard}>
               <Text style={styles.textPicRaiting}>{props.rating}</Text>
-              <Ionicons name="md-star" size={14} color="#FF3E6C" />
+              <Ionicons name="md-star" size={14} color={"#03956E"} />
               <View
                 style={{
                   width: 1,
@@ -65,14 +68,15 @@ const ShoppingCards = (props) => {
             style={{
               flexDirection: "row",
               justifyContent: "space-between",
-              alignItems: "center",
+              // alignItems: "center",
             }}
           >
             <View>
               <Text
                 style={{
-                  fontFamily: "whitney-semi-bold",
-                  fontSize: widthPercentageToDP(4.5),
+                  fontFamily: Fonts.whitney_medium,
+                  fontSize: widthPercentageToDP(4),
+                  color: "#545454",
                 }}
               >
                 {titleCase(props.name)}
@@ -81,7 +85,7 @@ const ShoppingCards = (props) => {
               <Text
                 style={{
                   fontSize: widthPercentageToDP(3.5),
-                  fontFamily: "whitney-book",
+                  fontFamily: Fonts.whitney_light,
                   // flex: 1,
                   marginTop: 3,
                   color: "#9F9F9F",
@@ -90,12 +94,11 @@ const ShoppingCards = (props) => {
                 {props.category_name}
               </Text>
             </View>
+
             <View>
-              <Ionicons
-                name="md-heart-outline"
-                size={widthPercentageToDP(4)}
-                color="black"
-                style={{ alignSelf: "flex-end" }}
+              <HeartIcon
+                height={heightPercentageToDP(2.5)}
+                width={heightPercentageToDP(2.5)}
               />
             </View>
           </View>
@@ -113,7 +116,7 @@ const ShoppingCards = (props) => {
                 fontFamily: "whitney-book",
               }}
             >
-              {props.regular_Price}
+              {props.regular_Price}$
             </Text>
             <Text
               style={{
@@ -123,7 +126,7 @@ const ShoppingCards = (props) => {
               }}
             >
               {"  "}
-              {props.discounted_Price}
+              {props.discounted_Price}$
             </Text>
             <Text
               style={{
@@ -142,8 +145,8 @@ const ShoppingCards = (props) => {
           <Text
             style={{
               color: "#FF3E6C",
-              fontFamily: "whitney-semi-bold",
-              fontSize: widthPercentageToDP(3),
+              fontFamily: Fonts.whitney_medium,
+              fontSize: widthPercentageToDP(3.5),
               marginTop: 3,
             }}
           >
@@ -168,7 +171,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   cardStyle: {
-    height: 200,
+    height: heightPercentageToDP(32),
     // paddingHorizontal: 10,
     // paddingTop: 5,
     alignItems: "flex-end",

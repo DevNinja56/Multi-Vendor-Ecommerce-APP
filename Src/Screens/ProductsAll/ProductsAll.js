@@ -20,12 +20,12 @@ import { MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import { PortalProvider } from "@gorhom/portal";
 import Header from "../../Components/Header";
 
-import ShoppingDeals from "../../../navigation/screens/Home/ShopingDeals";
+import ShoppingDeals from "../TabScreens/DrawerScreens/Home/Components/Home/ShopingDeals";
 import { PRODUCTSDUMMY } from "../../../data/dummy-data";
-import ShoppingCards from "../../../components/ShoppingCards";
-import GenderModel from "../../../custommodel/GenderModel";
-import SortingModel from "../../../custommodel/SortingModel";
-import FilterModel from "../../../custommodel/FilterModel";
+import ShoppingCards from "../../Components/ShoppingCards";
+import GenderModel from "../../Components/CustomModels/GenderModel";
+import SortingModel from "../../Components/CustomModels/SortingModel";
+import FilterModel from "../../Components/CustomModels/FilterModel";
 
 import Httpclients from "../../Redux/utils";
 
@@ -42,8 +42,8 @@ const ProductsAll = (props) => {
   const [isSorting, setSorting] = useState(false);
   const [whichScreen, setWhichScreen] = useState(0);
   const [isLoading, setLoading] = useState(false);
-  const [category, selectCategory] = useState("")
-  const [gender, setActiveGender] = useState(0)
+  const [category, selectCategory] = useState("");
+  const [gender, setActiveGender] = useState(0);
 
   useEffect(() => {
     getAllProducts();
@@ -83,15 +83,15 @@ const ProductsAll = (props) => {
     }
   };
 
-
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Header clickHandler={() => props.navigation.goBack()} />
 
       <View style={styles.mainContainer}>
-        <View style={{ flex: 1 }}>
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{ flex: 1, backgroundColor: "white" }}>
+          <ScrollView
+            contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}
+          >
             <View>
               <FastImage
                 source={require("../../../assets/promocode.png")}
@@ -103,7 +103,6 @@ const ProductsAll = (props) => {
             </View>
           </ScrollView>
           <View style={styles.buttonConatainer}>
-
             <View
               style={{
                 flex: 1,
@@ -119,13 +118,21 @@ const ProductsAll = (props) => {
               >
                 <Text
                   style={{
-                    fontSize: widthPercentageToDP(3.5),
+                    fontSize: widthPercentageToDP(4),
                     color: "grey",
                     fontFamily: "whitney-semi-bold",
                     textAlign: "center",
                   }}
                 >
-                  {gender == 0 ? "MEN" : gender == 1 ? "Boys" : gender == 2 ? "Girls" : gender == 3 ? "Women" : ""}
+                  {gender == 0
+                    ? "MEN"
+                    : gender == 1
+                    ? "Boys"
+                    : gender == 2
+                    ? "Girls"
+                    : gender == 3
+                    ? "Women"
+                    : ""}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -149,13 +156,13 @@ const ProductsAll = (props) => {
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <MaterialCommunityIcons
                     name="sort"
-                    size={widthPercentageToDP(3.5)}
+                    size={widthPercentageToDP(4)}
                     color="grey"
                   />
                   <Text
                     style={{
                       marginLeft: 10,
-                      fontSize: widthPercentageToDP(3.5),
+                      fontSize: widthPercentageToDP(4),
                       color: "grey",
                       fontFamily: "whitney-semi-bold",
                       textAlign: "center",
@@ -186,13 +193,13 @@ const ProductsAll = (props) => {
                 <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <MaterialCommunityIcons
                     name="filter"
-                    size={widthPercentageToDP(3.5)}
+                    size={widthPercentageToDP(4)}
                     color="grey"
                   />
                   <Text
                     style={{
                       marginLeft: 10,
-                      fontSize: widthPercentageToDP(3.5),
+                      fontSize: widthPercentageToDP(4),
                       color: "grey",
                       fontFamily: "whitney-semi-bold",
                       textAlign: "center",
@@ -203,7 +210,6 @@ const ProductsAll = (props) => {
                 </View>
               </TouchableOpacity>
             </View>
-
           </View>
 
           {isGender && (
@@ -220,7 +226,7 @@ const ProductsAll = (props) => {
               closeClick={() => setFilter(false)}
               // data={data}
               isFilter={isFilter}
-            // durationData={durationData}
+              // durationData={durationData}
             />
           )}
           {isSorting && (
@@ -229,7 +235,7 @@ const ProductsAll = (props) => {
               closeClick={() => setSorting(false)}
               // data={data}
               isSorting={isSorting}
-            // durationData={durationData}
+              // durationData={durationData}
             />
           )}
         </View>
@@ -281,8 +287,8 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     margin: 10,
-    height: heightPercentageToDP(10),
-    width: widthPercentageToDP(90),
+    height: heightPercentageToDP(7),
+    width: widthPercentageToDP(95),
     borderRadius: 10,
     overflow: "hidden",
     elevation: 4,

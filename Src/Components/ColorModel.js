@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-import { COLORDUMMY } from "../data/dummy-data";
+import { COLORDUMMY } from "../../data/dummy-data";
 
 const marginSpace = Dimensions.get("window").height * 0.1;
 const ColorModel = (props) => {
