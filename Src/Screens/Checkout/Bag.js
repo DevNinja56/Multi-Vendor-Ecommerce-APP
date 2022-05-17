@@ -28,6 +28,8 @@ import {
   OrignalProduct,
   SecurePayment,
 } from "../../../assets/svg";
+import { Fonts } from "../../Constants/fonts";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const renderItem = (itemData) => {
   return (
@@ -41,16 +43,18 @@ const renderItem = (itemData) => {
         <Text
           style={{
             ...styles.headerText,
-            fontSize: heightPercentageToDP(2),
+            fontSize: widthPercentageToDP(4),
+            color: "#4D4D4D",
           }}
         >
           SASSAFRAS
         </Text>
         <Text
           style={{
-            ...styles.simpleText,
-            fontSize: heightPercentageToDP(2),
+            fontFamily: Fonts.whitney_book,
+            fontSize: widthPercentageToDP(4),
             marginVertical: 2.5,
+            color: "#4D4D4D",
           }}
         >
           Women Black Jacket
@@ -58,8 +62,8 @@ const renderItem = (itemData) => {
         <Text
           style={{
             ...styles.simpleText,
-            fontSize: heightPercentageToDP(1.75),
-            color: "#959595",
+            fontSize: widthPercentageToDP(3.5),
+            color: "#B4B4B4",
             marginVertical: 2.5,
           }}
         >
@@ -76,7 +80,7 @@ const renderItem = (itemData) => {
             <Text
               style={{
                 ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.5),
                 color: "white",
                 marginVertical: 2.5,
               }}
@@ -88,36 +92,36 @@ const renderItem = (itemData) => {
             <Text
               style={{
                 ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.5),
                 color: "white",
                 marginVertical: 2.5,
               }}
             >
-              Size: S
+              Qty: 1
             </Text>
           </View>
         </View>
 
         <Text
           style={{
-            fontSize: heightPercentageToDP(1.75),
+            fontSize: widthPercentageToDP(3.75),
             marginTop: 5,
+            fontFamily: Fonts.whitney_light,
           }}
         >
           <Text
             style={{
-              color: "#9F9F9F",
+              color: "#B4B4B4",
               textDecorationLine: "line-through",
-              fontFamily: "whitney-book",
             }}
           >
             Rs 899
           </Text>
           <Text
             style={{
-              color: "black",
-              fontFamily: "whitney-semi-bold",
+              fontFamily: Fonts.whitney_semi_bold,
               marginTop: 3,
+              color: "#4D4D4D",
             }}
           >
             {"  "}
@@ -125,11 +129,7 @@ const renderItem = (itemData) => {
           </Text>
           <Text
             style={{
-              color: "#FF3E6C",
-              fontFamily: "whitney-book",
-              fontSize: heightPercentageToDP(1.75),
-              // marginTop: 5,
-              // marginLeft: 5,
+              color: Colors.Primary,
             }}
           >
             {"  "}
@@ -140,17 +140,27 @@ const renderItem = (itemData) => {
         <View style={{ ...styles.container_1_Styles, alignItems: "center" }}>
           <MaterialIcons
             name="done"
-            size={heightPercentageToDP(2.5)}
+            size={widthPercentageToDP(4.5)}
             color="#15BC09"
           />
           <Text
             style={{
               ...styles.simpleText,
-              fontSize: heightPercentageToDP(1.75),
+              fontSize: widthPercentageToDP(3.5),
               marginHorizontal: 4,
+              color: "#B4B4B4",
             }}
           >
-            Delivery by <Text style={styles.headerText}>11 Jan 2022</Text>
+            Delivery by{" "}
+            <Text
+              style={{
+                fontFamily: Fonts.whitney_semi_bold,
+                color: "black",
+                fontSize: widthPercentageToDP(3.75),
+              }}
+            >
+              11 Jan 2022
+            </Text>
           </Text>
         </View>
       </View>
@@ -168,26 +178,25 @@ const renderItemMore = () => {
     <View style={styles.moreItemStyle}>
       <FastImage
         source={require("../../../assets/mensCollectionSuits.jpg")}
-        style={{ flex: 0.65, height: "100%", width: "100%" }}
+        style={{ height: "60%", width: "100%" }}
       />
 
-      <View style={{ flex: 0.35 }}>
+      <View style={{ height: "25%" }}>
         <Text
           style={{
-            flex: 1,
             paddingHorizontal: heightPercentageToDP(0.5),
             ...styles.headerText,
-            fontSize: heightPercentageToDP(2),
+            fontSize: widthPercentageToDP(4),
+            color: "#4D4D4D",
           }}
         >
           BIG HEAD TIGI
         </Text>
         <Text
           style={{
-            flex: 1,
             paddingHorizontal: heightPercentageToDP(0.5),
-            ...styles.simpleText,
-            fontSize: heightPercentageToDP(2),
+            fontFamily: Fonts.whitney_book,
+            fontSize: widthPercentageToDP(3.75),
             color: "#959595",
           }}
         >
@@ -195,37 +204,35 @@ const renderItemMore = () => {
         </Text>
         <Text
           style={{
-            flex: 1,
             ...styles.headerText,
             paddingHorizontal: heightPercentageToDP(0.5),
             fontSize: heightPercentageToDP(2),
-            color: "#959595",
+            color: "#4D4D4D",
           }}
         >
           RS 49
         </Text>
-        <TouchableOpacity
+      </View>
+      <TouchableOpacity
+        style={{
+          height: "15%",
+          // borderTopWidth: heightPercentageToDP(0.1),
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: Colors.Primary,
+        }}
+      >
+        <Text
           style={{
-            flex: 2,
-            // height: "100%",
-
-            borderTopWidth: heightPercentageToDP(0.1),
-            justifyContent: "center",
-            alignItems: "center",
+            fontSize: widthPercentageToDP(4),
+            ...styles.headerText,
+            color: "white",
+            //   textAlign: "center",
           }}
         >
-          <Text
-            style={{
-              fontSize: heightPercentageToDP(2),
-              ...styles.headerText,
-              color: Colors.Primary,
-              //   textAlign: "center",
-            }}
-          >
-            ADD TO CART
-          </Text>
-        </TouchableOpacity>
-      </View>
+          ADD TO CART
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -247,7 +254,7 @@ const Bag = (props) => {
           alignItems: "center",
         }}
       >
-        <View style={styles.container_1_Styles}>
+        <View style={{ ...styles.container_1_Styles, alignItems: "center" }}>
           <Text
             style={{
               ...styles.simpleText,
@@ -261,6 +268,7 @@ const Bag = (props) => {
             style={{
               ...styles.headerText,
               fontSize: widthPercentageToDP(4),
+              color: "black",
             }}
           >
             400001
@@ -269,10 +277,10 @@ const Bag = (props) => {
         <TouchableOpacity>
           <Text
             style={{
-              ...styles.headerText,
+              fontFamily: Fonts.whitney_book,
               color: Colors.Primary,
 
-              fontSize: heightPercentageToDP(1.75),
+              fontSize: widthPercentageToDP(3.2),
             }}
           >
             Change
@@ -292,16 +300,18 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(4),
+              color: "black",
             }}
           >
             Available Offers
           </Text>
           <Text
             style={{
-              ...styles.simpleText,
-              fontSize: heightPercentageToDP(1.75),
+              fontFamily: Fonts.whitney_book,
+              fontSize: widthPercentageToDP(3.5),
               marginVertical: 5,
+              color: "black",
             }}
           >
             10% Discount with Standard Cgartered Credit and Debit Cards on a min
@@ -309,19 +319,28 @@ const Bag = (props) => {
           </Text>
 
           <TouchableOpacity
-            style={{ ...styles.container_1_Styles, alignItems: "center" }}
+            style={{
+              ...styles.container_1_Styles,
+              alignItems: "center",
+              // justifyContent: "center",
+            }}
           >
             <Text
               style={{
                 ...styles.headerText,
-                fontSize: heightPercentageToDP(2),
+                fontSize: widthPercentageToDP(3.5),
                 color: Colors.Primary,
                 marginRight: 5,
+                marginTop: heightPercentageToDP(0.2),
               }}
             >
               Show More
             </Text>
-            <AntDesign name="caretdown" size={12} color={Colors.Primary} />
+            <AntDesign
+              name="caretdown"
+              size={widthPercentageToDP(3.5)}
+              color={Colors.Primary}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -335,16 +354,18 @@ const Bag = (props) => {
       >
         <Text
           style={{
-            fontFamily: "whitney-medium",
-            fontSize: heightPercentageToDP(2),
+            fontFamily: Fonts.whitney_book,
+            fontSize: widthPercentageToDP(4),
+            color: "black",
           }}
         >
           1 ITEM
         </Text>
         <Text
           style={{
-            fontFamily: "whitney-medium",
-            fontSize: heightPercentageToDP(2),
+            fontFamily: Fonts.whitney_book,
+            fontSize: widthPercentageToDP(4),
+            color: "black",
           }}
         >
           Total: Rs 5,000
@@ -366,8 +387,8 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2.5),
-              color: "#6D6D6D",
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
             }}
           >
             REMOVE
@@ -375,8 +396,8 @@ const Bag = (props) => {
         </TouchableOpacity>
         <View
           style={{
-            height: "80%",
-            width: widthPercentageToDP(0.1),
+            height: "100%",
+            width: widthPercentageToDP(0.15),
             backgroundColor: "black",
           }}
         />
@@ -384,8 +405,8 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2.5),
-              color: "#6D6D6D",
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
             }}
           >
             MOVE TO WISHLIST
@@ -396,13 +417,15 @@ const Bag = (props) => {
       <View style={styles.container_5_Styles}>
         <View style={{ ...styles.container_1_Styles, alignItems: "center" }}>
           <BagIcon
-            height={heightPercentageToDP(4)}
-            width={heightPercentageToDP(4)}
+            height={widthPercentageToDP(5)}
+            width={widthPercentageToDP(5)}
+            color={"#4D4D4D"}
           />
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
               marginHorizontal: 5,
             }}
           >
@@ -425,7 +448,15 @@ const Bag = (props) => {
                         borderRadius: 50,
                       }}
                     >
-                      <Text style={styles.headerText}>{gender}</Text>
+                      <Text
+                        style={{
+                          ...styles.headerText,
+                          fontSize: widthPercentageToDP(4),
+                          color: "black",
+                        }}
+                      >
+                        {gender}
+                      </Text>
                     </TouchableOpacity>
                   ) : (
                     <TouchableOpacity
@@ -440,7 +471,15 @@ const Bag = (props) => {
                         borderRadius: 50,
                       }}
                     >
-                      <Text style={styles.simpleText}>{gender}</Text>
+                      <Text
+                        style={{
+                          ...styles.simpleText,
+                          fontSize: widthPercentageToDP(4),
+                          color: "black",
+                        }}
+                      >
+                        {gender}
+                      </Text>
                     </TouchableOpacity>
                   )}
                 </View>
@@ -463,8 +502,9 @@ const Bag = (props) => {
       >
         <Text
           style={{
-            fontFamily: "whitney-medium",
-            fontSize: heightPercentageToDP(2),
+            fontFamily: Fonts.whitney_book,
+            fontSize: widthPercentageToDP(4),
+            color: "black",
           }}
         >
           COUPONS
@@ -480,20 +520,29 @@ const Bag = (props) => {
             }}
           >
             <View
-              style={{ ...styles.container_1_Styles, alignItems: "center" }}
+              style={{
+                ...styles.container_1_Styles,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <CouponTagIcon />
+              <CouponTagIcon
+                height={widthPercentageToDP(4.5)}
+                width={widthPercentageToDP(4.5)}
+                color={"#4D4D4D"}
+              />
               <Text
                 style={{
                   ...styles.headerText,
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                   marginHorizontal: 10,
+                  color: "#4D4D4D",
                 }}
               >
                 Apply Coupon
               </Text>
             </View>
-            <Ionicons name="caret-forward" size={24} color="black" />
+            <Ionicons name="caret-forward" size={24} color="#4D4D4D" />
           </View>
         </TouchableOpacity>
         <View
@@ -505,7 +554,13 @@ const Bag = (props) => {
           }}
         />
         <TouchableOpacity>
-          <Text style={{ ...styles.headerText, color: Colors.Primary }}>
+          <Text
+            style={{
+              ...styles.headerText,
+              color: Colors.Primary,
+              fontSize: widthPercentageToDP(3.5),
+            }}
+          >
             Login to see best coupon for you
           </Text>
         </TouchableOpacity>
@@ -515,8 +570,8 @@ const Bag = (props) => {
         <Text
           style={{
             ...styles.headerText,
-            fontSize: heightPercentageToDP(2),
-
+            fontSize: widthPercentageToDP(4),
+            color: "#4D4D4D",
             // marginHorizontal: 10,
           }}
         >
@@ -541,8 +596,9 @@ const Bag = (props) => {
           <View style={{ flex: 2, alignItems: "flex-start" }}>
             <Text
               style={{
-                ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontFamily: Fonts.whitney_light,
+                fontSize: widthPercentageToDP(3.65),
+                color: "#4D4D4D",
                 marginVertical: 5,
               }}
             >
@@ -550,8 +606,9 @@ const Bag = (props) => {
             </Text>
             <Text
               style={{
-                ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontFamily: Fonts.whitney_light,
+                fontSize: widthPercentageToDP(3.65),
+                color: "#4D4D4D",
                 marginVertical: 5,
               }}
             >
@@ -559,8 +616,9 @@ const Bag = (props) => {
             </Text>
             <Text
               style={{
-                ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontFamily: Fonts.whitney_light,
+                fontSize: widthPercentageToDP(3.65),
+                color: "#4D4D4D",
                 marginVertical: 5,
               }}
             >
@@ -568,12 +626,13 @@ const Bag = (props) => {
             </Text>
             <Text
               style={{
-                ...styles.headerText,
-                fontSize: heightPercentageToDP(1.75),
+                fontFamily: Fonts.whitney_light,
+                fontSize: widthPercentageToDP(3.65),
+                color: "#4D4D4D",
                 marginVertical: 5,
               }}
             >
-              Convenience Fee{" "}
+              Convenience Fee{"   "}
               <Text style={{ color: Colors.Primary }}>Know more</Text>
             </Text>
           </View>
@@ -581,8 +640,9 @@ const Bag = (props) => {
             <Text
               style={{
                 ...styles.simpleText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.65),
                 marginVertical: 5,
+                color: "#4D4D4D",
               }}
             >
               Rs1,998
@@ -590,7 +650,7 @@ const Bag = (props) => {
             <Text
               style={{
                 ...styles.simpleText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.65),
                 marginVertical: 5,
                 color: "#04A48E",
               }}
@@ -600,7 +660,7 @@ const Bag = (props) => {
             <Text
               style={{
                 ...styles.simpleText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.65),
                 marginVertical: 5,
                 color: Colors.Primary,
               }}
@@ -610,8 +670,9 @@ const Bag = (props) => {
             <Text
               style={{
                 ...styles.simpleText,
-                fontSize: heightPercentageToDP(1.75),
+                fontSize: widthPercentageToDP(3.65),
                 marginVertical: 5,
+                color: "#4D4D4D",
               }}
             >
               Rs<Text style={{ textDecorationLine: "line-through" }}>99</Text>{" "}
@@ -638,7 +699,8 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
             }}
           >
             Total Amount
@@ -646,7 +708,8 @@ const Bag = (props) => {
           <Text
             style={{
               ...styles.headerText,
-              fontSize: heightPercentageToDP(2),
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
             }}
           >
             Rs966
@@ -663,42 +726,75 @@ const Bag = (props) => {
         }}
       >
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <OrignalProduct
-            height={heightPercentageToDP(10)}
-            width={heightPercentageToDP(10)}
-          />
+          <View
+            style={{
+              height: widthPercentageToDP(20),
+              width: widthPercentageToDP(20),
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <OrignalProduct height={"100%"} width={"100%"} />
+          </View>
           <Text
-            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+            style={{
+              fontFamily: Fonts.whitney_light,
+              fontSize: widthPercentageToDP(3.5),
+              color: "#4D4D4D",
+            }}
           >
             Genuine Products
           </Text>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <ContactlessDelivery
-            height={heightPercentageToDP(10)}
-            width={heightPercentageToDP(10)}
-          />
-          <Text
-            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+          <View
+            style={{
+              height: widthPercentageToDP(20),
+              width: widthPercentageToDP(20),
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            Genuine Products
+            <ContactlessDelivery height={"100%"} width={"100%"} />
+          </View>
+          <Text
+            style={{
+              fontFamily: Fonts.whitney_light,
+              fontSize: widthPercentageToDP(3.5),
+              color: "#4D4D4D",
+            }}
+          >
+            Contactless Delivery
           </Text>
         </View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <SecurePayment
-            height={heightPercentageToDP(10)}
-            width={heightPercentageToDP(10)}
-          />
-          <Text
-            style={{ ...styles.headerText, fontSize: heightPercentageToDP(2) }}
+          <View
+            style={{
+              height: widthPercentageToDP(20),
+              width: widthPercentageToDP(20),
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            Genuine Products
+            <SecurePayment height={"82%"} width={"100%"} />
+          </View>
+          <Text
+            style={{
+              fontFamily: Fonts.whitney_light,
+              fontSize: widthPercentageToDP(3.5),
+              color: "#4D4D4D",
+            }}
+          >
+            Secure Payments
           </Text>
         </View>
       </View>
 
       <TouchableOpacity
-        style={styles.buttonStyle}
+        style={{
+          ...commonStyles.buttonStyle,
+          marginHorizontal: widthPercentageToDP(1),
+        }}
         onPress={() => props.screenSet(1)}
       >
         <Text
@@ -779,10 +875,15 @@ const styles = StyleSheet.create({
   },
 
   moreItemStyle: {
-    marginHorizontal: 10,
+    marginHorizontal: widthPercentageToDP(3),
     height: heightPercentageToDP(35),
+    width: widthPercentageToDP(47),
     backgroundColor: "white",
-    borderWidth: widthPercentageToDP(0.1),
+    // borderWidth: widthPercentageToDP(0.1),
+    borderRadius: widthPercentageToDP(5),
+    overflow: "hidden",
+    elevation: 4,
+    marginVertical: widthPercentageToDP(1),
   },
   container_6_Styles: {
     backgroundColor: "white",

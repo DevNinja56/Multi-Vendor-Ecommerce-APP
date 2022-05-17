@@ -43,7 +43,7 @@ const CustomHeader = (props) => {
           <FastImage
             source={require("../../../assets/modejenLogo.png")}
             style={{
-              height: heightPercentageToDP(3),
+              height: heightPercentageToDP(3.7),
               width: widthPercentageToDP(15),
               marginTop: heightPercentageToDP(0.3),
               // borderWidth: 1,
