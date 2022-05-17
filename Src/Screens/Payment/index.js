@@ -15,6 +15,7 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const PaymentMethod = (props) => {
   const data = [1, 2, 3, 4];
@@ -40,7 +41,7 @@ const PaymentMethod = (props) => {
           style={{
             fontFamily: "whitney-medium",
             color: "black",
-            fontSize: heightPercentageToDP(2),
+            fontSize: widthPercentageToDP(3.5),
             flex: 1,
             textAlign: "left",
             marginLeft: heightPercentageToDP(2),
@@ -63,7 +64,7 @@ const PaymentMethod = (props) => {
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: -heightPercentageToDP(10),
+          marginTop: heightPercentageToDP(-14),
         }}
       >
         {/* <SliderBox
@@ -89,13 +90,13 @@ const PaymentMethod = (props) => {
       </View>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("PaymentAdd")}
-        style={styles.addLoctionBtn}
+        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
       >
         <AntDesign name="plus" size={24} color="white" />
         <Text
           style={{
             ...styles.headingStyle,
-            fontSize: heightPercentageToDP(2.5),
+            fontSize: widthPercentageToDP(4.5),
             // alignSelf: "center",
             textAlign: "center",
             flex: 1,
@@ -109,7 +110,7 @@ const PaymentMethod = (props) => {
       <Text
         style={{
           fontFamily: "whitney-medium",
-          fontSize: heightPercentageToDP(3),
+          fontSize: widthPercentageToDP(4),
           color: "black",
           padding: heightPercentageToDP(3),
         }}

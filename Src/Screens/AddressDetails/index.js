@@ -14,6 +14,7 @@ import SimpleHeader from "../../Components/Header/simple_header";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { styles } from "./style";
 import { DeleteIcon, LocationColor } from "../../../assets/svg";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const AddressDetails = (props) => {
   const data = [1, 2, 3];
@@ -56,10 +57,10 @@ const AddressDetails = (props) => {
     <View style={styles.containerMain}>
       <SimpleHeader
         clickHandler={() => props.navigation.goBack()}
-        headerTitle={"ADDRESS"}
+        headerTitle={"Address"}
         placement={"left"}
       />
-      <Text
+      {/* <Text
         style={{
           ...styles.headingStyle,
           fontSize: heightPercentageToDP(3.5),
@@ -69,7 +70,7 @@ const AddressDetails = (props) => {
         }}
       >
         My Address
-      </Text>
+      </Text> */}
 
       <View style={styles.addressDetailsStyle}>
         <View
@@ -131,7 +132,7 @@ const AddressDetails = (props) => {
 
       <TouchableOpacity
         onPress={() => props.navigation.navigate("AddressAdd")}
-        style={styles.addLoctionBtn}
+        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
       >
         <AntDesign name="plus" size={24} color="black" />
         <Text

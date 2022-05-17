@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, useWindowDimensions } from "react-native";
+import { View, StyleSheet, useWindowDimensions, Text } from "react-native";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Recent from "./components/Recent";
 import YouMissed from "./components/YouMissed";
@@ -57,13 +57,22 @@ const NotificationScreen = (props) => {
   const layout = useWindowDimensions();
   const [index, setIndex] = useState(0);
   const [routes] = useState([
-    { key: "recent", title: "Recent" },
+    { key: "recent", title: "Recents" },
     { key: "youmissed", title: "You Missed" },
   ]);
-
+  const _renderLabel = ({ route }) => (
+    <Text
+      style={{
+        textTransform: "lowercase",
+      }}
+    >
+      {route.title}
+    </Text>
+  );
   return (
     <View style={styles.screen}>
       <SimpleHeader
+        placement={"left"}
         clickHandler={() => props.navigation.goBack()}
         headerTitle={"Notifications"}
       />
@@ -71,6 +80,7 @@ const NotificationScreen = (props) => {
         <Loader color={Colors.Primary} />
       ) : (
         <TabView
+          renderLabel={_renderLabel}
           navigationState={{ index, routes }}
           renderScene={renderScene}
           onIndexChange={setIndex}

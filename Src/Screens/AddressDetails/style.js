@@ -1,5 +1,8 @@
 import { StyleSheet } from "react-native";
-import { heightPercentageToDP } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import Colors from "../../Constants/colors";
 
 export const styles = StyleSheet.create({
@@ -11,7 +14,9 @@ export const styles = StyleSheet.create({
     fontFamily: "whitney-book",
   },
   locationCardsStyle: {
-    margin: heightPercentageToDP(3),
+    width: widthPercentageToDP(90),
+    alignSelf: "center",
+    marginTop: heightPercentageToDP(3),
     flexDirection: "row",
     backgroundColor: "white",
     padding: heightPercentageToDP(2),
@@ -81,17 +86,9 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     margin: heightPercentageToDP(3),
-    padding: heightPercentageToDP(2),
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    // padding: heightPercentageToDP(2),
 
-    elevation: 5,
-    borderRadius: heightPercentageToDP(1),
+    // borderRadius: heightPercentageToDP(1),
   },
   locationCardInfo: {
     justifyContent: "center",
@@ -142,10 +139,5 @@ export const styles = StyleSheet.create({
     backgroundColor: "white",
     elevation: 2,
     padding: 5,
-  },
-  buttonStyle: {
-    padding: 16,
-    backgroundColor: Colors.Primary,
-    alignItems: "center",
   },
 });

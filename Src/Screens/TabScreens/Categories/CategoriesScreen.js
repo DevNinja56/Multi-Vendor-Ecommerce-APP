@@ -17,6 +17,7 @@ import Loader from "../../../Components/Loader";
 import Colors from "../../../Constants/colors";
 import httpClients from "../../../Redux/utils";
 import FastImage from "react-native-fast-image";
+import SnakBar from '../../../Components/SnakBar'
 
 const CategoriesScreen = ({ props, navigation }) => {
   const [showScreen, setShowScreen] = useState(false);
@@ -56,7 +57,7 @@ const CategoriesScreen = ({ props, navigation }) => {
 
   const renderItem = ({ item, index }) => {
     return (
-      <View>
+      <View >
         <FastImage
           source={{ uri: item.category_bgimage }}
           resizeMode={FastImage.resizeMode.cover}
@@ -84,7 +85,7 @@ const CategoriesScreen = ({ props, navigation }) => {
                 >
                   <Text
                     style={{
-                      fontSize: widthPercentageToDP(5.5),
+                      fontSize: widthPercentageToDP(6.5),
                       fontFamily: "whitney-semi-bold",
                       textAlign: "left",
                     }}
@@ -93,14 +94,14 @@ const CategoriesScreen = ({ props, navigation }) => {
                   </Text>
                   <Ionicons
                     name={"ios-chevron-down"}
-                    size={widthPercentageToDP(2.5)}
+                    size={widthPercentageToDP(3)}
                   />
                 </View>
                 <Text
                   style={{
                     fontSize: widthPercentageToDP(3),
                     fontFamily: "whitney-light",
-                    marginTop: 10,
+                    marginTop: heightPercentageToDP(0.4),
                   }}
                 >
                   {item.subcategory.name}
@@ -125,7 +126,7 @@ const CategoriesScreen = ({ props, navigation }) => {
           </TouchableOpacity>
         </FastImage>
         {item.is_active && <CategoriesExtend data={item.subcategory} />}
-      </View>
+      </View> 
     );
   };
 
@@ -142,6 +143,7 @@ const CategoriesScreen = ({ props, navigation }) => {
           renderItem={renderItem}
         />
       )}
+       <SnakBar isVisible={false}/>
     </View>
   );
 };

@@ -5,7 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import {
@@ -14,47 +14,48 @@ import {
 } from "react-native-responsive-screen";
 import SimpleHeader from "../../Components/Header/simple_header";
 import FastImage from "react-native-fast-image";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
-import httpClients from '../../Redux/utils'
-import { userToken } from '../../Redux/action'
-import Loader from '../../Components/Loader'
-import { useDispatch, useSelector } from 'react-redux'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import httpClients from "../../Redux/utils";
+import { userToken } from "../../Redux/action";
+import Loader from "../../Components/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import Colors from "../../Constants/colors";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const LoginScreen = (props) => {
   const [isLoading, setLoading] = useState();
-  const [phone, setPhone] = useState(0)
-  const dispatch = useDispatch()
+  const [phone, setPhone] = useState(0);
+  const dispatch = useDispatch();
 
   const validateNumber = () => {
-    const regex = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm
+    const regex = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/gm;
     if (regex.test(phone)) {
-      loginSignupApi()
+      loginSignupApi();
     } else {
-      Alert.alert('Incorrect Number', 'Please provide your phone number in this format 03xx xxx xxxx')
+      Alert.alert(
+        "Incorrect Number",
+        "Please provide your phone number in this format 03xx xxx xxxx"
+      );
     }
-  }
+  };
 
   const loginSignupApi = async () => {
-    setLoading(true)
-    const res = await httpClients.get(`otp_login?phone=+92` + phone)
-    setLoading(false)
+    setLoading(true);
+    const res = await httpClients.get(`otp_login?phone=+92` + phone);
+    setLoading(false);
     if (res.data.status === "success") {
-      dispatch(userToken(res.data.tokken))
-      props.navigation.navigate('OTP', {
-        isLogin: res.data.userAlreadyExist
-      })
+      dispatch(userToken(res.data.tokken));
+      props.navigation.navigate("OTP", {
+        isLogin: res.data.userAlreadyExist,
+      });
     }
-  }
-
+  };
 
   return (
     <View style={styles.screen}>
-      <SimpleHeader
-        clickHandler={() => props.navigation.goBack()}
-        headerTitle={"Login . SignUp"}
-      />
-      <KeyboardAwareScrollView >
-        <View style={styles.imageStyle} >
+      <SimpleHeader clickHandler={() => props.navigation.goBack()} />
+      <KeyboardAwareScrollView>
+        <View style={styles.imageStyle}>
           <FastImage
             source={require("../../../assets/loginPic.png")}
             style={styles.images}
@@ -79,6 +80,7 @@ const LoginScreen = (props) => {
                 fontFamily: "whitney-book",
                 fontSize: heightPercentageToDP(2),
                 color: "grey",
+                fontWeight: "bold",
               }}
             >
               +92
@@ -100,12 +102,16 @@ const LoginScreen = (props) => {
                 fontFamily: "whitney-book",
                 fontSize: heightPercentageToDP(2),
                 color: "black",
+                // borderWidth: 1,
+                flex: 1,
               }}
               onChangeText={(text) => setPhone(text)}
             />
           </View>
         </View>
-        <View style={{ paddingHorizontal: 25, marginVertical: 20, width: "90%" }}>
+        <View
+          style={{ paddingHorizontal: 25, marginVertical: 20, width: "90%" }}
+        >
           <Text
             style={{
               fontFamily: "whitney-book",
@@ -118,24 +124,24 @@ const LoginScreen = (props) => {
             <Text style={{ color: "#FF3E6C" }}>Privacy Policy</Text>
           </Text>
         </View>
-        <View style={styles.buttonLayout}>
-          <TouchableOpacity
-            onPress={() => {
-              validateNumber()
+
+        <TouchableOpacity
+          onPress={() => {
+            validateNumber();
+          }}
+          style={{ ...commonStyles.buttonStyle, ...styles.buttonLayout }}
+        >
+          <Text
+            style={{
+              fontFamily: "whitney-semi-bold",
+              color: "white",
+              fontSize: heightPercentageToDP(1.75),
             }}
-            style={{ width: "100%", padding: 10, alignItems: "center" }}
           >
-            <Text
-              style={{
-                fontFamily: "whitney-semi-bold",
-                color: "white",
-                fontSize: heightPercentageToDP(1.75),
-              }}
-            >
-              CONTINUE
-            </Text>
-          </TouchableOpacity>
-        </View>
+            CONTINUE
+          </Text>
+        </TouchableOpacity>
+
         <View style={{ flexDirection: "row", padding: 20 }}>
           <Text
             style={{
@@ -159,11 +165,7 @@ const LoginScreen = (props) => {
           </TouchableOpacity>
         </View>
       </KeyboardAwareScrollView>
-      {isLoading &&
-        <Loader
-          color="black"
-        />
-      }
+      {isLoading && <Loader color="black" />}
     </View>
   );
 };
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
     // padding:10,
     flex: 1,
     // width: "100%",
-    justifyContent: 'center'
+    justifyContent: "center",
     // height: heightPercentageToDP(20),
   },
   images: {
@@ -207,7 +209,6 @@ const styles = StyleSheet.create({
   buttonLayout: {
     marginHorizontal: 25,
     marginVertical: 10,
-    backgroundColor: "#FF3E6C",
   },
 });
 

@@ -24,9 +24,9 @@ import {
 } from "@expo/vector-icons";
 
 import TodayDeals from "../../../navigation/screens/Home/TodayDeals";
-
+import FastImage from "react-native-fast-image";
 import SimpleHeader from "../../Components/Header/simple_header";
-import { widthPercentageToDP } from "react-native-responsive-screen";
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";
 import Colors from "../../Constants/colors";
 
@@ -95,7 +95,6 @@ const ProductDetail = (props) => {
                   {itemData.item.created_at}
                 </Text>
               </View>
-
             </View>
           </View>
         </View>
@@ -150,6 +149,7 @@ const ProductDetail = (props) => {
       ) : (
         <>
           <SimpleHeader
+            placement={"left"}
             clickHandler={() => props.navigation.goBack()}
             headerTitle={data.product_title}
           />
@@ -158,11 +158,14 @@ const ProductDetail = (props) => {
               <View style={styles.main}>
                 <View style={styles.image}>
                   <SliderBox
+                  ImageComponent={FastImage}
                     images={data.images}
-                    sliderBoxHeight={"100%"}
+                    sliderBoxHeight={heightPercentageToDP(59)}
                     //   onCurrentImagePressed={(index) =>
                     //     console.warn(`image ${index} pressed`)
                     //   }
+                    autoplay
+                    circleLoop
                     dotColor="#FF3E6C"
                     inactiveDotColor="#90A4AE"
                   />
@@ -175,7 +178,7 @@ const ProductDetail = (props) => {
                       />
                       <Text
                         style={{
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3),
                           fontFamily: "whitney-semi-bold",
                           marginHorizontal: 5,
                           color: "#000",
@@ -200,7 +203,7 @@ const ProductDetail = (props) => {
                       />
                       <Text
                         style={{
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3),
                           fontFamily: "whitney-light",
                           marginHorizontal: 5,
                           color: "#C1C1C1",
@@ -214,11 +217,11 @@ const ProductDetail = (props) => {
                 {/* Description View */}
                 <View style={styles.descriptionStyle}>
                   <View>
-                    <Text style={{ fontFamily: "whitney-book", fontSize: 14 }}>
+                    <Text style={{ fontFamily: "whitney-book", fontSize: widthPercentageToDP(3.5),}}>
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
-                          fontSize: 16,
+                          fontSize: widthPercentageToDP(4),
                         }}
                       >
                         {data.product_title}
@@ -318,13 +321,13 @@ const ProductDetail = (props) => {
                 {/* Return View */}
                 <View style={{ ...styles.descriptionStyle, marginTop: 15 }}>
                   <View style={{ justifyContent: "center" }}>
-                    <Text style={{ ...styles.textStyle, fontSize: 14 }}>
+                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
                       {data.exchange_policy.title}
                     </Text>
                     <Text
                       style={{
                         fontFamily: "whitney-book",
-                        fontSize: 14,
+                        fontSize: widthPercentageToDP(3.5),
                         marginTop: 7,
                         width: "90%",
                       }}
@@ -343,13 +346,13 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle, fontSize: 16 }}>
+                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
                       Select Sizes
                     </Text>
                     <Text
                       style={{
                         ...styles.textStyle,
-                        fontSize: 16,
+                        fontSize: widthPercentageToDP(4),
                         color: "#FF3E6C",
                       }}
                     >
@@ -379,7 +382,7 @@ const ProductDetail = (props) => {
                                         // padding: 10,
                                         color: "#FF3E6C",
                                         textAlign: "center",
-                                        fontSize: 12,
+                                        fontSize: widthPercentageToDP(3),
                                         fontFamily: "whitney-semi-bold",
                                       }}
                                     >
@@ -407,7 +410,7 @@ const ProductDetail = (props) => {
                                     <Text
                                       style={{
                                         // padding: 5,
-                                        fontSize: 12,
+                                        fontSize: widthPercentageToDP(3),
                                         fontFamily: "whitney-semi-bold",
                                         textAlign: "center",
                                         color: "black",
@@ -435,7 +438,7 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle, fontSize: 16 }}>
+                    <Text style={{ ...styles.textStyle,  fontSize: widthPercentageToDP(3.9), }}>
                       Select Colors
                     </Text>
                     {/* <Text
@@ -469,7 +472,7 @@ const ProductDetail = (props) => {
                                         // padding: 10,
                                         color: "#FF3E6C",
                                         textAlign: "center",
-                                        fontSize: 12,
+                                        fontSize: widthPercentageToDP(3),
                                         fontFamily: "whitney-semi-bold",
                                       }}
                                     ></Text>
@@ -496,7 +499,7 @@ const ProductDetail = (props) => {
                                     <Text
                                       style={{
                                         // padding: 5,
-                                        fontSize: 12,
+                                        fontSize: widthPercentageToDP(3),
                                         fontFamily: "whitney-semi-bold",
                                         textAlign: "center",
                                         color: "black",
@@ -548,7 +551,7 @@ const ProductDetail = (props) => {
                               <Text
                                 style={{
                                   fontFamily: "whitney-semi-bold",
-                                  fontSize: 14,
+                                  fontSize: widthPercentageToDP(3.5),
                                   color: "black",
                                   marginHorizontal: 5,
                                 }}
@@ -588,7 +591,7 @@ const ProductDetail = (props) => {
                               <Text
                                 style={{
                                   fontFamily: "whitney-semi-bold",
-                                  fontSize: 14,
+                                  fontSize: widthPercentageToDP(3.5),
                                   color: "black",
                                   marginHorizontal: 5,
                                 }}
@@ -633,7 +636,7 @@ const ProductDetail = (props) => {
                                 style={{
                                   fontFamily: "whitney-semi-bold",
                                   color: "white",
-                                  fontSize: 14,
+                                  fontSize: widthPercentageToDP(3.5),
                                   marginHorizontal: 5,
                                 }}
                               >
@@ -675,7 +678,7 @@ const ProductDetail = (props) => {
                                 style={{
                                   fontFamily: "whitney-semi-bold",
                                   color: "white",
-                                  fontSize: 14,
+                                  fontSize: widthPercentageToDP(3.5),
                                   marginHorizontal: 5,
                                 }}
                               >
@@ -694,9 +697,10 @@ const ProductDetail = (props) => {
                     ...styles.sizeStyle,
                   }}
                 >
-                  {!data || !data.custom_fields.length ?
+                  {!data || !data.custom_fields.length ? (
                     <View />
-                    : <FlatList
+                  ) : (
+                    <FlatList
                       data={data.custom_fields}
                       keyExtractor={(item, index) => "unqiue" + index}
                       numColumns={2}
@@ -706,9 +710,9 @@ const ProductDetail = (props) => {
                             style={{
                               borderBottomWidth: 1,
                               paddingBottom: 8,
-                              flex: 0.50,
+                              flex: 0.5,
                               borderColor: "#C9C9C9",
-                              margin:5,
+                              margin: 5,
                               // height: 48,
                               justifyContent: "space-between",
                               // alignItems: "center",
@@ -717,7 +721,7 @@ const ProductDetail = (props) => {
                             <Text
                               style={{
                                 fontFamily: "whitney-semi-bold",
-                                fontSize: 14,
+                                fontSize: widthPercentageToDP(3.5),
                               }}
                             >
                               {item.heading}
@@ -725,17 +729,17 @@ const ProductDetail = (props) => {
                             <Text
                               style={{
                                 fontFamily: "whitney-book",
-                                fontSize: 14,
+                                fontSize: widthPercentageToDP(3.5),
                                 marginTop: 5,
                               }}
                             >
                               {item.text}
                             </Text>
                           </View>
-                        )
+                        );
                       }}
-                    />}
-
+                    />
+                  )}
                 </View>
                 {/* Tag View */}
                 <View
@@ -766,7 +770,7 @@ const ProductDetail = (props) => {
                         style={{
                           fontFamily: "whitney-semi-bold",
                           color: "#FF3E6C",
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3.3),
                           marginTop: 10,
                         }}
                       >
@@ -797,7 +801,7 @@ const ProductDetail = (props) => {
                           fontFamily: "whitney-semi-bold",
                           color: "#FF3E6C",
                           marginTop: 10,
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3.3),
                         }}
                       >
                         Quality Checked
@@ -812,7 +816,7 @@ const ProductDetail = (props) => {
                   }}
                 >
                   <Text
-                    style={{ fontFamily: "whitney-semi-bold", fontSize: 16 }}
+                    style={{ fontFamily: "whitney-semi-bold", fontSize: widthPercentageToDP(3.9), }}
                   >
                     Rating & Reviews
                   </Text>
@@ -834,7 +838,7 @@ const ProductDetail = (props) => {
                         <Text
                           style={{
                             fontFamily: "whitney-book",
-                            fontSize: 52,
+                            fontSize: widthPercentageToDP(13),
                             color: "grey",
                           }}
                         >
@@ -845,7 +849,7 @@ const ProductDetail = (props) => {
                       <Text
                         style={{
                           fontFamily: "whitney-book",
-                          fontSize: 14,
+                          fontSize: widthPercentageToDP(3.5),
                           textAlign: "center",
                         }}
                       >
@@ -887,7 +891,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-semi-bold",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -913,7 +917,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-book",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -942,7 +946,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-semi-bold",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -965,11 +969,11 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-book",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
-                          {data.rating_details[3].value}
+                            {data.rating_details[3].value}
                           </Text>
                         </View>
                       </View>
@@ -994,7 +998,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-semi-bold",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1017,7 +1021,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-book",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1046,7 +1050,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-semi-bold",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1069,7 +1073,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-book",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1098,7 +1102,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-semi-bold",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1121,7 +1125,7 @@ const ProductDetail = (props) => {
                           <Text
                             style={{
                               fontFamily: "whitney-book",
-                              fontSize: 12,
+                              fontSize: widthPercentageToDP(3),
                               color: "#4D4D4D",
                             }}
                           >
@@ -1808,7 +1812,7 @@ const ProductDetail = (props) => {
                   <Text
                     style={{
                       ...styles.textStyle,
-                      fontSize: 14,
+                      fontSize: widthPercentageToDP(3.5),
                       marginTop: 20,
                     }}
                   >
@@ -1825,7 +1829,7 @@ const ProductDetail = (props) => {
                     <Text
                       style={{
                         fontFamily: "whitney-semi-bold",
-                        fontSize: 14,
+                        fontSize: widthPercentageToDP(3.3),
                         color: "#FF3E6C",
                         marginVertical: 10,
                       }}
@@ -1842,7 +1846,7 @@ const ProductDetail = (props) => {
                   <Text
                     style={{
                       fontFamily: "whitney-semi-bold",
-                      fontSize: 14,
+                      fontSize: widthPercentageToDP(3.5),
                     }}
                   >
                     Delivery & Services for
@@ -1867,7 +1871,7 @@ const ProductDetail = (props) => {
                     <Text
                       style={{
                         fontFamily: "whitney-semi-bold",
-                        fontSize: 16,
+                        fontSize: widthPercentageToDP(4),
                         color: "#FF3E6C",
                         marginVertical: 10,
                       }}
@@ -1892,7 +1896,7 @@ const ProductDetail = (props) => {
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3),
                           flex: 0.85,
                           marginHorizontal: 10,
                         }}
@@ -1916,7 +1920,7 @@ const ProductDetail = (props) => {
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3),
                           flex: 0.85,
                           marginHorizontal: 10,
                         }}
@@ -1940,7 +1944,7 @@ const ProductDetail = (props) => {
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
-                          fontSize: 12,
+                          fontSize: widthPercentageToDP(3),
                           flex: 0.85,
                           marginHorizontal: 10,
                         }}
@@ -1960,7 +1964,7 @@ const ProductDetail = (props) => {
                   <Text
                     style={{
                       ...styles.textStyle,
-                      fontSize: 16,
+                      fontSize: widthPercentageToDP(3.9),
                     }}
                   >
                     View Similar
@@ -1988,6 +1992,7 @@ const ProductDetail = (props) => {
                 <Text
                   style={{
                     fontFamily: "whitney-light-italic",
+                    fontSize: widthPercentageToDP(3),
                     // fontSize: 14,
                     textAlign: "center",
                     paddingHorizontal: 10,
@@ -1997,7 +2002,7 @@ const ProductDetail = (props) => {
                 </Text>
                 <Text
                   style={{
-                    fontSize: 12,
+                    fontSize: widthPercentageToDP(3),
                     color: "grey",
                     fontFamily: "whitney-light-italic",
                   }}
@@ -2018,7 +2023,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: Dimensions.get("window").width * 1,
-    height: 400,
+    height: heightPercentageToDP(60),
   },
   buttonStyle: {
     flexDirection: "row",

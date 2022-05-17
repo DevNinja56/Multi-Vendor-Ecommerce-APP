@@ -7,7 +7,11 @@ import {
 } from "@react-navigation/drawer";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../../Constants/colors";
-import {heightPercentageToDP,widthPercentageToDP} from 'react-native-responsive-screen'
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const icon = () => <AntDesign name="questioncircle" size={24} color="black" />;
 
@@ -36,31 +40,17 @@ const CustomDrawerContent = (props) => {
             <TouchableOpacity
               onPress={() => props.navigation.navigate("LoginScreen")}
             >
-              <Text
-                style={styles.textStyle}
-              >
-                Log In
-              </Text>
-            </TouchableOpacity>
-            <Text
-              style={styles.textStyle}
-            >
-              {"   "}.{"   "}
-            </Text>
-            <TouchableOpacity>
-              <Text
-                style={styles.textStyle}
-              >
-                Sign Up
-              </Text>
+              <Text style={styles.textStyle}>Log In . Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <TouchableOpacity style={styles.buttonStyle} >
-            <Text style={styles.buttontextStyle}>Logout</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={{ ...styles.buttonStyle, ...commonStyles.buttonStyle }}
+      >
+        <Text style={styles.buttontextStyle}>Logout</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -73,26 +63,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     backgroundColor: Colors.Primary,
   },
-  textStyle:{
+  textStyle: {
     fontFamily: "whitney-semi-bold",
     color: "white",
     fontSize: heightPercentageToDP(1.75),
   },
-  buttonStyle:{
-
-    margin:10,
-    padding:16,
-    backgroundColor:Colors.Primary,
-    borderRadius:10,
-    elevation:4,
-},
-buttontextStyle: {
-      
-  fontFamily: "whitney-semi-bold",
-  fontSize: heightPercentageToDP(2),
-  color: "white",
-  textAlign:'center'
-},
+  buttonStyle: {
+    margin: 10,
+    // padding: 16,
+  },
+  buttontextStyle: {
+    fontFamily: "whitney-semi-bold",
+    fontSize: heightPercentageToDP(2),
+    color: "white",
+    textAlign: "center",
+  },
 });
 
 export default CustomDrawerContent;

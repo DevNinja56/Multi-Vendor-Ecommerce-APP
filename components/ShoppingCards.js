@@ -17,18 +17,15 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { titleCase } from "../Src/Constants/title_case";
 
-
 const ShoppingCards = (props) => {
-
   return (
     <View style={styles.mainContainer}>
       <TouchableOpacity onPress={props.detaislScreen}>
         <View style={styles.cardStyle}>
-          
           <FastImage
             // source={{uri: props.feature_image,}}
             source={{
-              uri:  props.feature_image,
+              uri: props.feature_image,
               priority: FastImage.priority.high,
             }}
             resizeMode={FastImage.resizeMode.cover}
@@ -52,7 +49,11 @@ const ShoppingCards = (props) => {
                 }}
               />
               <Text
-                style={{ fontSize: 12, marginHorizontal: 5, color: "#C1C1C1" }}
+                style={{
+                  fontSize: widthPercentageToDP(3),
+                  marginHorizontal: 5,
+                  color: "#C1C1C1",
+                }}
               >
                 112
               </Text>
@@ -185,13 +186,13 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderRadius: 20,
     paddingVertical: 12,
-    
+
     justifyContent: "center",
     alignItems: "center",
-    elevation:4,
+    elevation: 4,
   },
   textPicRaiting: {
-    fontSize: 12,
+    fontSize: widthPercentageToDP(3),
     marginHorizontal: 5,
   },
   descriptioStyle: {

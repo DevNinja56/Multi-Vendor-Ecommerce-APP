@@ -28,6 +28,9 @@ import {
   ProfileIcon,
 } from "../../../../assets/svg";
 import { styles } from "./style";
+import { commonStyles } from "../../../Styles/commonStyles";
+import Colors from "../../../Constants/colors";
+import {version} from '../../../../package.json'
 
 const Authenticated = (props) => {
   return (
@@ -65,7 +68,9 @@ const Authenticated = (props) => {
             >
               <ProfileIcon width={"100%"} height={"100%"} />
             </View>
-            <View style={styles.buttonStyle}>
+            <View
+              style={{ ...styles.buttonStyle, ...commonStyles.buttonStyle }}
+            >
               <TouchableOpacity
                 onPress={props.profileEdit}
                 style={{
@@ -305,15 +310,15 @@ const Authenticated = (props) => {
               backgroundColor: "white",
               marginTop: 20,
               padding: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 2,
-              },
-              shadowOpacity: 0.23,
-              shadowRadius: 2.62,
+              // shadowColor: "#000",
+              // shadowOffset: {
+              //   width: 0,
+              //   height: 2,
+              // },
+              // shadowOpacity: 0.23,
+              // shadowRadius: 2.62,
 
-              elevation: 4,
+              // elevation: 4,
             }}
           >
             <TouchableOpacity style={{ padding: 10 }}>
@@ -365,12 +370,13 @@ const Authenticated = (props) => {
           <Text
             style={{
               fontFamily: "whitney-light",
-              fontSize: heightPercentageToDP(1.5),
+              fontSize: widthPercentageToDP(3.5),
               margin: 20,
               textAlign: "center",
+              color: Colors.Primary
             }}
           >
-            APP VERSION 4.2111.1
+            {"APP VERSION "}{version} 
           </Text>
         </View>
       </ScrollView>

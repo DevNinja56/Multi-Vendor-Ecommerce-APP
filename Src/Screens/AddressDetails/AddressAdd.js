@@ -9,10 +9,11 @@ import {
   TextInput,
 } from "react-native";
 import { CheckBox, Icon } from "react-native-elements";
-import { heightPercentageToDP } from "react-native-responsive-screen";
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 import { HomeIcon } from "../../../assets/svg";
 import SimpleHeader from "../../Components/Header/simple_header";
 import Colors from "../../Constants/colors";
+import { commonStyles } from "../../Styles/commonStyles";
 import { styles } from "./style";
 
 const AddressAdd = (props) => {
@@ -34,7 +35,7 @@ const AddressAdd = (props) => {
           <Text
             style={{
               ...styles.headingStyle,
-              fontSize: heightPercentageToDP(3),
+              fontSize: widthPercentageToDP(4.5),
               alignSelf: "flex-start",
               color: "black",
             }}
@@ -101,7 +102,7 @@ const AddressAdd = (props) => {
           <Text
             style={{
               ...styles.headingStyle,
-              fontSize: heightPercentageToDP(3),
+              fontSize: widthPercentageToDP(4.5),
               color: "black",
             }}
           >
@@ -171,7 +172,7 @@ const AddressAdd = (props) => {
               <Text
                 style={{
                   ...styles.headingStyle,
-                  fontSize: heightPercentageToDP(2.2),
+                  fontSize: widthPercentageToDP(4),
                 }}
               >
                 Save for faster checkout next time
@@ -182,7 +183,7 @@ const AddressAdd = (props) => {
       </ScrollView>
       <View style={styles.footerStyle}>
         <TouchableOpacity
-          style={styles.buttonStyle}
+          style={{ ...commonStyles.buttonStyle }}
           onPress={() => props.screenSet(2)}
         >
           <Text
