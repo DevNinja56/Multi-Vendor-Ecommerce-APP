@@ -11,6 +11,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 import { SIZEDUMMY } from "../../data/dummy-data";
 import SearchBar from "./SearchBar";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const BrandModel = (props) => {
   const displayFilterSize = SIZEDUMMY;
@@ -20,7 +21,11 @@ const BrandModel = (props) => {
       <TouchableOpacity>
         <View style={styles.content}>
           <View style={styles.textContent}>
-            <MaterialIcons name={"done"} size={24} color={"blue"} />
+            <MaterialIcons
+              name={"done"}
+              size={heightPercentageToDP(2.75)}
+              color={"blue"}
+            />
             <Text>{itemData.item.name}</Text>
           </View>
           <Text>533</Text>
@@ -30,7 +35,11 @@ const BrandModel = (props) => {
       <TouchableOpacity onPress={onChecked.bind(this, itemData.item.id)}>
         <View style={styles.content}>
           <View style={styles.textContent}>
-            <MaterialIcons name={"done"} size={24} color={"black"} />
+            <MaterialIcons
+              name={"done"}
+              size={heightPercentageToDP(2.75)}
+              color={"black"}
+            />
             <Text>{itemData.item.name}</Text>
           </View>
           <Text>533</Text>
@@ -47,7 +56,7 @@ const BrandModel = (props) => {
 
   return (
     <View>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <FlatList
         keyExtractor={(item, index) => {
           item.id;

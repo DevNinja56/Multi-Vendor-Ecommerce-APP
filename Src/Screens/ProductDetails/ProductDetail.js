@@ -28,9 +28,14 @@ import FastImage from "react-native-fast-image";
 import TodayDeals from "../TabScreens/DrawerScreens/Home/Components/Home/TodayDeals";
 
 import SimpleHeader from "../../Components/Header/simple_header";
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";
 import Colors from "../../Constants/colors";
+import { Fonts } from "../../Constants/fonts";
+import { AntDesign } from "react-native-vector-icons";
 
 const ProductDetail = (props) => {
   const images = [
@@ -38,6 +43,70 @@ const ProductDetail = (props) => {
     require("../../../assets/sliderImages2.png"),
     require("../../../assets/sliderImages3.png"),
   ];
+
+  const renderItemMore = () => {
+    return (
+      <View style={styles.moreItemStyle}>
+        <FastImage
+          source={require("../../../assets/mensCollectionSuits.jpg")}
+          style={{ height: "60%", width: "100%" }}
+        />
+
+        <View style={{ height: "25%" }}>
+          <Text
+            style={{
+              paddingHorizontal: heightPercentageToDP(0.5),
+              fontFamily: Fonts.whitney_semi_bold,
+              fontSize: widthPercentageToDP(4),
+              color: "#4D4D4D",
+            }}
+          >
+            BIG HEAD TIGI
+          </Text>
+          <Text
+            style={{
+              paddingHorizontal: heightPercentageToDP(0.5),
+              fontFamily: Fonts.whitney_book,
+              fontSize: widthPercentageToDP(3.75),
+              color: "#959595",
+            }}
+          >
+            ELECTRIC HAIR REMOVER
+          </Text>
+          <Text
+            style={{
+              fontFamily: Fonts.whitney_semi_bold,
+              paddingHorizontal: heightPercentageToDP(0.5),
+              fontSize: heightPercentageToDP(2),
+              color: "#4D4D4D",
+            }}
+          >
+            RS 49
+          </Text>
+        </View>
+        <TouchableOpacity
+          style={{
+            height: "15%",
+            // borderTopWidth: heightPercentageToDP(0.1),
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: Colors.Primary,
+          }}
+        >
+          <Text
+            style={{
+              fontSize: widthPercentageToDP(4),
+              fontFamily: Fonts.whitney_semi_bold,
+              color: "white",
+              //   textAlign: "center",
+            }}
+          >
+            ADD TO CART
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
   const renderItem = (itemData) => {
     return (
       <View>
@@ -45,7 +114,7 @@ const ProductDetail = (props) => {
           <View
             style={{
               flex: 0.15,
-              height: 33,
+              height: heightPercentageToDP(4.5),
               flexDirection: "row",
               justifyContent: "center",
               alignItems: "center",
@@ -160,7 +229,7 @@ const ProductDetail = (props) => {
               <View style={styles.main}>
                 <View style={styles.image}>
                   <SliderBox
-                  ImageComponent={FastImage}
+                    ImageComponent={FastImage}
                     images={data.images}
                     sliderBoxHeight={heightPercentageToDP(59)}
                     //   onCurrentImagePressed={(index) =>
@@ -219,7 +288,12 @@ const ProductDetail = (props) => {
                 {/* Description View */}
                 <View style={styles.descriptionStyle}>
                   <View>
-                    <Text style={{ fontFamily: "whitney-book", fontSize: widthPercentageToDP(3.5),}}>
+                    <Text
+                      style={{
+                        fontFamily: "whitney-book",
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
@@ -323,7 +397,12 @@ const ProductDetail = (props) => {
                 {/* Return View */}
                 <View style={{ ...styles.descriptionStyle, marginTop: 15 }}>
                   <View style={{ justifyContent: "center" }}>
-                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       {data.exchange_policy.title}
                     </Text>
                     <Text
@@ -348,7 +427,12 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       Select Sizes
                     </Text>
                     <Text
@@ -440,7 +524,12 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle,  fontSize: widthPercentageToDP(3.9), }}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.9),
+                      }}
+                    >
                       Select Colors
                     </Text>
                     {/* <Text
@@ -818,7 +907,10 @@ const ProductDetail = (props) => {
                   }}
                 >
                   <Text
-                    style={{ fontFamily: "whitney-semi-bold", fontSize: widthPercentageToDP(3.9), }}
+                    style={{
+                      fontFamily: "whitney-semi-bold",
+                      fontSize: widthPercentageToDP(3.9),
+                    }}
                   >
                     Rating & Reviews
                   </Text>
@@ -1977,11 +2069,131 @@ const ProductDetail = (props) => {
                     }}
                   >
                     {console.log(data.up_sell_products)}
-                    <TodayDeals data={data.up_sell_products} />
+                    <FlatList
+                      horizontal
+                      data={data.up_sell_products}
+                      renderItem={renderItemMore}
+                    />
+                    {/* <TodayDeals data={data.up_sell_products} /> */}
                     {/* <TodayDeals data={TODAYDUMMY}/> */}
                   </View>
                 </View>
               </View>
+              <TouchableOpacity
+                style={{
+                  padding: heightPercentageToDP(1),
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingHorizontal: heightPercentageToDP(1),
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: Fonts.whitney_semi_bold,
+                      color: "black",
+                      fontSize: widthPercentageToDP(4),
+                    }}
+                  >
+                    View Similar
+                  </Text>
+                  <AntDesign
+                    name="right"
+                    size={heightPercentageToDP(2)}
+                    color="black"
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: heightPercentageToDP(1.5),
+                    height: widthPercentageToDP(0.15),
+                    marginLeft: heightPercentageToDP(1),
+                    marginRight: heightPercentageToDP(1),
+                    backgroundColor: "black",
+                  }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  padding: heightPercentageToDP(1),
+                  // borderWidth: 1,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingHorizontal: heightPercentageToDP(1),
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: Fonts.whitney_semi_bold,
+                      color: "black",
+                      fontSize: widthPercentageToDP(4),
+                    }}
+                  >
+                    View Similar
+                  </Text>
+                  <AntDesign
+                    name="right"
+                    size={heightPercentageToDP(2)}
+                    color="black"
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: heightPercentageToDP(1.5),
+                    height: widthPercentageToDP(0.15),
+                    marginLeft: heightPercentageToDP(1),
+                    marginRight: heightPercentageToDP(1),
+                    backgroundColor: "black",
+                  }}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  padding: heightPercentageToDP(1),
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingHorizontal: heightPercentageToDP(1),
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontFamily: Fonts.whitney_semi_bold,
+                      color: "black",
+                      fontSize: widthPercentageToDP(4),
+                    }}
+                  >
+                    View Similar
+                  </Text>
+                  <AntDesign
+                    name="right"
+                    size={heightPercentageToDP(2)}
+                    color="black"
+                  />
+                </View>
+                <View
+                  style={{
+                    marginTop: heightPercentageToDP(1.5),
+                    height: widthPercentageToDP(0.15),
+                    marginLeft: heightPercentageToDP(1),
+                    marginRight: heightPercentageToDP(1),
+                    backgroundColor: "black",
+                  }}
+                />
+              </TouchableOpacity>
               <View style={styles.footer}>
                 <View
                   style={{
@@ -2101,6 +2313,17 @@ const styles = StyleSheet.create({
     fontFamily: "kepler-bold",
     fontSize: 20,
     marginVertical: 10,
+  },
+  moreItemStyle: {
+    marginHorizontal: widthPercentageToDP(3),
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.65,
+    backgroundColor: "white",
+    // borderWidth: widthPercentageToDP(0.1),
+    borderRadius: 5,
+    overflow: "hidden",
+    elevation: 4,
+    marginVertical: widthPercentageToDP(1),
   },
 });
 export default ProductDetail;

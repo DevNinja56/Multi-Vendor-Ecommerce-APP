@@ -17,6 +17,7 @@ const SeasonDeals = (props) => {
         renderItem={renderGridItem}
         numColumns={2}
         contentContainerStyle={{ ...styles.flatlistStyle, ...props.style }}
+        showsHorizontalScrollIndicator={false}
       />
     </ScrollView>
   );

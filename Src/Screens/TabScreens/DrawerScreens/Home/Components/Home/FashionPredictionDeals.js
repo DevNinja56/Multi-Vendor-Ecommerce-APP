@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, ScrollView, FlatList, Dimensions } from "react-native";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const FashionPredictionDeals = (props) => {
   return (
@@ -7,9 +8,7 @@ const FashionPredictionDeals = (props) => {
       horizontal
       contentContainerStyle={{
         flexGrow: 1,
-        marginVertical: 10,
-        // justifyContent: "center",
-        // alignItems: "center",
+        marginTop: heightPercentageToDP(1.5),
       }}
     >
       <FlatList
@@ -21,6 +20,7 @@ const FashionPredictionDeals = (props) => {
         renderItem={props.renderGridItem}
         numColumns={3}
         contentContainerStyle={{ ...styles.flatlistStyle, ...props.style }}
+        showsVerticalScrollIndicator={false}
       />
     </ScrollView>
   );

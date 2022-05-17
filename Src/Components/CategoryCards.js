@@ -11,13 +11,13 @@ const CategoryCards = (props) => {
     <View style={{ ...styles.mainContainer, ...props.style }}>
       <View style={{ ...styles.imageContainer, ...props.imageContainerstyle }}>
         <FastImage
-          source={{uri:props.image}}
-          style={{ ...styles.imageStyle, }}
+          source={{ uri: props.image }}
+          style={{ ...styles.imageStyle }}
           resizeMode={FastImage.resizeMode.cover}
         />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.textStyle} >{props.name}</Text>
+        <Text style={styles.textStyle}>{props.name}</Text>
       </View>
     </View>
   );
@@ -26,11 +26,9 @@ const CategoryCards = (props) => {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    width:widthPercentageToDP(30),
+    width: widthPercentageToDP(30),
     height: widthPercentageToDP(30),
-    // marginHorizontal: 15,
     justifyContent: "center",
-    // borderWidth:1,
     alignItems: "center",
   },
   imageContainer: {
@@ -55,7 +53,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "whitney-semi-bold",
     fontSize: widthPercentageToDP(3.5),
-    
   },
 });
 

@@ -7,19 +7,19 @@ import {
 } from "react-native-responsive-screen";
 import { Fonts } from "../../../../../../Constants/fonts";
 
-const renderItem = (itemData) => {
-  return (
-    // console.log(itemData)
-    <StoryScrollView
-      name={itemData.item.name}
-      imageUrl={itemData.item.feature_image}
-      style={styles.item}
-      textStyle={styles.title}
-    />
-  );
-};
-
 const MainScreen = (props) => {
+  const renderItem = (itemData) => {
+    return (
+      // console.log(itemData)
+      <StoryScrollView
+        name={itemData.item.name}
+        imageUrl={itemData.item.feature_image}
+        style={styles.item}
+        textStyle={styles.title}
+        topCategories={props.topCategories}
+      />
+    );
+  };
   return <FlatList data={props.data} renderItem={renderItem} horizontal />;
 };
 

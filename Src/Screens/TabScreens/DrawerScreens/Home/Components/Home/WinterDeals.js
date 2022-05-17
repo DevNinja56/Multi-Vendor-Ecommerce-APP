@@ -15,6 +15,7 @@ const WinterDeals = (props) => {
       data={props.data}
       renderItem={renderWinterItem}
       contentContainerStyle={{ flexGrow: 1 }}
+      showsHorizontalScrollIndicator={false}
     />
   );
 };

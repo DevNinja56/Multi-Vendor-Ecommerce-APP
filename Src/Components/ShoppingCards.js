@@ -181,22 +181,22 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   raitingCard: {
-    marginVertical: 20,
+    marginVertical: heightPercentageToDP(1),
     marginHorizontal: 5,
     alignSelf: "flex-end",
     width: "50%",
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.85)",
     borderRadius: 20,
-    paddingVertical: 12,
-
+    paddingVertical: heightPercentageToDP(0.75),
     justifyContent: "center",
     alignItems: "center",
-    elevation: 4,
+    // elevation: 4,
   },
   textPicRaiting: {
     fontSize: widthPercentageToDP(3),
     marginHorizontal: 5,
+    color: "black",
   },
   descriptioStyle: {
     paddingVertical: 10,
