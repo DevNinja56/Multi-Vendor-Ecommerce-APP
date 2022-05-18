@@ -29,6 +29,7 @@ import {
   SecurePayment,
 } from "../../../assets/svg";
 import { Fonts } from "../../Constants/fonts";
+//import { Colors } from "../../Constants/colors";
 import { commonStyles } from "../../Styles/commonStyles";
 
 const renderItem = (itemData) => {
@@ -388,10 +389,10 @@ const Bag = (props) => {
             style={{
               ...styles.headerText,
               fontSize: widthPercentageToDP(4),
-              color: "#4D4D4D",
+              color: Colors.Primary,
             }}
           >
-            REMOVE
+            DELETE CART
           </Text>
         </TouchableOpacity>
         <View
@@ -433,7 +434,7 @@ const Bag = (props) => {
           </Text>
         </View>
 
-        <ScrollView horizontal>
+        {/* <ScrollView horizontal>
           <View style={styles.btnStyle}>
             {gender.map((gender, key) => {
               return (
@@ -486,7 +487,7 @@ const Bag = (props) => {
               );
             })}
           </View>
-        </ScrollView>
+        </ScrollView> */}
       </View>
 
       <View style={{ backgroundColor: "#FED5D1", paddingVertical: 5 }}>

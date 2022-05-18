@@ -28,9 +28,14 @@ import FastImage from "react-native-fast-image";
 import TodayDeals from "../TabScreens/DrawerScreens/Home/Components/Home/TodayDeals";
 
 import SimpleHeader from "../../Components/Header/simple_header";
-import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 import httpClients from "../../Redux/utils";
 import Colors from "../../Constants/colors";
+import Loader from "../../Components/Loader";
+import SnakBar from "../../Components/SnakBar";
 
 const ProductDetail = (props) => {
   const images = [
@@ -125,6 +130,8 @@ const ProductDetail = (props) => {
   const [data, setData] = useState();
   const [size, setSize] = useState(0);
   const [color, setColor] = useState(0);
+  const [toast, setToast] = useState(false);
+  const [message, setMessage] = useState("");
   var gender = ["XS", "S", "M", "L", "XL", "XXL"];
   useEffect(() => {
     // console.log("Call");
@@ -142,32 +149,40 @@ const ProductDetail = (props) => {
       setLoading(false);
     }
   };
-  return (
-    <SafeAreaView style={{ flex: 1, justifyContent: "center" }}>
-      {/* <SimpleHeader clickHandler={props.navigation.goBack()} headerTitle={data.Product_Title}/> */}
 
+  useEffect(() => {
+    if (toast) {
+      setTimeout(() => {
+        setToast(false);
+      }, 1000);
+    }
+  }, [toast]);
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      {/* <SimpleHeader clickHandler={props.navigation.goBack()} headerTitle={data.Product_Title}/> */}
+      <SimpleHeader
+        placement={"left"}
+        clickHandler={() => props.navigation.goBack()}
+        headerTitle={!data ? "" : data.product_title}
+      />
       {isLoading ? (
-        <ActivityIndicator size="large" color={Colors.Primary} />
+        <Loader color={Colors.Primary} />
       ) : (
         <>
-          <SimpleHeader
-            placement={"left"}
-            clickHandler={() => props.navigation.goBack()}
-            headerTitle={data.product_title}
-          />
           <ScrollView>
             <NativeBaseProvider>
               <View style={styles.main}>
                 <View style={styles.image}>
                   <SliderBox
-                  ImageComponent={FastImage}
+                    ImageComponent={FastImage}
                     images={data.images}
                     sliderBoxHeight={heightPercentageToDP(59)}
                     //   onCurrentImagePressed={(index) =>
                     //     console.warn(`image ${index} pressed`)
                     //   }
-                    autoplay
-                    circleLoop
+                    //autoplay
+                    //circleLoop
                     dotColor="#FF3E6C"
                     inactiveDotColor="#90A4AE"
                   />
@@ -219,7 +234,12 @@ const ProductDetail = (props) => {
                 {/* Description View */}
                 <View style={styles.descriptionStyle}>
                   <View>
-                    <Text style={{ fontFamily: "whitney-book", fontSize: widthPercentageToDP(3.5),}}>
+                    <Text
+                      style={{
+                        fontFamily: "whitney-book",
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       <Text
                         style={{
                           fontFamily: "whitney-semi-bold",
@@ -323,7 +343,12 @@ const ProductDetail = (props) => {
                 {/* Return View */}
                 <View style={{ ...styles.descriptionStyle, marginTop: 15 }}>
                   <View style={{ justifyContent: "center" }}>
-                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       {data.exchange_policy.title}
                     </Text>
                     <Text
@@ -348,7 +373,12 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle, fontSize: widthPercentageToDP(3.5)}}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.5),
+                      }}
+                    >
                       Select Sizes
                     </Text>
                     <Text
@@ -440,7 +470,12 @@ const ProductDetail = (props) => {
                       alignItems: "center",
                     }}
                   >
-                    <Text style={{ ...styles.textStyle,  fontSize: widthPercentageToDP(3.9), }}>
+                    <Text
+                      style={{
+                        ...styles.textStyle,
+                        fontSize: widthPercentageToDP(3.9),
+                      }}
+                    >
                       Select Colors
                     </Text>
                     {/* <Text
@@ -658,9 +693,17 @@ const ProductDetail = (props) => {
                           }}
                         >
                           <TouchableOpacity
-                            onPress={() =>
-                              props.navigation.navigate("Checkout")
-                            }
+                            onPress={() => {
+                              if (size == 0) {
+                                setToast(true);
+                                setMessage("Please select the Size first");
+                              } else if (color == 0) {
+                                setToast(true);
+                                setMessage("Please select the color first");
+                              } else {
+                                props.navigation.navigate("Checkout");
+                              }
+                            }}
                           >
                             <View
                               style={{
@@ -818,7 +861,10 @@ const ProductDetail = (props) => {
                   }}
                 >
                   <Text
-                    style={{ fontFamily: "whitney-semi-bold", fontSize: widthPercentageToDP(3.9), }}
+                    style={{
+                      fontFamily: "whitney-semi-bold",
+                      fontSize: widthPercentageToDP(3.9),
+                    }}
                   >
                     Rating & Reviews
                   </Text>
@@ -2016,6 +2062,7 @@ const ProductDetail = (props) => {
           </ScrollView>
         </>
       )}
+      <SnakBar isVisible={toast} text={message} bottom={"0%"} />
     </SafeAreaView>
   );
 };
