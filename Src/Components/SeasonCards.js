@@ -5,26 +5,26 @@ import {
   View,
   ImageBackground,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from "react-native";
 import FastImage from "react-native-fast-image";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const SeasonCards = (props) => {
   return (
     // <View style={styles.dealcardStyle}>
-      <TouchableOpacity onPress={props.press} style={styles.dealcardStyle}>
-        
-        <FastImage
-          style={styles.imageDealCardsStyle}
-          source={{
-            // uri: 'https://unsplash.it/400/400?image=1',
-            uri: props.imageurl,
-            // headers: { Authorization: 'someAuthToken' },
-            priority: FastImage.priority.high,
-          }}
-          resizeMode={FastImage.resizeMode.cover}
-        />
-      </TouchableOpacity>
+    <TouchableOpacity onPress={props.press} style={styles.dealcardStyle}>
+      <FastImage
+        style={styles.imageDealCardsStyle}
+        source={{
+          // uri: 'https://unsplash.it/400/400?image=1',
+          uri: props.imageurl,
+          // headers: { Authorization: 'someAuthToken' },
+          priority: FastImage.priority.high,
+        }}
+        resizeMode={FastImage.resizeMode.cover}
+      />
+    </TouchableOpacity>
     // </View>
   );
 };
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.45,
     height: Dimensions.get("window").width * 0.58,
     // padding: 8,
-    marginVertical: 10,
+    marginTop: heightPercentageToDP(1.5),
     marginHorizontal: 8,
     // borderWidth: 1,
     shadowColor: "#000",

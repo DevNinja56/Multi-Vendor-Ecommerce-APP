@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import FastImage from "react-native-fast-image";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const DealsCards = (props) => {
   console.log("URL====>" + props.imageurl);
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width * 0.5,
     height: Dimensions.get("window").width * 0.65,
     marginHorizontal: 8,
-    marginVertical: 10,
+    marginTop: heightPercentageToDP(1.5),
   },
   imageDealCards: {
     shadowColor: "#000",

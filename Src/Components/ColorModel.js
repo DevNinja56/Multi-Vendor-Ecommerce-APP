@@ -10,6 +10,7 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { COLORDUMMY } from "../../data/dummy-data";
+import { heightPercentageToDP } from "react-native-responsive-screen";
 
 const marginSpace = Dimensions.get("window").height * 0.1;
 const ColorModel = (props) => {
@@ -21,7 +22,11 @@ const ColorModel = (props) => {
         <View style={styles.content}>
           <View style={styles.textContent}>
             <View style={{ flex: 0.4, flexDirection: "row" }}>
-              <MaterialIcons name={"done"} size={24} color={"blue"} />
+              <MaterialIcons
+                name={"done"}
+                size={heightPercentageToDP(2.75)}
+                color={"blue"}
+              />
               <View
                 style={{
                   backgroundColor: itemData.item.color,
@@ -47,7 +52,11 @@ const ColorModel = (props) => {
         <View style={styles.content}>
           <View style={styles.textContent}>
             <View style={{ flex: 0.4, flexDirection: "row" }}>
-              <MaterialIcons name={"done"} size={18} color={"black"} />
+              <MaterialIcons
+                name={"done"}
+                size={heightPercentageToDP(2.75)}
+                color={"black"}
+              />
               <View
                 style={{
                   backgroundColor: itemData.item.color,

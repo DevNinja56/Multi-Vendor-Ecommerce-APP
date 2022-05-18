@@ -11,68 +11,55 @@ export const commonStyles = StyleSheet.create({
   // Home Style
   container: {
     flex: 1,
-    // marginTop: StatusBar.currentHeight || 0,
-    backgroundColor: "#F6F6F6",
+    backgroundColor: "white",
   },
 
   firstContainer: {
     paddingVertical: heightPercentageToDP(0.75),
     height: Dimensions.get("window").height * 0.13,
-    backgroundColor: "white",
-    elevation: 4,
   },
   imageContainer: {
-    backgroundColor: "white",
     width: Dimensions.get("window").width * 1,
     height: Dimensions.get("window").width * 0.76,
-    elevation: 4,
     overflow: "hidden",
-
-    // marginTop: Dimensions.get("window").height / 90,
   },
   image: {
     width: "100%",
     height: "100%",
-    // elevation: 4,
   },
 
   imageBannerContainer: {
-    width: Dimensions.get("window").width * 1,
-    height: Dimensions.get("window").width * 0.1,
-    marginVertical: Dimensions.get("window").height / 90,
+    marginVertical: heightPercentageToDP(1.5),
+    width: "100%",
+    height: heightPercentageToDP(2),
     backgroundColor: "transparent",
-    // elevation: 4,
     overflow: "hidden",
   },
   sliderContainer: {
-    backgroundColor: "#ffff",
+    // backgroundColor: "#ffff",
     width: Dimensions.get("window").width * 1,
     height: Dimensions.get("window").width * 0.74,
     paddingBottom: 8,
-    // marginVertical: Dimensions.get("window").height / 99,
-    // backgroundColor: "white",
-    // borderWidth: 1,
     elevation: 4,
     overflow: "hidden",
   },
   sliderContainer2: {
-    // backgroundColor: "#ffff",
     width: widthPercentageToDP(100),
-
-    paddingBottom: 8,
-    marginVertical: 20,
+    // paddingBottom: 8,
+    marginTop: heightPercentageToDP(1.5),
     elevation: 4,
     overflow: "hidden",
   },
   dealCards: {
-    backgroundColor: "white",
+    // backgroundColor: "white",
+    marginTop: heightPercentageToDP(1.5),
   },
   dealBannerCards: {
     flex: 1,
     // padding: 10,
     width: Dimensions.get("window").width * 1,
     height: Dimensions.get("window").width * 0.9,
-    backgroundColor: "#ffff",
+    // backgroundColor: "#ffff",
     elevation: 4,
     marginVertical: 10,
   },
@@ -85,7 +72,7 @@ export const commonStyles = StyleSheet.create({
     padding: 15,
   },
   seasonCards: {
-    backgroundColor: "white",
+    // backgroundColor: "white",
     // elevation: 4,
     marginTop: 10,
   },
@@ -142,7 +129,7 @@ export const commonStyles = StyleSheet.create({
     elevation: 4,
     backgroundColor: "white",
     overflow: "hidden",
-    marginVertical: Dimensions.get("window").height / 60,
+    marginTop: heightPercentageToDP(1.5),
   },
 
   imageBanner2: {

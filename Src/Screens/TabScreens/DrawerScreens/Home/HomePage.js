@@ -105,7 +105,12 @@ const HomePage = ({ navigation }) => {
       ) : (
         <ScrollView style={commonStyles.container}>
           <View style={commonStyles.firstContainer}>
-            <MainScreen data={data.categoryList} />
+            <MainScreen
+              data={data.categoryList}
+              topCategories={() => {
+                navigation.navigate("TopCategories");
+              }}
+            />
           </View>
 
           {data.first_SliderImages.status ? (
@@ -125,7 +130,7 @@ const HomePage = ({ navigation }) => {
           <View style={commonStyles.imageBannerContainer}>
             <Animatable.Image
               source={require("../../../../../assets/imageBanner.png")}
-              resizeMode={"contain"}
+              resizeMode={"cover"}
               style={{
                 ...commonStyles.image,
               }}
@@ -317,7 +322,7 @@ const HomePage = ({ navigation }) => {
               style={{
                 ...commonStyles.imageContainer,
                 height: heightPercentageToDP(50),
-                marginVertical: 10,
+                marginTop: heightPercentageToDP(1.5),
               }}
             >
               <SliderBox
@@ -347,7 +352,7 @@ const HomePage = ({ navigation }) => {
                   {data.seventh_SliderImages.heading}
                 </Text>
               </View>
-              <View style={{ marginVertical: 5 }}>
+              <View style={{ marginTop: heightPercentageToDP(1.5) }}>
                 <SliderBox
                   images={data.seventh_SliderImages.image}
                   dotColor="#FF3E6C"

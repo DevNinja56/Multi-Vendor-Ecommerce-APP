@@ -6,6 +6,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  Dimensions,
 } from "react-native";
 import {
   heightPercentageToDP,
@@ -877,11 +878,11 @@ const styles = StyleSheet.create({
 
   moreItemStyle: {
     marginHorizontal: widthPercentageToDP(3),
-    height: heightPercentageToDP(35),
-    width: widthPercentageToDP(47),
+    width: Dimensions.get("window").width * 0.5,
+    height: Dimensions.get("window").width * 0.65,
     backgroundColor: "white",
     // borderWidth: widthPercentageToDP(0.1),
-    borderRadius: widthPercentageToDP(5),
+    borderRadius: 5,
     overflow: "hidden",
     elevation: 4,
     marginVertical: widthPercentageToDP(1),
