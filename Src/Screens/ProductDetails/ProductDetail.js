@@ -42,6 +42,7 @@ import { Fonts } from "../../Constants/fonts";
 import { AntDesign } from "react-native-vector-icons";
 import * as Animatable from "react-native-animatable";
 import Swiper from "react-native-swiper";
+import ShoppingCardsButton from "../../Components/ShoppingCardsButton";
 //import Modal from "react-native-modal";
 
 const ProductDetail = (props) => {
@@ -56,67 +57,81 @@ const ProductDetail = (props) => {
     "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
     "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
   ];
-  const renderItemMore = () => {
-    return (
-      <View style={styles.moreItemStyle}>
-        <FastImage
-          source={require("../../../assets/mensCollectionSuits.jpg")}
-          style={{ height: "60%", width: "100%" }}
-        />
 
-        <View style={{ height: "25%" }}>
-          <Text
-            style={{
-              paddingHorizontal: heightPercentageToDP(0.5),
-              fontFamily: Fonts.whitney_semi_bold,
-              fontSize: widthPercentageToDP(4),
-              color: "#4D4D4D",
-            }}
-          >
-            BIG HEAD TIGI
-          </Text>
-          <Text
-            style={{
-              paddingHorizontal: heightPercentageToDP(0.5),
-              fontFamily: Fonts.whitney_book,
-              fontSize: widthPercentageToDP(3.75),
-              color: "#959595",
-            }}
-          >
-            ELECTRIC HAIR REMOVER
-          </Text>
-          <Text
-            style={{
-              fontFamily: Fonts.whitney_semi_bold,
-              paddingHorizontal: heightPercentageToDP(0.5),
-              fontSize: heightPercentageToDP(2),
-              color: "#4D4D4D",
-            }}
-          >
-            RS 49
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={{
-            height: "15%",
-            // borderTopWidth: heightPercentageToDP(0.1),
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: Colors.Primary,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: widthPercentageToDP(4),
-              fontFamily: Fonts.whitney_semi_bold,
-              color: "white",
-              //   textAlign: "center",
-            }}
-          >
-            ADD TO CART
-          </Text>
-        </TouchableOpacity>
-      </View>
+  const renderItemMore = ({ item, index }) => {
+    return (
+      // <View style={styles.moreItemStyle}>
+      <ShoppingCardsButton
+        name={item.name}
+        feature_image={item.feature_image}
+        category_name={item.feature_categories.name}
+        discounted_Price={item.discounted_price}
+        quantity={item.quantity}
+        regular_Price={item.regular_price}
+        rating={item.rating}
+        discount={item.discount}
+      />
+      // </View>
+
+      // <View style={styles.moreItemStyle}>
+      //   <FastImage
+      //     source={require("../../../assets/mensCollectionSuits.jpg")}
+      //     style={{ height: "60%", width: "100%" }}
+      //   />
+
+      //   <View style={{ height: "25%",padding }}>
+      //     <Text
+      //       style={{
+      //         paddingHorizontal: heightPercentageToDP(0.5),
+      //         fontFamily: Fonts.whitney_medium,
+      //         fontSize: widthPercentageToDP(4),
+      //         color: "#545454",
+      //       }}
+      //     >
+      //       Big Head Tigi
+      //     </Text>
+      //     <Text
+      //       style={{
+      //         paddingHorizontal: heightPercentageToDP(0.5),
+      //         fontFamily: Fonts.whitney_book,
+      //         fontSize: widthPercentageToDP(3.75),
+      //         color: "#959595",
+      //       }}
+      //     >
+      //       ELECTRIC HAIR REMOVER
+      //     </Text>
+      //     <Text
+      //       style={{
+      //         fontFamily: Fonts.whitney_semi_bold,
+      //         paddingHorizontal: heightPercentageToDP(0.5),
+      //         fontSize: heightPercentageToDP(2),
+      //         color: "#4D4D4D",
+      //       }}
+      //     >
+      //       RS 49
+      //     </Text>
+      //   </View>
+      //   <TouchableOpacity
+      //     style={{
+      //       height: "15%",
+      //       // borderTopWidth: heightPercentageToDP(0.1),
+      //       justifyContent: "center",
+      //       alignItems: "center",
+      //       backgroundColor: Colors.Primary,
+      //     }}
+      //   >
+      //     <Text
+      //       style={{
+      //         fontSize: widthPercentageToDP(4),
+      //         fontFamily: Fonts.whitney_semi_bold,
+      //         color: "white",
+      //         //   textAlign: "center",
+      //       }}
+      //     >
+      //       ADD TO CART
+      //     </Text>
+      //   </TouchableOpacity>
+      // </View>
     );
   };
   const renderItem = (itemData) => {
@@ -256,7 +271,8 @@ const ProductDetail = (props) => {
             <NativeBaseProvider>
               <View style={styles.main}>
                 <View style={styles.image}>
-                  <SliderBox
+                  <View style={{ height: heightPercentageToDP(59) }}>
+                    {/* <SliderBox
                     ImageComponent={FastImage}
                     images={data.images}
                     sliderBoxHeight={heightPercentageToDP(59)}
@@ -267,7 +283,56 @@ const ProductDetail = (props) => {
                     //circleLoop
                     dotColor="#FF3E6C"
                     inactiveDotColor="#90A4AE"
-                  />
+                  /> */}
+
+                    <Swiper
+                      ref={swiper}
+                      containerStyle={{ height: "100%" }}
+                      scrollEnabled={enable}
+                      index={0}
+                      //dotColor={"red"}
+                      //activeDotColor={"blue"}
+                      dot={
+                        <View
+                          style={{
+                            backgroundColor: "#ffff",
+                            width: 5,
+                            height: 5,
+                            borderRadius: 4,
+                            marginLeft: 3,
+                            marginRight: 3,
+                          }}
+                        />
+                      }
+                      activeDot={
+                        <View
+                          style={{
+                            backgroundColor: Colors.Primary,
+                            width: 8,
+                            height: 8,
+                            borderRadius: 4,
+                            marginLeft: 3,
+                            marginRight: 3,
+                          }}
+                        />
+                      }
+                      //showsButtons
+                    >
+                      {data.images.map((item, index) => {
+                        return (
+                          <FastImage
+                            key={"uniqie" + index}
+                            source={{ uri: item }}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                            }}
+                            resizeMode={FastImage.resizeMode.cover}
+                          />
+                        );
+                      })}
+                    </Swiper>
+                  </View>
                   <View style={styles.buttonStyle}>
                     <View style={styles.raitingCard}>
                       <FontAwesome
@@ -2443,8 +2508,8 @@ const styles = StyleSheet.create({
   },
   moreItemStyle: {
     marginHorizontal: widthPercentageToDP(3),
-    width: Dimensions.get("window").width * 0.5,
-    height: Dimensions.get("window").width * 0.65,
+    // width: Dimensions.get("window").width * 0.5,
+    // height: Dimensions.get("window").width * 0.65,
     backgroundColor: "white",
     // borderWidth: widthPercentageToDP(0.1),
     borderRadius: 5,

@@ -150,6 +150,7 @@ const OrderDetails = (props) => {
               style={{
                 ...styles.textStyle,
                 fontSize: widthPercentageToDP(3),
+                color: Colors.Primary,
               }}
             >
               {data.status.toUpperCase()}
