@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import {
   StyleSheet,
   View,
@@ -12,6 +12,8 @@ import {
   FlatList,
   TextInput,
   ActivityIndicator,
+  Pressable,
+  Modal,
 } from "react-native";
 import { SliderBox } from "react-native-image-slider-box";
 import { Slider, Box, NativeBaseProvider } from "native-base";
@@ -38,12 +40,21 @@ import Loader from "../../Components/Loader";
 import SnakBar from "../../Components/SnakBar";
 import { Fonts } from "../../Constants/fonts";
 import { AntDesign } from "react-native-vector-icons";
+import * as Animatable from "react-native-animatable";
+import Swiper from "react-native-swiper";
+//import Modal from "react-native-modal";
 
 const ProductDetail = (props) => {
   const images = [
     require("../../../assets/sliderImages1.png"),
     require("../../../assets/sliderImages2.png"),
     require("../../../assets/sliderImages3.png"),
+  ];
+  const imgList = [
+    "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
+    "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
+    "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
+    "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
   ];
 
   const renderItemMore = () => {
@@ -198,11 +209,17 @@ const ProductDetail = (props) => {
   const [color, setColor] = useState(0);
   const [toast, setToast] = useState(false);
   const [message, setMessage] = useState("");
+  const [sizeChart, showChart] = useState(false);
+  const [animateType, setAnimateType] = useState("");
+  const swiper = useRef(null);
+  const [enable, setEnable] = useState(true);
+
   var gender = ["XS", "S", "M", "L", "XL", "XXL"];
   useEffect(() => {
     // console.log("Call");
     getProductData();
   }, []);
+
   const getProductData = async () => {
     const res = await httpClients.get("product/sku2");
     console.log(res.data.status);
@@ -447,15 +464,22 @@ const ProductDetail = (props) => {
                     >
                       Select Sizes
                     </Text>
-                    <Text
-                      style={{
-                        ...styles.textStyle,
-                        fontSize: widthPercentageToDP(4),
-                        color: "#FF3E6C",
+                    <TouchableOpacity
+                      onPress={() => {
+                        showChart(true);
+                        setAnimateType("slideInRight");
                       }}
                     >
-                      Size chart
-                    </Text>
+                      <Text
+                        style={{
+                          ...styles.textStyle,
+                          fontSize: widthPercentageToDP(4),
+                          color: "#FF3E6C",
+                        }}
+                      >
+                        Size chart
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                   <View style={{ width: "100%" }}>
                     <ScrollView horizontal>
@@ -2249,12 +2273,95 @@ const ProductDetail = (props) => {
         </>
       )}
       <SnakBar isVisible={toast} text={message} bottom={"0%"} />
+      {sizeChart && (
+        <Modal visible={sizeChart} transparent={true} animationType="none">
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(0,0,0,0.7)",
+            }}
+          >
+            <Animatable.View animation={animateType} style={styles.mainModal}>
+              <Ionicons
+                name="close"
+                color={Colors.Primary}
+                size={30}
+                onPress={() => {
+                  showChart(false);
+                  setAnimateType("slideInLeft");
+                }}
+                style={{
+                  position: "absolute",
+                  top: "8%",
+                  right: "0%",
+                  zIndex: 3,
+                }}
+              />
+              <Swiper
+                ref={swiper}
+                containerStyle={styles.wrapper}
+                scrollEnabled={enable}
+                index={0}
+                //dotColor={"red"}
+                //activeDotColor={"blue"}
+                dot={
+                  <View
+                    style={{
+                      backgroundColor: "#ffffff",
+                      width: 5,
+                      height: 5,
+                      borderRadius: 4,
+                      marginLeft: 3,
+                      marginRight: 3,
+                    }}
+                  />
+                }
+                activeDot={
+                  <View
+                    style={{
+                      backgroundColor: "#000",
+                      width: 8,
+                      height: 8,
+                      borderRadius: 4,
+                      marginLeft: 3,
+                      marginRight: 3,
+                    }}
+                  />
+                }
+                //showsButtons
+              >
+                {imgList.map((item, index) => {
+                  return (
+                    <FastImage
+                      key={"uniqie" + index}
+                      source={{ uri: item }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                      resizeMode={FastImage.resizeMode.contain}
+                    />
+                  );
+                })}
+              </Swiper>
+            </Animatable.View>
+          </View>
+        </Modal>
+      )}
     </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   main: {
     flex: 1,
+  },
+  mainModal: {
+    width: widthPercentageToDP(95),
+    height: heightPercentageToDP(50),
+    //backgroundColor: "#ffffff",
+    borderRadius: widthPercentageToDP(3),
   },
   image: {
     width: Dimensions.get("window").width * 1,

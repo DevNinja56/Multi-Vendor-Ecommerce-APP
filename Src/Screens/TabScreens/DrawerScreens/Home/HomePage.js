@@ -20,6 +20,7 @@ import CategoryCards from "../../../../Components/CategoryCards";
 import httpClients from "../../../../Redux/utils";
 import Header from "../../../../Components/Header";
 import Loader from "../../../../Components/Loader";
+import Colors from '../../../../Constants/colors'
 import crashlytics from "@react-native-firebase/crashlytics";
 
 const renderCategoryGridItem = (itemData) => {
@@ -101,7 +102,7 @@ const HomePage = ({ navigation }) => {
         ishome={true}
       />
       {isLoading ? (
-        <Loader color={"FF3E6C"} />
+        <Loader color={Colors.Primary} />
       ) : (
         <ScrollView style={commonStyles.container}>
           <View style={commonStyles.firstContainer}>
@@ -517,6 +518,7 @@ const HomePage = ({ navigation }) => {
                 fontSize: widthPercentageToDP(4.5),
                 textAlign: "center",
                 paddingHorizontal: 10,
+                marginTop:10
               }}
             >
               "Elegance is not standing out, but being remembered."

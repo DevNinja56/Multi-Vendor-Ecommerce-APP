@@ -137,7 +137,7 @@ const ProductsAll = (props) => {
               </TouchableOpacity>
             </View>
 
-            <View style={{ borderWidth: 0.3, height: "60%" }} />
+            <View style={{ borderWidth: 0.3, height: "60%", borderColor: '#cccccc' }} />
 
             <View
               style={{
@@ -174,7 +174,7 @@ const ProductsAll = (props) => {
               </TouchableOpacity>
             </View>
 
-            <View style={{ borderWidth: 0.3, height: "60%" }} />
+            <View style={{ borderWidth: 0.3, height: "60%", borderColor: '#cccccc' }} />
 
             <View
               style={{
@@ -241,7 +241,7 @@ const ProductsAll = (props) => {
         </View>
       </View>
 
-      {isLoading && <Loader color={"FF3E6C"} />}
+      {isLoading && <Loader color={Colors.Primary} />}
     </SafeAreaView>
   );
 };

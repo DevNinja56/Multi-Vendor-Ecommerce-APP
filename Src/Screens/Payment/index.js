@@ -90,20 +90,34 @@ const PaymentMethod = (props) => {
       </View>
       <TouchableOpacity
         onPress={() => props.navigation.navigate("PaymentAdd")}
-        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
+        style={[
+          styles.addLoctionBtn,
+          {
+            flexDirection: "row",
+            alignItems: "center",
+          },
+        ]}
       >
-        <AntDesign name="plus" size={24} color="white" />
+        <AntDesign
+          name="plus"
+          size={24}
+          color="white"
+          style={{
+            position: "absolute",
+            top: "25%",
+            left: "5%",
+          }}
+        />
         <Text
           style={{
             ...styles.headingStyle,
             fontSize: widthPercentageToDP(4.5),
             // alignSelf: "center",
             textAlign: "center",
-            flex: 1,
             color: "white",
           }}
         >
-          Add Card
+          add card
         </Text>
       </TouchableOpacity>
 
@@ -118,7 +132,11 @@ const PaymentMethod = (props) => {
         Other Payment Method
       </Text>
 
-      <FlatList data={data} renderItem={renderItem} />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        showsVerticalScrollIndicator={false}
+      />
     </View>
   );
 };

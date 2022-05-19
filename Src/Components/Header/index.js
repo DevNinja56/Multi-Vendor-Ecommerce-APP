@@ -48,7 +48,7 @@ const CustomHeader = (props) => {
               marginTop: heightPercentageToDP(0.3),
               // borderWidth: 1,
             }}
-            resizeMode={FastImage.resizeMode.cover}
+            resizeMode={FastImage.resizeMode.stretch}
           />
         ) : (
           <Text

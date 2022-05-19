@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { heightPercentageToDP } from "react-native-responsive-screen";
+import { heightPercentageToDP, widthPercentageToDP } from "react-native-responsive-screen";
 import Colors from "../../Constants/colors";
 
 export const styles = StyleSheet.create({
@@ -12,12 +12,14 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.BlackBackground,
   },
   addLoctionBtn: {
-    flexDirection: "row",
-    alignItems: "center",
-    // backgroundColor: Colors.Primary,
-    marginVertical: heightPercentageToDP(3),
-    marginHorizontal: heightPercentageToDP(3),
-    // padding: heightPercentageToDP(2),
+    width: widthPercentageToDP(88),
+    height: heightPercentageToDP(6),
+    justifyContent:"center",
+    alignItems:"center",
+    alignSelf:"center",
+    backgroundColor: Colors.Primary,
+    marginTop:heightPercentageToDP(3),
+    borderRadius: widthPercentageToDP(1.5)
   },
   cardLayout: {
     alignItems: "center",
@@ -35,7 +37,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#EEEEEE",
     padding: heightPercentageToDP(2),
     fontFamily: "whitney-medium",
-    fontSize: heightPercentageToDP(2),
+    fontSize: widthPercentageToDP(4),
     color: "#707070",
     borderRadius: heightPercentageToDP(1),
   },

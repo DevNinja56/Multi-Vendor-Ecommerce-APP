@@ -105,7 +105,7 @@ const TabNavigator = () => {
           headerTitle: "Categories",
           headerTitleStyle: {
             paddingVertical: 5,
-            fontSize: widthPercentageToDP(3.5),
+            fontSize: widthPercentageToDP(4),
             fontFamily: "whitney-semi-bold",
             color: "grey",
           },
@@ -134,7 +134,7 @@ const TabNavigator = () => {
           headerTitle: "Profile",
           headerTitleStyle: {
             paddingVertical: 5,
-            fontSize: widthPercentageToDP(3.5),
+            fontSize: widthPercentageToDP(4),
             fontFamily: "whitney-semi-bold",
             color: "grey",
           },

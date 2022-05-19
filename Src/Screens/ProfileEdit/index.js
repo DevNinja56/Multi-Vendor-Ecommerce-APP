@@ -24,7 +24,7 @@ const ProfileEdit = (props) => {
         <View style={styles.inputLayout}>
             <TextInput placeholder="Firstname" style={styles.inputStyle}/>
             <TextInput placeholder="Last Name" style={styles.inputStyle}/>
-            <TextInput placeholder="Phone no." style={styles.inputStyle}/>
+            {/* <TextInput placeholder="Phone no." style={styles.inputStyle}/> */}
         </View>
 
         <TouchableOpacity style={styles.buttonStyle}>

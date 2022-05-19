@@ -22,7 +22,7 @@ const PaymentAdd = (props) => {
     >
       <SimpleHeader
         clickHandler={() => props.navigation.goBack()}
-        headerTitle={"REMOVE CARD"}
+        headerTitle={"Remove Card"}
         placement={"left"}
       />
 
@@ -41,7 +41,7 @@ const PaymentAdd = (props) => {
             <Text
               style={{
                 fontFamily: "whitney-medium",
-                fontSize: heightPercentageToDP(2),
+                fontSize: widthPercentageToDP(4),
                 marginVertical: heightPercentageToDP(1),
               }}
             >
@@ -63,7 +63,7 @@ const PaymentAdd = (props) => {
               <Text
                 style={{
                   fontFamily: "whitney-medium",
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                   marginVertical: heightPercentageToDP(1),
                 }}
               >
@@ -75,7 +75,7 @@ const PaymentAdd = (props) => {
               <Text
                 style={{
                   fontFamily: "whitney-medium",
-                  fontSize: heightPercentageToDP(2),
+                  fontSize: widthPercentageToDP(4),
                   marginVertical: heightPercentageToDP(1),
                 }}
               >
@@ -89,7 +89,7 @@ const PaymentAdd = (props) => {
             <Text
               style={{
                 fontFamily: "whitney-medium",
-                fontSize: heightPercentageToDP(2),
+                fontSize: widthPercentageToDP(4),
                 marginVertical: heightPercentageToDP(1),
               }}
             >
@@ -125,32 +125,30 @@ const PaymentAdd = (props) => {
               style={{
                 fontFamily: "whitney-medium",
                 color: "black",
-                fontSize: heightPercentageToDP(2.2),
+                fontSize: widthPercentageToDP(4.2),
               }}
             >
               Save Card Details
             </Text>
           </View>
         </View>
-      </View>
-
-      <TouchableOpacity
-        style={{ ...commonStyles.buttonStyle, ...styles.addLoctionBtn }}
-        onPress={() => setRemove(true)}
-      >
-        <Text
-          style={{
-            ...styles.headingStyle,
-            fontSize: heightPercentageToDP(2),
-            // alignSelf: "center",
-            textAlign: "center",
-            flex: 1,
-            color: "white",
-          }}
+        <TouchableOpacity
+          style={{ ...styles.addLoctionBtn }}
+          onPress={() => setRemove(true)}
         >
-          REMOVE CARD
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              ...styles.headingStyle,
+              fontSize: heightPercentageToDP(2),
+              // alignSelf: "center",
+              textAlign: "center",
+              color: "white",
+            }}
+          >
+            REMOVE CARD
+          </Text>
+        </TouchableOpacity>
+      </View>
 
       {isRemove && (
         <RemoveDialog
