@@ -56,7 +56,6 @@ const ProductDetail = (props) => {
     "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
     "https://images.squarespace-cdn.com/content/v1/5e717a4d43b5943ba1cf1375/1605683674435-B4DHTIT6KVONJ0U1DUOX/Vintage+Shirt+Size+Chart.png?format=1000w",
   ];
-
   const renderItemMore = () => {
     return (
       <View style={styles.moreItemStyle}>
@@ -2274,7 +2273,7 @@ const ProductDetail = (props) => {
       )}
       <SnakBar isVisible={toast} text={message} bottom={"0%"} />
       {sizeChart && (
-        <Modal visible={sizeChart} transparent={true} animationType="none">
+        <Modal visible={sizeChart} transparent={true} animationType="fade">
           <View
             style={{
               flex: 1,
@@ -2283,7 +2282,7 @@ const ProductDetail = (props) => {
               backgroundColor: "rgba(0,0,0,0.7)",
             }}
           >
-            <Animatable.View animation={animateType} style={styles.mainModal}>
+            <View style={styles.mainModal}>
               <Ionicons
                 name="close"
                 color={Colors.Primary}
@@ -2346,7 +2345,7 @@ const ProductDetail = (props) => {
                   );
                 })}
               </Swiper>
-            </Animatable.View>
+            </View>
           </View>
         </Modal>
       )}
