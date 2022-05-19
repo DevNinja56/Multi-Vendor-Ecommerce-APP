@@ -17,6 +17,7 @@ import { Fonts } from "../../../Src/Constants/fonts";
 import { StackActions } from "@react-navigation/native";
 import SimpleHeader from "../../Components/Header/simple_header";
 import Colors from "../../Constants/colors";
+import { commonStyles } from "../../Styles/commonStyles";
 
 const OrderConfirmed = ({ navigation }) => {
   return (
@@ -29,7 +30,7 @@ const OrderConfirmed = ({ navigation }) => {
           style={{
             justifyContent: "center",
             alignItems: "center",
-            flex: 0.5,
+            flex: 0.4,
             padding: 16,
           }}
         >
@@ -52,20 +53,22 @@ const OrderConfirmed = ({ navigation }) => {
             Congratulations. Your order is accepted.
           </Text>
         </View>
-        <View style={{ flex: 0.3, justifyContent: "space-between" }}>
+        <View style={{ flex: 0.2, justifyContent: "space-between" }}>
           <Text
             style={{
-              ...styles.headingStyle,
+              fontFamily: Fonts.whitney_medium,
               fontSize: heightPercentageToDP(1.75),
               textAlign: "center",
-              marginTop: 50,
+              margin: heightPercentageToDP(2),
             }}
           >
             Thank you for your purchase! Your items are on the way and should
             arrive shortly.
           </Text>
 
-          <TouchableOpacity style={styles.buttonStyle}>
+          <TouchableOpacity
+            style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
+          >
             <Text
               style={{
                 ...styles.headerText,
@@ -88,10 +91,7 @@ const styles = StyleSheet.create({
   },
 
   buttonStyle: {
-    marginTop: 10,
-    padding: 16,
-    backgroundColor: Colors.Primary,
-    alignItems: "center",
+    margin: heightPercentageToDP(2),
   },
 });
 
