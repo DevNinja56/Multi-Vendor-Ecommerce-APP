@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: Colors.Primary,
     borderRadius: 5,
-    elevation: 4,
+    // elevation: 4,
   },
 
   container_2_Styles: {
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
     fontFamily: "whitney-light",
     fontSize: heightPercentageToDP(2),
     backgroundColor: "white",
-    elevation: 4,
+    elevation: 1,
     padding: 16,
     borderRadius: 5,
   },

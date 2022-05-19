@@ -71,67 +71,6 @@ const ProductDetail = (props) => {
         rating={item.rating}
         discount={item.discount}
       />
-      // </View>
-
-      // <View style={styles.moreItemStyle}>
-      //   <FastImage
-      //     source={require("../../../assets/mensCollectionSuits.jpg")}
-      //     style={{ height: "60%", width: "100%" }}
-      //   />
-
-      //   <View style={{ height: "25%",padding }}>
-      //     <Text
-      //       style={{
-      //         paddingHorizontal: heightPercentageToDP(0.5),
-      //         fontFamily: Fonts.whitney_medium,
-      //         fontSize: widthPercentageToDP(4),
-      //         color: "#545454",
-      //       }}
-      //     >
-      //       Big Head Tigi
-      //     </Text>
-      //     <Text
-      //       style={{
-      //         paddingHorizontal: heightPercentageToDP(0.5),
-      //         fontFamily: Fonts.whitney_book,
-      //         fontSize: widthPercentageToDP(3.75),
-      //         color: "#959595",
-      //       }}
-      //     >
-      //       ELECTRIC HAIR REMOVER
-      //     </Text>
-      //     <Text
-      //       style={{
-      //         fontFamily: Fonts.whitney_semi_bold,
-      //         paddingHorizontal: heightPercentageToDP(0.5),
-      //         fontSize: heightPercentageToDP(2),
-      //         color: "#4D4D4D",
-      //       }}
-      //     >
-      //       RS 49
-      //     </Text>
-      //   </View>
-      //   <TouchableOpacity
-      //     style={{
-      //       height: "15%",
-      //       // borderTopWidth: heightPercentageToDP(0.1),
-      //       justifyContent: "center",
-      //       alignItems: "center",
-      //       backgroundColor: Colors.Primary,
-      //     }}
-      //   >
-      //     <Text
-      //       style={{
-      //         fontSize: widthPercentageToDP(4),
-      //         fontFamily: Fonts.whitney_semi_bold,
-      //         color: "white",
-      //         //   textAlign: "center",
-      //       }}
-      //     >
-      //       ADD TO CART
-      //     </Text>
-      //   </TouchableOpacity>
-      // </View>
     );
   };
   const renderItem = (itemData) => {
@@ -257,7 +196,6 @@ const ProductDetail = (props) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <SimpleHeader clickHandler={props.navigation.goBack()} headerTitle={data.Product_Title}/> */}
       <SimpleHeader
         placement={"left"}
         clickHandler={() => props.navigation.goBack()}
@@ -272,19 +210,6 @@ const ProductDetail = (props) => {
               <View style={styles.main}>
                 <View style={styles.image}>
                   <View style={{ height: heightPercentageToDP(59) }}>
-                    {/* <SliderBox
-                    ImageComponent={FastImage}
-                    images={data.images}
-                    sliderBoxHeight={heightPercentageToDP(59)}
-                    //   onCurrentImagePressed={(index) =>
-                    //     console.warn(`image ${index} pressed`)
-                    //   }
-                    //autoplay
-                    //circleLoop
-                    dotColor="#FF3E6C"
-                    inactiveDotColor="#90A4AE"
-                  /> */}
-
                     <Swiper
                       ref={swiper}
                       containerStyle={{ height: "100%" }}
@@ -316,7 +241,6 @@ const ProductDetail = (props) => {
                           }}
                         />
                       }
-                      //showsButtons
                     >
                       {data.images.map((item, index) => {
                         return (
