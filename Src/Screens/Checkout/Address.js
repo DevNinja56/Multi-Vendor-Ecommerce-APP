@@ -44,18 +44,18 @@ const Address = (props) => {
                     <TouchableOpacity style={styles.btn}>
                       {key == 0 ? (
                         <HomeWhite
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       ) : key == 1 ? (
                         <BuildingWhite
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       ) : (
                         <OtherWhite
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       )}
                       <Text style={styles.textChecked}>{item.title}</Text>
@@ -81,18 +81,18 @@ const Address = (props) => {
                         > */}
                       {key == 0 ? (
                         <HomeBlack
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       ) : key == 1 ? (
                         <BuildingBlack
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       ) : (
                         <OtherBlack
-                          height={heightPercentageToDP(5)}
-                          width={heightPercentageToDP(5)}
+                          height={heightPercentageToDP(4)}
+                          width={heightPercentageToDP(4)}
                         />
                       )}
                       <Text style={styles.textUnChecked}>{item.title}</Text>
@@ -110,13 +110,13 @@ const Address = (props) => {
             <Text
               style={{
                 ...styles.headingStyle,
-                fontSize: widthPercentageToDP(6),
+                fontSize: widthPercentageToDP(5),
                 color: "black",
               }}
             >
-              Enter Address Details
+              ENTER DELIVERY ADDRESS
             </Text>
-            <View style={{ marginTop: 25 }}>
+            <View style={{ marginTop: heightPercentageToDP(2) }}>
               <View
                 style={{
                   flexDirection: "row",
@@ -303,11 +303,13 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    marginHorizontal: widthPercentageToDP(1.5),
+    marginHorizontal: widthPercentageToDP(4),
     paddingHorizontal: widthPercentageToDP(3.5),
+    paddingVertical: heightPercentageToDP(1.5),
     height: heightPercentageToDP(10),
-    width: widthPercentageToDP(30),
-    justifyContent: "center",
+    width: widthPercentageToDP(25),
+    justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: Colors.Primary,
     borderRadius: 5,
   },
@@ -339,13 +341,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: Fonts.whitney_medium,
     fontSize: widthPercentageToDP(4.5),
-    paddingLeft: widthPercentageToDP(1),
+    // paddingLeft: widthPercentageToDP(1),
   },
   textUnChecked: {
     color: "black",
     fontFamily: Fonts.whitney_medium,
-    fontSize: widthPercentageToDP(4),
-    paddingLeft: widthPercentageToDP(1),
+    fontSize: widthPercentageToDP(4.5),
+    // paddingLeft: widthPercentageToDP(1),
   },
 });
 
