@@ -157,7 +157,8 @@ const ShoppingCardsButton = (props) => {
       </View>
       <TouchableOpacity
         style={{
-          height: "15%",
+          // height: "12%",
+          flex: 1,
           // borderTopWidth: heightPercentageToDP(0.1),
           justifyContent: "center",
           alignItems: "center",
@@ -183,16 +184,16 @@ const styles = StyleSheet.create({
   mainContainer: {
     marginHorizontal: widthPercentageToDP(3),
     width: Dimensions.get("window").width * 0.5,
-    height: heightPercentageToDP(45),
+    height: heightPercentageToDP(41.5),
     backgroundColor: "white",
     // borderWidth: widthPercentageToDP(0.1),
     borderRadius: 5,
     overflow: "hidden",
-    elevation: 4,
+    elevation: 1,
     marginVertical: widthPercentageToDP(1),
   },
   cardStyle: {
-    height: heightPercentageToDP(26),
+    height: heightPercentageToDP(24),
     alignItems: "flex-end",
   },
   backgroundStyle: {

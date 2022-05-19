@@ -803,23 +803,29 @@ const Bag = (props) => {
           </View>
         </View>
       </ScrollView>
-      <TouchableOpacity
+      <View
         style={{
-          ...commonStyles.buttonStyle,
-          margin: heightPercentageToDP(2),
+          backgroundColor: "white",
         }}
-        onPress={() => props.screenSet(1)}
       >
-        <Text
+        <TouchableOpacity
           style={{
-            ...styles.headerText,
-            color: "white",
-            fontSize: heightPercentageToDP(2),
+            ...commonStyles.buttonStyle,
+            margin: heightPercentageToDP(2),
           }}
+          onPress={() => props.screenSet(1)}
         >
-          PLACE ORDER
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              ...styles.headerText,
+              color: "white",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            PLACE ORDER
+          </Text>
+        </TouchableOpacity>
+      </View>
       {remove && (
         <RemoveDialog
           title={"Sure you want to remove this Item"}

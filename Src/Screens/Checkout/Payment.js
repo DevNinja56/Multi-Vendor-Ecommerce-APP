@@ -165,21 +165,26 @@ const Payment = (props) => {
           />
         </View>
       </ScrollView>
-
-      <TouchableOpacity
-        style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
-        onPress={props.screenSet}
+      <View
+        style={{
+          backgroundColor: "white",
+        }}
       >
-        <Text
-          style={{
-            ...styles.headerText,
-            color: "white",
-            fontSize: heightPercentageToDP(2),
-          }}
+        <TouchableOpacity
+          style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
+          onPress={props.screenSet}
         >
-          CONTINUE TO PAYMENT
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              ...styles.headerText,
+              color: "white",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            CONTINUE TO PAYMENT
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

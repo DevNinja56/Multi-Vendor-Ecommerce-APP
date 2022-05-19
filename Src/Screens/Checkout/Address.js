@@ -11,7 +11,15 @@ import {
   heightPercentageToDP,
   widthPercentageToDP,
 } from "react-native-responsive-screen";
-import { HomeIcon } from "../../../assets/svg";
+import {
+  BuildingBlack,
+  BuildingWhite,
+  HomeBlack,
+  HomeIcon,
+  HomeWhite,
+  OtherBlack,
+  OtherWhite,
+} from "../../../assets/svg";
 import Colors from "../../Constants/colors";
 import { Picker } from "@react-native-picker/picker";
 import { CheckBox, Icon } from "react-native-elements";
@@ -22,42 +30,44 @@ const Address = (props) => {
   const [checked, setChecked] = useState(0);
   const [selectedLanguage, setSelectedLanguage] = useState();
   const [check1, setCheck1] = useState(true);
-  var gender = ["Home", "Office", "Other"];
+  var gender = [{ title: "Home" }, { title: "Office" }, { title: "Other" }, ,];
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={{ flexGrow: 1 }}>
         <View style={styles.container_1_Styles}>
-          <ScrollView horizontal>
-            <View style={styles.btnStyle}>
-              {gender.map((gender, key) => {
-                return (
-                  <View key={gender}>
-                    {checked == key ? (
-                      <TouchableOpacity style={styles.btn}>
-                        {/* <View
-                          style={{
-                            flex: 1,
-                            paddingVertical: 16,
-                            paddingHorizontal: 30,
-                            justifyContent: "center",
-                            alignItems: "center",
-                            backgroundColor: Colors.Primary,
-                            borderRadius: 5,
-                            elevation: 4,
-                          }}
-                        > */}
-                        <HomeIcon />
-                        <Text style={styles.textChecked}>{gender}</Text>
-                        {/* </View> */}
-                      </TouchableOpacity>
-                    ) : (
-                      <TouchableOpacity
-                        onPress={() => {
-                          setChecked(key);
-                        }}
-                        style={{ ...styles.btn, backgroundColor: "white" }}
-                      >
-                        {/* <View
+          {/* <ScrollView horizontal> */}
+          <View style={styles.btnStyle}>
+            {gender.map((item, key) => {
+              return (
+                <View key={item}>
+                  {checked == key ? (
+                    <TouchableOpacity style={styles.btn}>
+                      {key == 0 ? (
+                        <HomeWhite
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      ) : key == 1 ? (
+                        <BuildingWhite
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      ) : (
+                        <OtherWhite
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      )}
+                      <Text style={styles.textChecked}>{item.title}</Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <TouchableOpacity
+                      onPress={() => {
+                        setChecked(key);
+                      }}
+                      style={{ ...styles.btn, backgroundColor: "white" }}
+                    >
+                      {/* <View
                           style={{
                             flex: 1,
                             paddingVertical: 16,
@@ -69,16 +79,31 @@ const Address = (props) => {
                             elevation: 4,
                           }}
                         > */}
-                        <HomeIcon />
-                        <Text style={styles.textUnChecked}>{gender}</Text>
-                        {/* </View> */}
-                      </TouchableOpacity>
-                    )}
-                  </View>
-                );
-              })}
-            </View>
-          </ScrollView>
+                      {key == 0 ? (
+                        <HomeBlack
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      ) : key == 1 ? (
+                        <BuildingBlack
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      ) : (
+                        <OtherBlack
+                          height={heightPercentageToDP(5)}
+                          width={heightPercentageToDP(5)}
+                        />
+                      )}
+                      <Text style={styles.textUnChecked}>{item.title}</Text>
+                      {/* </View> */}
+                    </TouchableOpacity>
+                  )}
+                </View>
+              );
+            })}
+          </View>
+          {/* </ScrollView> */}
         </View>
         <View style={{ padding: heightPercentageToDP(2) }}>
           <View style={styles.container_2_Styles}>
@@ -238,20 +263,26 @@ const Address = (props) => {
           )}
         </View>
       </ScrollView>
-      <TouchableOpacity
-        style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
-        onPress={() => props.screenSet(2)}
+      <View
+        style={{
+          backgroundColor: "white",
+        }}
       >
-        <Text
-          style={{
-            ...styles.headerText,
-            color: "white",
-            fontSize: heightPercentageToDP(2),
-          }}
+        <TouchableOpacity
+          style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
+          onPress={() => props.screenSet(2)}
         >
-          CONTINUE TO PAYMENT
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              ...styles.headerText,
+              color: "white",
+              fontSize: heightPercentageToDP(2),
+            }}
+          >
+            CONTINUE TO PAYMENT
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -272,18 +303,13 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    // flexDirection: "row",
-    alignItems: "center",
-    // marginRight: 5,
-    marginHorizontal: 5,
-    // flex: 1,
-    paddingVertical: 16,
-    paddingHorizontal: 30,
+    marginHorizontal: widthPercentageToDP(1.5),
+    paddingHorizontal: widthPercentageToDP(3.5),
+    height: heightPercentageToDP(10),
+    width: widthPercentageToDP(30),
     justifyContent: "center",
-    alignItems: "center",
     backgroundColor: Colors.Primary,
     borderRadius: 5,
-    // elevation: 4,
   },
 
   container_2_Styles: {
@@ -293,7 +319,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.whitney_semi_bold,
   },
   textInputStyle: {
-    marginTop: 10,
+    marginTop: heightPercentageToDP(2.5),
     flex: 1,
     fontFamily: "whitney-light",
     fontSize: heightPercentageToDP(2),
@@ -307,17 +333,19 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   buttonStyle: {
-    margin: heightPercentageToDP(1),
+    margin: heightPercentageToDP(2),
   },
   textChecked: {
     color: "white",
     fontFamily: Fonts.whitney_medium,
-    fontSize: widthPercentageToDP(4),
+    fontSize: widthPercentageToDP(4.5),
+    paddingLeft: widthPercentageToDP(1),
   },
   textUnChecked: {
     color: "black",
     fontFamily: Fonts.whitney_medium,
     fontSize: widthPercentageToDP(4),
+    paddingLeft: widthPercentageToDP(1),
   },
 });
 
