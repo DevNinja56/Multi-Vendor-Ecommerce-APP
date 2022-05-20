@@ -33,6 +33,7 @@ import { Fonts } from "../../Constants/fonts";
 //import { Colors } from "../../Constants/colors";
 import { commonStyles } from "../../Styles/commonStyles";
 import RemoveDialog from "../../Components/RemoveDialog";
+import ShoppingCardsButton from "../../Components/ShoppingCardsButton";
 
 const Bag = (props) => {
   const [remove, setRemove] = useState(false);
@@ -42,6 +43,24 @@ const Bag = (props) => {
   const removeItem = () => {
     // deleteWishlist(removeId);
     setRemove(false);
+  };
+
+  const renderItemMore = ({ item, index }) => {
+    return (
+      // <View style={styles.moreItemStyle}>
+      <ShoppingCardsButton
+        name={"Big Head Tigi"}
+        feature_image={
+          "https://images.unsplash.com/photo-1594938328870-9623159c8c99?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bWVuJTIwc3VpdHxlbnwwfHwwfHw%3D&w=1000&q=80"
+        }
+        category_name={"Male"}
+        discounted_Price={"100"}
+        quantity={"3"}
+        regular_Price={"500"}
+        rating={"5"}
+        discount={"80"}
+      />
+    );
   };
 
   const renderItem = (itemData) => {
@@ -66,7 +85,7 @@ const Bag = (props) => {
             style={{
               fontFamily: Fonts.whitney_book,
               fontSize: widthPercentageToDP(4),
-              marginVertical: 2.5,
+              marginTop: heightPercentageToDP(0.7),
               color: "#4D4D4D",
             }}
           >
@@ -77,7 +96,7 @@ const Bag = (props) => {
               ...styles.simpleText,
               fontSize: widthPercentageToDP(3.5),
               color: "#B4B4B4",
-              marginVertical: 2.5,
+              marginTop: heightPercentageToDP(0.7),
             }}
           >
             Sold by: Truecom Retail
@@ -85,7 +104,7 @@ const Bag = (props) => {
           <View
             style={{
               ...styles.container_1_Styles,
-              marginVertical: 2.5,
+              marginTop: heightPercentageToDP(0.7),
               alignItems: "center",
             }}
           >
@@ -118,7 +137,7 @@ const Bag = (props) => {
           <Text
             style={{
               fontSize: widthPercentageToDP(3.75),
-              marginTop: 5,
+              marginTop: heightPercentageToDP(0.7),
               fontFamily: Fonts.whitney_light,
             }}
           >
@@ -133,7 +152,7 @@ const Bag = (props) => {
             <Text
               style={{
                 fontFamily: Fonts.whitney_semi_bold,
-                marginTop: 3,
+                // marginTop: heightPercentageToDP(0.7),
                 color: "#4D4D4D",
               }}
             >
@@ -150,7 +169,13 @@ const Bag = (props) => {
             </Text>
           </Text>
 
-          <View style={{ ...styles.container_1_Styles, alignItems: "center" }}>
+          <View
+            style={{
+              ...styles.container_1_Styles,
+              alignItems: "center",
+              marginTop: heightPercentageToDP(0.7),
+            }}
+          >
             <MaterialIcons
               name="done"
               size={widthPercentageToDP(4.5)}
@@ -159,7 +184,7 @@ const Bag = (props) => {
             <Text
               style={{
                 ...styles.simpleText,
-                fontSize: widthPercentageToDP(3.5),
+                fontSize: widthPercentageToDP(3.75),
                 marginHorizontal: 4,
                 color: "#B4B4B4",
               }}
@@ -186,74 +211,74 @@ const Bag = (props) => {
     );
   };
 
-  const renderItemMore = () => {
-    return (
-      <View style={styles.moreItemStyle}>
-        <FastImage
-          source={require("../../../assets/mensCollectionSuits.jpg")}
-          style={{ height: "60%", width: "100%" }}
-        />
+  // const renderItemMore = () => {
+  //   return (
+  //     <View style={styles.moreItemStyle}>
+  //       <FastImage
+  //         source={require("../../../assets/mensCollectionSuits.jpg")}
+  //         style={{ height: "60%", width: "100%" }}
+  //       />
 
-        <View style={{ height: "25%" }}>
-          <Text
-            style={{
-              paddingHorizontal: heightPercentageToDP(0.5),
-              ...styles.headerText,
-              fontSize: widthPercentageToDP(4),
-              color: "#4D4D4D",
-            }}
-          >
-            BIG HEAD TIGI
-          </Text>
-          <Text
-            style={{
-              paddingHorizontal: heightPercentageToDP(0.5),
-              fontFamily: Fonts.whitney_book,
-              fontSize: widthPercentageToDP(3.75),
-              color: "#959595",
-            }}
-          >
-            ELECTRIC HAIR REMOVER
-          </Text>
-          <Text
-            style={{
-              ...styles.headerText,
-              paddingHorizontal: heightPercentageToDP(0.5),
-              fontSize: heightPercentageToDP(2),
-              color: "#4D4D4D",
-            }}
-          >
-            RS 49
-          </Text>
-        </View>
-        <TouchableOpacity
-          style={{
-            height: "15%",
-            // borderTopWidth: heightPercentageToDP(0.1),
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: Colors.Primary,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: widthPercentageToDP(4),
-              ...styles.headerText,
-              color: "white",
-              //   textAlign: "center",
-            }}
-          >
-            ADD TO CART
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  //       <View style={{ height: "25%" }}>
+  //         <Text
+  //           style={{
+  //             paddingHorizontal: heightPercentageToDP(0.5),
+  //             ...styles.headerText,
+  //             fontSize: widthPercentageToDP(4),
+  //             color: "#4D4D4D",
+  //           }}
+  //         >
+  //           BIG HEAD TIGI
+  //         </Text>
+  //         <Text
+  //           style={{
+  //             paddingHorizontal: heightPercentageToDP(0.5),
+  //             fontFamily: Fonts.whitney_book,
+  //             fontSize: widthPercentageToDP(3.75),
+  //             color: "#959595",
+  //           }}
+  //         >
+  //           ELECTRIC HAIR REMOVER
+  //         </Text>
+  //         <Text
+  //           style={{
+  //             ...styles.headerText,
+  //             paddingHorizontal: heightPercentageToDP(0.5),
+  //             fontSize: heightPercentageToDP(2),
+  //             color: "#4D4D4D",
+  //           }}
+  //         >
+  //           RS 49
+  //         </Text>
+  //       </View>
+  //       <TouchableOpacity
+  //         style={{
+  //           height: "15%",
+  //           // borderTopWidth: heightPercentageToDP(0.1),
+  //           justifyContent: "center",
+  //           alignItems: "center",
+  //           backgroundColor: Colors.Primary,
+  //         }}
+  //       >
+  //         <Text
+  //           style={{
+  //             fontSize: widthPercentageToDP(4),
+  //             ...styles.headerText,
+  //             color: "white",
+  //             //   textAlign: "center",
+  //           }}
+  //         >
+  //           ADD TO CART
+  //         </Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //   );
+  // };
 
   const data = ["1", "2"];
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View
           style={{
@@ -320,8 +345,8 @@ const Bag = (props) => {
             <Text
               style={{
                 fontFamily: Fonts.whitney_book,
-                fontSize: widthPercentageToDP(3.5),
-                marginVertical: 5,
+                fontSize: widthPercentageToDP(4),
+                marginTop: heightPercentageToDP(2),
                 color: "black",
               }}
             >
@@ -339,19 +364,14 @@ const Bag = (props) => {
               <Text
                 style={{
                   ...styles.headerText,
-                  fontSize: widthPercentageToDP(3.5),
+                  fontSize: widthPercentageToDP(4),
                   color: Colors.Primary,
                   marginRight: 5,
-                  marginTop: heightPercentageToDP(0.2),
+                  marginTop: heightPercentageToDP(2),
                 }}
               >
                 Show More
               </Text>
-              <AntDesign
-                name="caretdown"
-                size={widthPercentageToDP(3.5)}
-                color={Colors.Primary}
-              />
             </TouchableOpacity>
           </View>
         </View>
@@ -501,7 +521,12 @@ const Bag = (props) => {
         </View>
 
         <View style={{ backgroundColor: "#FED5D1", paddingVertical: 5 }}>
-          <FlatList data={data} renderItem={renderItemMore} horizontal />
+          <FlatList
+            data={data}
+            renderItem={renderItemMore}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+          />
         </View>
 
         <View
@@ -828,7 +853,7 @@ const Bag = (props) => {
       </View>
       {remove && (
         <RemoveDialog
-          title={"Sure you want to remove this Item"}
+          title={"Sure you want to remove this Item?"}
           onClearClick={() => setRemove(false)}
           closeClick={() => setRemove(false)}
           isRemove={remove}
@@ -841,7 +866,7 @@ const Bag = (props) => {
 
 const styles = StyleSheet.create({
   headerText: {
-    fontFamily: "whitney-semi-bold",
+    fontFamily: Fonts.whitney_semi_bold,
   },
   simpleText: {
     fontFamily: "whitney-light",

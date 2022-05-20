@@ -17,7 +17,7 @@ import { DeleteIcon, LocationColor } from "../../../assets/svg";
 import { commonStyles } from "../../Styles/commonStyles";
 
 const AddressDetails = (props) => {
-  const data = [1, 2, 3];
+  const data = [1, 2, 3, 4, 5];
   const renderItem = ({ item, index }) => {
     return (
       <View style={styles.locationCardsStyle}>
@@ -60,17 +60,6 @@ const AddressDetails = (props) => {
         headerTitle={"Address"}
         placement={"left"}
       />
-      {/* <Text
-        style={{
-          ...styles.headingStyle,
-          fontSize: heightPercentageToDP(3.5),
-          color: "black",
-          marginTop: heightPercentageToDP(5),
-          marginLeft: heightPercentageToDP(3),
-        }}
-      >
-        My Address
-      </Text> */}
 
       <View style={styles.addressDetailsStyle}>
         <View

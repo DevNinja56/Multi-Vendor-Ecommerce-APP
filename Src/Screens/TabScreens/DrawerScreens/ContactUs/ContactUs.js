@@ -18,6 +18,8 @@ import {
 import SimpleHeader from "../../../../Components/Header/simple_header";
 import Colors from "../../../../Constants/colors";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import { Fonts } from "../../../../Constants/fonts";
+import { commonStyles } from "../../../../Styles/commonStyles";
 
 const ContactUs = (props) => {
   const [value, setValue] = React.useState("first");
@@ -51,7 +53,7 @@ const ContactUs = (props) => {
             <TextInput
               placeholder="Name"
               style={styles.textInputStyle}
-              placeholderTextColor={"black"}
+              placeholderTextColor={"#707070"}
               autoFocus={true}
               returnKeyType="next"
               onSubmitEditing={() => ref_input2.current.focus()}
@@ -59,7 +61,7 @@ const ContactUs = (props) => {
             <TextInput
               placeholder="Email"
               style={styles.textInputStyle}
-              placeholderTextColor={"black"}
+              placeholderTextColor={"#707070"}
               returnKeyType="next"
               onSubmitEditing={() => ref_input3.current.focus()}
               ref={ref_input2}
@@ -67,7 +69,7 @@ const ContactUs = (props) => {
             <TextInput
               placeholder="Phone"
               style={styles.textInputStyle}
-              placeholderTextColor={"black"}
+              placeholderTextColor={"#707070"}
               ref={ref_input3}
             />
 
@@ -76,6 +78,7 @@ const ContactUs = (props) => {
                 ...styles.textStyle,
                 fontSize: widthPercentageToDP(3.5),
                 marginLeft: widthPercentageToDP(1),
+                color: "#8D8C8C",
               }}
             >
               Preferred method for communication
@@ -120,13 +123,15 @@ const ContactUs = (props) => {
 
             <TextInput
               placeholder="Message"
+              placeholderTextColor={"#707070"}
               style={styles.textInputStyle}
-              placeholderTextColor={"black"}
             />
           </View>
         </View>
 
-        <TouchableOpacity style={styles.buttonStyle}>
+        <TouchableOpacity
+          style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
+        >
           <Text
             style={{
               textAlign: "center",
@@ -134,7 +139,7 @@ const ContactUs = (props) => {
               fontFamily: "whitney-semi-bold",
             }}
           >
-            Submit
+            SUBMIT
           </Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>
@@ -165,39 +170,51 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   headingStyle: {
-    fontFamily: "whitney-semi-bold",
+    fontFamily: Fonts.whitney_semi_bold,
     fontSize: heightPercentageToDP(2.5),
+    color: "#282828",
   },
   textStyle: {
     marginTop: 14,
-    fontFamily: "whitney-light",
-    fontSize: heightPercentageToDP(1.5),
+    fontFamily: Fonts.whitney_light,
+    fontSize: heightPercentageToDP(1.75),
     color: "#8D8C8C",
   },
   container2: {
     backgroundColor: "white",
-    padding: 20,
+    paddingHorizontal: widthPercentageToDP(8),
+    paddingBottom: widthPercentageToDP(13),
+    paddingTop: heightPercentageToDP(2),
     margin: 20,
-    elevation: 4,
     borderRadius: 10,
+    shadowColor: "#8D8C8C",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.6,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
   textInputStyle: {
-    padding: 5,
+    // padding: 5,
     borderBottomWidth: widthPercentageToDP(0.1),
     fontSize: heightPercentageToDP(1.75),
-    marginTop: 10,
+    // marginTop: 10,
     fontFamily: "whitney-medium",
+    color: "#000",
   },
   radioText: {
     fontFamily: "whitney-medium",
-    color: "black",
+    color: "#707070",
   },
   buttonStyle: {
-    margin: 10,
-    padding: 16,
-    backgroundColor: Colors.Primary,
-    borderRadius: 10,
-    elevation: 4,
+    margin: heightPercentageToDP(2),
+    // padding: 16,
+    // backgroundColor: Colors.Primary,
+    // borderRadius: 10,
+    // elevation: 4,
   },
 });
 

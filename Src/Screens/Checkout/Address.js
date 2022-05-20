@@ -32,7 +32,7 @@ const Address = (props) => {
   const [check1, setCheck1] = useState(true);
   var gender = [{ title: "Home" }, { title: "Office" }, { title: "Other" }, ,];
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
       <ScrollView style={{ flexGrow: 1 }}>
         <View style={styles.container_1_Styles}>
           {/* <ScrollView horizontal> */}
@@ -179,7 +179,7 @@ const Address = (props) => {
                   }
                 >
                   <CheckBox
-                    title={"Save for faster checkout next time"}
+                    title={"Same as billing address"}
                     containerStyle={{
                       marginLeft: heightPercentageToDP(-1.2),
                       // padding: 0,

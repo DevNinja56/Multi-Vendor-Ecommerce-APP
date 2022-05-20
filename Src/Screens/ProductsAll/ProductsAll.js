@@ -137,7 +137,13 @@ const ProductsAll = (props) => {
               </TouchableOpacity>
             </View>
 
-            <View style={{ borderWidth: 0.3, height: "60%", borderColor: '#cccccc' }} />
+            <View
+              style={{
+                borderWidth: 0.3,
+                height: "60%",
+                borderColor: "#cccccc",
+              }}
+            />
 
             <View
               style={{
@@ -174,7 +180,13 @@ const ProductsAll = (props) => {
               </TouchableOpacity>
             </View>
 
-            <View style={{ borderWidth: 0.3, height: "60%", borderColor: '#cccccc' }} />
+            <View
+              style={{
+                borderWidth: 0.3,
+                height: "60%",
+                borderColor: "#cccccc",
+              }}
+            />
 
             <View
               style={{
@@ -302,6 +314,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: "white",
     borderTopWidth: 0.3,
+    borderTopColor: "#cccccc",
   },
 });
 

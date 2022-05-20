@@ -20,7 +20,7 @@ import CategoryCards from "../../../../Components/CategoryCards";
 import httpClients from "../../../../Redux/utils";
 import Header from "../../../../Components/Header";
 import Loader from "../../../../Components/Loader";
-import Colors from '../../../../Constants/colors'
+import Colors from "../../../../Constants/colors";
 import crashlytics from "@react-native-firebase/crashlytics";
 
 const renderCategoryGridItem = (itemData) => {
@@ -135,8 +135,6 @@ const HomePage = ({ navigation }) => {
               style={{
                 ...commonStyles.image,
               }}
-              animation={"lightSpeedIn"}
-              iterationCount="infinite"
             />
           </View>
           {data.second_SliderImages.status ? (
@@ -518,7 +516,7 @@ const HomePage = ({ navigation }) => {
                 fontSize: widthPercentageToDP(4.5),
                 textAlign: "center",
                 paddingHorizontal: 10,
-                marginTop:10
+                marginTop: 10,
               }}
             >
               "Elegance is not standing out, but being remembered."

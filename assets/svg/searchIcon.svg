@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="14.849" height="15.349" viewBox="0 0 14.849 15.349">
-  <g id="Group_233" data-name="Group 233" transform="translate(-219 -22)">
-    <g id="Ellipse_82" data-name="Ellipse 82" transform="translate(219 22)" fill="none" stroke="#000" stroke-width="1.2">
-      <circle cx="6" cy="6" r="6" stroke="none"/>
-      <circle cx="6" cy="6" r="5.4" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+  <g id="Group_237" data-name="Group 237" transform="translate(-452 263)">
+    <rect id="Rectangle_314" data-name="Rectangle 314" width="25" height="25" transform="translate(452 -263)" fill="none"/>
+    <g id="Path_163" data-name="Path 163" transform="translate(448.059 -266.941)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M24.5,14.5a10,10,0,1,1-10-10A10,10,0,0,1,24.5,14.5Z" stroke="none"/>
+      <path d="M 14.5 5.700000762939453 C 9.647659301757812 5.700000762939453 5.700000762939453 9.647659301757812 5.700000762939453 14.5 C 5.700000762939453 19.35234069824219 9.647659301757812 23.29999923706055 14.5 23.29999923706055 C 19.35234069824219 23.29999923706055 23.29999923706055 19.35234069824219 23.29999923706055 14.5 C 23.29999923706055 9.647659301757812 19.35234069824219 5.700000762939453 14.5 5.700000762939453 M 14.5 4.5 C 20.02285003662109 4.5 24.5 8.977149963378906 24.5 14.5 C 24.5 20.02285003662109 20.02285003662109 24.5 14.5 24.5 C 8.977149963378906 24.5 4.5 20.02285003662109 4.5 14.5 C 4.5 8.977149963378906 8.977149963378906 4.5 14.5 4.5 Z" stroke="none" fill="#000"/>
     </g>
-    <line id="Line_108" data-name="Line 108" x2="4" y2="4" transform="translate(229 32.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1.2"/>
+    <path id="Path_164" data-name="Path 164" d="M30.9,30.907l-5.926-5.932" transform="translate(444.5 -270.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"/>
   </g>
 </svg>

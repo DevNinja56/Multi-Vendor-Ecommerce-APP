@@ -108,7 +108,7 @@ const FilterModel = (props) => {
                             setChecked(key);
                             changeScreen(key);
                           }}
-                          style={styles.btn}
+                          style={{ ...styles.btn }}
                         >
                           <View style={{ flexDirection: "row" }}>
                             <Text style={styles.textUnChecked}>{gender}</Text>
@@ -125,13 +125,14 @@ const FilterModel = (props) => {
           <View
             style={{
               flexDirection: "row",
-              height: "9.5%",
+              height: heightPercentageToDP(6),
               // height: "100%",
               justifyContent: "center",
               alignItems: "center",
               // alignSelf: "flex-end",
               borderTopWidth: heightPercentageToDP(0.1),
-
+              // borderWidth: 1,
+              borderTopColor: "#4D4D4D",
               paddingVertical: heightPercentageToDP(0.5),
             }}
           >
@@ -233,17 +234,20 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     color: "black",
     padding: 10,
+    // borderWidth: 1,
   },
   textUnChecked: {
+    width: "100%",
     fontSize: widthPercentageToDP(4.5),
     fontFamily: Fonts.whitney_light,
     // alignSelf: "flex-start",
     color: "grey",
+    // borderWidth: 1,
     padding: 10,
   },
   mainFilterContainer: {
-    // flex: 1,
-    height: "82%",
+    flex: 1,
+    // height: "80%",
     flexDirection: "row",
   },
   buttonContainer: {
@@ -265,6 +269,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   btn: {
+    // flex: 1,
     flexDirection: "column",
     alignItems: "flex-start",
     // marginVertical: 10,

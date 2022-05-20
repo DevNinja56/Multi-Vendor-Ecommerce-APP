@@ -16,6 +16,7 @@ import { Header } from "react-native-elements";
 import {
   BagIcon,
   HeartIcon,
+  ModjenLogo,
   NotificationIcon,
   SearchIcon,
   ShareIcon,
@@ -40,15 +41,10 @@ const CustomHeader = (props) => {
       }
       centerComponent={
         props.ishome ? (
-          <FastImage
-            source={require("../../../assets/modejenLogo.png")}
-            style={{
-              height: heightPercentageToDP(3.7),
-              width: widthPercentageToDP(15),
-              marginTop: heightPercentageToDP(0.3),
-              // borderWidth: 1,
-            }}
-            resizeMode={FastImage.resizeMode.stretch}
+          <ModjenLogo
+            height={heightPercentageToDP(3.7)}
+            width={widthPercentageToDP(15)}
+            style={{ marginTop: heightPercentageToDP(0.3) }}
           />
         ) : (
           <Text

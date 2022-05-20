@@ -26,11 +26,12 @@ import {
   OrderIcon,
   PaymentIcon,
   ProfileIcon,
+  WishListIcon,
 } from "../../../../assets/svg";
 import { styles } from "./style";
 import { commonStyles } from "../../../Styles/commonStyles";
 import Colors from "../../../Constants/colors";
-import {version} from '../../../../package.json'
+import { version } from "../../../../package.json";
 
 const Authenticated = (props) => {
   return (
@@ -244,7 +245,7 @@ const Authenticated = (props) => {
                 }}
               >
                 <View style={{ padding: 20 }}>
-                  <HeartIcon
+                  <WishListIcon
                     width={heightPercentageToDP(2.5)}
                     height={heightPercentageToDP(2.5)}
                   />
@@ -373,10 +374,11 @@ const Authenticated = (props) => {
               fontSize: widthPercentageToDP(3.5),
               margin: 20,
               textAlign: "center",
-              color: Colors.Primary
+              color: Colors.Primary,
             }}
           >
-            {"APP VERSION "}{version} 
+            {"APP VERSION "}
+            {version}
           </Text>
         </View>
       </ScrollView>

@@ -27,3 +27,5 @@ export { default as BuildingBlack } from "./building_black.svg";
 export { default as BuildingWhite } from "./building_white.svg";
 export { default as OtherBlack } from "./other_black.svg";
 export { default as OtherWhite } from "./other_white.svg";
+export { default as WishListIcon } from "./wishlist.svg";
+export { default as ModjenLogo } from "./modjenLogo.svg";

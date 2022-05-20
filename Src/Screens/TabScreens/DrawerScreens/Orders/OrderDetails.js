@@ -125,7 +125,7 @@ const OrderDetails = (props) => {
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1, flexGrow: 1 }}>
+    <SafeAreaView style={{ flex: 1, flexGrow: 1, backgroundColor: "#F9F9F9" }}>
       <SimpleHeader
         headerTitle={"Order Details"}
         clickHandler={() => props.navigation.goBack()}
@@ -281,15 +281,15 @@ const OrderDetails = (props) => {
 
 const styles = StyleSheet.create({
   detailsCardStyle: {
-    shadowColor: "#000",
+    shadowColor: "grey",
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
 
-    elevation: 5,
+    elevation: 3,
     paddingHorizontal: 20,
     paddingVertical: 20,
     backgroundColor: "white",

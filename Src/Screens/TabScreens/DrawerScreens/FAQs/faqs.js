@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  TouchableHighlight,
 } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import {
@@ -14,6 +15,7 @@ import {
 } from "react-native-responsive-screen";
 import Colors from "../../../../Constants/colors";
 import SimpleHeader from "../../../../Components/Header/simple_header";
+import { commonStyles } from "../../../../Styles/commonStyles";
 
 const faqs = (props) => {
   const [data, setData] = useState([
@@ -46,13 +48,13 @@ const faqs = (props) => {
   };
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <View style={styles.screen}>
       <SimpleHeader
         headerTitle={"FAQs"}
         placement={"left"}
         clickHandler={() => props.navigation.goBack()}
       />
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }} style={{ flex: 1 }}>
         <View style={styles.mainContainer}>
           {data.map((item, index) => {
             return (
@@ -74,18 +76,17 @@ const faqs = (props) => {
                 }}
               >
                 <ListItem
+                  Component={TouchableHighlight}
+                  disabledStyle={{ opacity: 0.5 }}
                   containerStyle={{
                     backgroundColor: "white",
-                    marginLeft: 20,
-                    marginRight: 10,
-
-                    borderBottomLeftRadius: 10,
-                    borderBottomRightRadius: 10,
-                    elevation: 1,
+                    marginHorizontal: heightPercentageToDP(3),
+                    marginTop: heightPercentageToDP(-2.8),
+                    borderTopWidth: heightPercentageToDP(0.1),
+                    borderBottomLeftRadius: heightPercentageToDP(1),
+                    borderBottomRightRadius: heightPercentageToDP(1),
                   }}
                 >
-                  {/* <ListItem.Content> */}
-                  {/* <ListItem.Title>Title</ListItem.Title> */}
                   <ListItem.Subtitle
                     style={{
                       fontFamily: "whitney-light",
@@ -100,14 +101,15 @@ const faqs = (props) => {
                     ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
                     nonumy eirmod tempor invidunt ut labore et dolore.
                   </ListItem.Subtitle>
-                  {/* </ListItem.Content> */}
                 </ListItem>
               </ListItem.Accordion>
             );
           })}
         </View>
       </ScrollView>
-      <TouchableOpacity style={styles.buttonStyle}>
+      <TouchableOpacity
+        style={{ ...commonStyles.buttonStyle, ...styles.buttonStyle }}
+      >
         <Text
           style={{
             textAlign: "center",
@@ -119,14 +121,14 @@ const faqs = (props) => {
           Submit Your Question
         </Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
-    // flex: 1,
-    flexGrow: 1,
+    flex: 1,
+    // flexGrow: 1,
     backgroundColor: "#F9F9F9",
   },
   mainContainer: {
@@ -139,14 +141,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#E4E4E4",
     marginLeft: 20,
     marginRight: 10,
-    elevation: 1,
   },
   contentStyle: {
     backgroundColor: "white",
-    marginHorizontal: 10,
-    marginVertical: 5,
-    borderRadius: 10,
-    elevation: 0,
+    marginHorizontal: heightPercentageToDP(3),
+    marginVertical: heightPercentageToDP(1.5),
+    borderRadius: heightPercentageToDP(1),
   },
   borderSelected: {
     backgroundColor: "white",
@@ -157,11 +157,7 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   buttonStyle: {
-    margin: 10,
-    padding: 16,
-    backgroundColor: Colors.Primary,
-    borderRadius: 10,
-    elevation: 1,
+    margin: heightPercentageToDP(2),
   },
   textStyle: {
     fontFamily: "whitney-medium",

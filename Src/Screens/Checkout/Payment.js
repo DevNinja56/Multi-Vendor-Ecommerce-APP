@@ -72,11 +72,14 @@ const Payment = (props) => {
   }, []);
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: "#F4F4F4" }}>
       <ScrollView style={{ flexGrow: 1 }}>
         {data.map((item, index) => {
           return (
-            <View style={{ ...styles.textInputStyle, margin: 16 }}>
+            <TouchableOpacity
+              onPress={() => unCheckPayment(index)}
+              style={{ ...styles.textInputStyle, margin: 16 }}
+            >
               <View
                 style={{
                   flexDirection: "row",
@@ -103,7 +106,6 @@ const Payment = (props) => {
                       />
                     }
                     checked={item.isActive}
-                    onPress={() => unCheckPayment(index)}
                   />
                   <Text
                     style={{
@@ -116,7 +118,7 @@ const Payment = (props) => {
                 </View>
                 <FastImage source={item.image} style={styles.imageStyleJE} />
               </View>
-            </View>
+            </TouchableOpacity>
           );
         })}
 
@@ -196,7 +198,7 @@ const styles = StyleSheet.create({
     fontFamily: "whitney-light",
     fontSize: heightPercentageToDP(2),
     backgroundColor: "white",
-    elevation: 2,
+    // elevation: ,
     padding: 8,
     borderRadius: 5,
   },

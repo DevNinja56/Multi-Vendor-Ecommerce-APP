@@ -69,8 +69,13 @@ const LoginScreen = (props) => {
               fontSize: heightPercentageToDP(3),
             }}
           >
-            <Text style={{ fontFamily: "whitney-semi-bold" }}>Login </Text>
-            or <Text style={{ fontFamily: "whitney-semi-bold" }}>Signup</Text>
+            <Text style={{ fontFamily: "whitney-semi-bold", color: "black" }}>
+              Login{" "}
+            </Text>
+            or{" "}
+            <Text style={{ fontFamily: "whitney-semi-bold", color: "black" }}>
+              Signup
+            </Text>
           </Text>
         </View>
         <View style={styles.phoneNumber}>
@@ -182,6 +187,7 @@ const styles = StyleSheet.create({
     // width: "100%",
     justifyContent: "center",
     // height: heightPercentageToDP(20),
+    paddingVertical: heightPercentageToDP(4),
   },
   images: {
     width: widthPercentageToDP(100),
@@ -194,17 +200,19 @@ const styles = StyleSheet.create({
   },
   phoneNumber: {
     width: "100%",
-    paddingHorizontal: 25,
-    paddingVertical: 5,
+    paddingHorizontal: heightPercentageToDP(3),
+    paddingVertical: heightPercentageToDP(1),
+    // justifyContent: "center",
   },
   phoneTextInput: {
     borderWidth: widthPercentageToDP(0.1),
-    paddingHorizontal: 10,
+    paddingHorizontal: heightPercentageToDP(1.5),
     borderRadius: 5,
     borderColor: "grey",
     flexDirection: "row",
-    paddingVertical: 8,
+    // paddingVertical: heightPercentageToDP(0.5),
     alignItems: "center",
+    justifyContent: "center",
   },
   buttonLayout: {
     marginHorizontal: 25,

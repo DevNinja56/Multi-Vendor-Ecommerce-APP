@@ -17,6 +17,7 @@ export const styles = StyleSheet.create({
     width: widthPercentageToDP(90),
     alignSelf: "center",
     marginTop: heightPercentageToDP(3),
+    marginBottom: heightPercentageToDP(1.5),
     flexDirection: "row",
     backgroundColor: "white",
     padding: heightPercentageToDP(2),
@@ -49,15 +50,15 @@ export const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderRadius: heightPercentageToDP(2),
     overflow: "hidden",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
 
-    elevation: 5,
+    // elevation: 5,
   },
   container_1_Styles: {
     padding: 16,

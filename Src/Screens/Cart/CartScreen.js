@@ -175,15 +175,15 @@ const styles = StyleSheet.create({
   flatList: {
     // flex: 0.3,
     backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.23,
+    // shadowRadius: 2.62,
 
-    elevation: 4,
+    // elevation: 4,
     padding: 20,
   },
   cardStyle: {
@@ -194,15 +194,15 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     flexDirection: "row",
     justifyContent: "space-between",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
+    // shadowColor: "grey",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.23,
+    // shadowRadius: 2.62,
 
-    elevation: 4,
+    // elevation: 4,
   },
   imageStyle: {
     flex: 0.25,
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     // borderWidth: 1,
     borderRadius: 10,
     overflow: "hidden",
-    elevation: 4,
+    // elevation: 4,
     // width: "100%",
     // height: "100%",
   },
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
   popularStyle: {
     marginVertical: 25,
     backgroundColor: "white",
-    elevation: 4,
+    // elevation: 4,
   },
   itemStyle: {
     // flex: 0.2,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     width: heightPercentageToDP(7),
     margin: 5,
     borderRadius: heightPercentageToDP(7) / 2,
-    elevation: 4,
+    // elevation: 4,
     overflow: "hidden",
   },
   image: {

@@ -182,6 +182,6 @@ export const commonStyles = StyleSheet.create({
     alignItems: "center",
     marginVertical: heightPercentageToDP(1),
     borderRadius: heightPercentageToDP(1),
-    elevation: 4,
+    // elevation: 2,
   },
 });
